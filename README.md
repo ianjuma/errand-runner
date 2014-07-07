@@ -2,7 +2,7 @@ linkus agency
 =========
 
 #### linkUs app
-This is a very buggy and fast implementation of the task management app
+This is a very buggy implementation of TaskWangu
 
 
 ### TODO
