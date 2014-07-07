@@ -1,0 +1,41 @@
+.middle {
+	margin-left: 35rem;
+	margin-right: 40rem;
+	margin-top: 5rem;
+}
+
+.little {
+	margin-top: 1.5rem;
+	margin-bottom: 1.5rem;
+}
+
+.buttons-top {
+	margin-right: 1.5rem;
+	margin-left: 1.5rem;
+}
+
+.lower-space {
+	margin-bottom: 0.9rem;
+}
+
+.button-botton {
+	margin-bottom: 0rem;
+	margin-top: 0.7rem;
+	margin-left: 3rem;
+}
+
+.link-t {
+	margin-bottom: 0rem;
+	margin-top: 0.55rem;
+}
+
+.middle-warn {
+	margin-left: 35rem;
+	margin-right: 40rem;
+}
+
+.space-task {
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+	margin-left: 23rem;
+}
