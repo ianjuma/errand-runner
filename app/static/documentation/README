@@ -1,0 +1,128 @@
+1. Welcome
+
+First of all I would like to thank you for purchasing Prestige. If at any time you run into trouble, or need a hand with anything, please feel free to get in touch with me and I'll happily do my best to assist.
+
+If you require any additional support, feel free to raise a ticket via our support portal and I'll assist where possible.
+
+Click here to submit a support ticket
+
+
+
+ 
+
+
+2. Setting up your theme
+
+
+HTML
+I have separated each layout into their own index html file. Simply choose the layout you're interested in using, and rename the file to index.html.
+
+The three layouts are:
+App / SaaS / Startup layout (index-app.html)
+Video layout (index-video.html)
+Agency / Freelancer layout (index-agency.html)
+ 
+CSS
+To modify the CSS of the desired layout, simply make any updates inside the css/custom.css file.
+
+If you're familiar with CSS, I strongly urge you to learn how LESS CSS works, and modify any CSS updates inside the css/theme.less file. It will allow you to easily make customizations to the template!
+
+See more details in the next section.
+ 
+ 
+LESS
+If you are familiar with LESS, you can change the default stylesheet (custom.css) to link to css/custom.less and modify the LESS code either client-side or server-side. See the following URL for instructions and more info:
+ 
+lesscss.org
+
+
+Imagery
+Unfortunately I cannot provide support on updating the images on your website, but I have provided some really useful resources below that contain free images and PSDs that you can use:
+
+www.unsplash.com
+www.goodfon.com
+www.pixeden.com 
+
+
+ 
+ 
+ 
+3. Selecting a different colour option
+ 
+ 
+The template uses the turqoise colour scheme by default, but I have included the four other colour options in separate CSS files. Simply change the theme.css to one of the other ones. For example -
+ 
+Change:
+<link href="css/theme.css" rel="stylesheet">
+ 
+To:
+<link href="css/theme-blue.css" rel="stylesheet">
+ 
+All colour schemes:
+theme.css (turquise)
+theme-blue.css
+theme-salmonpink.css
+theme-orange.css
+ 
+ 
+ 
+ 
+ 
+4. Video Layout
+
+To change the default video to your own video, simply change the bolded URL below inside the index-video.html file.
+ 
+I have also added a fallback background image to replace the video on mobile devices because the video does not automatically play due to restrictions applied by vendors on media controls. You will notice the background image is bolded in the code below. Feel free to change the image to whatever you like.
+ 
+<div id="intro-video" style="background-image: url( 'img/bg-videofallback.jpg' ); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+
+      <a class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=dum1Gh-FE9Q',containment:'#intro-video',autoPlay:true, mute:true, startAt:0, printUrl:false,showControls:false, opacity:1, quality: 'highres'}"></a>
+      ...
+
+</div>
+ 
+You can view the plugin documentation for more customization options
+ 
+ 
+ 
+ 
+
+
+5. Icon fonts
+
+I have used the FontAwesome icon font set in this theme. Click on the link below to view the icons.
+
+fortawesome.github.io/Font-Awesome/icons/
+
+
+
+
+ 
+ 
+6. Animations
+
+I have used a declarative on-scroll reveal animations plugin called ScrollReveal, created by Julian Lloyd. You can view these CSS Animations by clicking here.
+ 
+Below is a snippet to show how you can use the animations. It's best to view the plugin documentation for more details: Plugin documentation
+
+
+To animate a container, you can do something like this:
+<div data-scroll-reveal="enter left and move 50px over 1.33s">Animate me<div>
+This animation will enter from the left of the screen, and move 50px over 1.33 seconds.
+
+
+
+
+
+
+7. Contact Form Submissions
+
+You will need to update the contact_me.php file with your email address to receive contact form submissions. You will need to edit the highlighted text below inside the contact_me.php file:
+
+// -------------------------------------------
+// --- ENTER YOUR EMAIL ADDRESS HERE
+// -------------------------------------------
+
+$to = 'youremail@example.com';
+
+// -------------------------------------------
