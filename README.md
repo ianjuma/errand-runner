@@ -18,3 +18,4 @@ This is a very buggy implementation of TaskWangu
 - [ ] class-based decomposition
 - [ ] defined exceptions - DBError
 - [ ] MVC structure + class decomposition
+- [ ] setup DB scripts
