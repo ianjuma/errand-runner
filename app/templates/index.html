@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html class="no-js lt-ie9 ie8" lang="en"> <![endif]-->
+<!--[if IE 9]> <html class="ie9" lang="en"> <![endif]-->
+<!--[if IE 10]> <html class="ie10" lang="en"> <![endif]-->
+<!--[if (gt IE 10)|!(IE)]> <html lang="en"> <![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="{{url_for('static', filename='ico/favicon.ico') }}">
+    <title>Task &middot; Wangu</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{url_for('static', filename='css/theme-salmonpink.css') }}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{{url_for('static', filename='css/magnific-popup.css') }}" rel="stylesheet">
+
+
+    <!-- Font Awesome -->
+    <link href="{{url_for('static', filename='css/font-awesome.min.css') }}" rel="stylesheet">
+
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="{{url_for('static', filename='js/modernizr.custom.js') }}"></script>
+  </head>
+
+  <body>
+
+    <div class="preloader">
+       <div class="spinner">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+    </div>
+<!--
+    <div class="spinner">
+      <div class="rect1"></div>
+      <div class="rect2"></div>
+      <div class="rect3"></div>
+      <div class="rect4"></div>
+      <div class="rect5"></div>
+    </div>
+ -->
+    <!-- NAVBAR
+    ================================================== -->
+    <div class="navbar-wrapper cbp-af-header">
+      <div class="container">
+
+        <!-- Fixed navbar -->
+        <div class="navbar cbp-af-inner" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <h1><a class="navbar-brand scroll" href="#intro">TaskWangu</a></h1>
+            </div>
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav pull-right">
+                <li><a href="#about">About</a></li>
+                <li><a href="#featured1">Features</a></li>
+                <li class="hidden-sm"><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a class="hidden-sm login" href="#">Login</a></li>
+                <li><a class="signup" href="#">Sign up</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- Hero Banner
+    ================================================== -->
+    <div id="intro">
+        <div class="item background-cover" style="background: url('{{url_for('static', filename='img/bg-featuredapp1.jpg') }}')">
+          <div class="container">
+            <div class="row">
+              <div class="carousel-caption-center colour-white">
+                <h2>Away from home?</h2>
+                <h1>Have an errand to run?</h1>
+                <p>Delegate your tasks to us Today!</p>
+                <p><a class="btn btn-lg btn-primary signup" href="#" role="button">Get started</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="overlay-bg"></div>
+        </div>
+    </div>
+
+
+
+    <!-- About Section
+    ================================================== -->
+    <section id="about" class="content text-center light">
+
+      <div class="container">
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+          <div class="col-lg-12 overlay-text">
+            <h2>Fast reliable and Affordable</h2>
+          </div><!-- /.col-lg-12 -->
+        </div><!-- /.row -->
+
+        <div class="row">
+          <div class="col-sm-4 text-center overlay-text icons">
+            <div class="icon-wrapper">
+              <i class="fa fa-cloud icon-large"></i>
+            </div>
+            <h3>Sky's the limit</h3>
+            <p>An errand running platform that builds a relationship with you, we strive to deliver and
+            fulfill your expectations</p>
+          </div>
+          <div class="col-sm-4 text-center overlay-text icons">
+            <div class="icon-wrapper">
+              <i class="fa fa-rocket icon-large"></i>
+            </div>
+            <h3>Big Tasks</h3>
+            <p>Big tasks? Don't worry. To us they're easy</p>
+          </div>
+          <div class="col-sm-4 text-center overlay-text icons">
+            <div class="icon-wrapper">
+              <i class="fa fa-lightbulb-o icon-large"></i>
+            </div>
+            <h3>Creative Execution</h3>
+            <p>We avoid disruptions and guarantee in-time task completion</p>
+          </div>
+        </div><!-- /.row -->
+      </div>
+
+      <div class="overlay-bg light"></div>
+
+    </section>
+
+
+    <!-- Featured Sections
+    ================================================== -->
+    <section id="featured1" class="dark with-bg">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-5 overlay-text">
+            <div class="vertical-align">
+              <h2>We work with your schedule</h2>
+              <p>Flexible, hustle free</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="overlay-bg black"></div>
+
+    </section>
+
+
+    <section id="featured2" class="featured">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-5 text-center">
+            <img class="margin-top img-responsive" src="{{url_for('static', filename='img/imac.png') }}" alt="Generic placeholder image" data-scrollreveal="move 100px and enter from the left after 0.55s" width="429">
+          </div>
+          <div class="col-sm-5 col-sm-offset-1">
+            <div class="vertical-align">
+              <h2>Effortless time management</h2>
+              <p>Free your time by delegating tasks to us</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- Testimonials
+    ================================================== -->
+    <section id="testimonials" class="dark">
+
+      <div class="page-header text-center">
+        <h3>Testimonials</h3>
+        <h2>What People are saying</h2>
+      </div>
+
+      <div class="container">
+
+        <div class='row'>
+          <div class='col-md-offset-2 col-md-8'>
+            <div class="carousel slide" data-ride="carousel" id="quote-carousel">
+              <!-- Bottom Carousel Indicators -->
+              <ol class="carousel-indicators">
+                <li data-target="#quote-carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#quote-carousel" data-slide-to="1"></li>
+                <li data-target="#quote-carousel" data-slide-to="2"></li>
+              </ol>
+
+              <!-- Carousel Slides / Quotes -->
+              <div class="carousel-inner">
+
+                <!-- Quote 1 -->
+                <div class="item active">
+                  <blockquote>
+                    <div class="row">
+                      <div class="col-sm-3 text-center">
+                        <img class="img-circle" src="{{url_for('static', filename='img/user-avatar1.jpg') }}">
+
+                      </div>
+                      <div class="col-sm-9">
+                        <p>"Love it! Effortless clear and concise UI"</p>
+                        <small>David Parrelli - <a href="http://www.twitter.com/dparrelli" target="_blank">@dparrelli</a></small>
+                      </div>
+                    </div>
+                  </blockquote>
+                </div>
+                <!-- Quote 2 -->
+                <div class="item">
+                  <blockquote>
+                    <div class="row">
+                      <div class="col-sm-3 text-center">
+                        <img class="img-circle" src="{{url_for('static', filename='img/user-avatar2.jpg') }}">
+                      </div>
+                      <div class="col-sm-9">
+                        <p>"I can't live without TaskWangu, easy tracking of task completion and real-time updates via SMS"</p>
+                        <small>Working Nomads - <a href="http://www.workingnomads.co" target="_blank">@workingnomads</a></small>
+                      </div>
+                    </div>
+                  </blockquote>
+                </div>
+                <!-- Quote 3 -->
+                <div class="item">
+                  <blockquote>
+                    <div class="row">
+                      <div class="col-sm-3 text-center">
+                        <img class="img-circle" src="{{url_for('static', filename='img/user-avatar3.jpg') }}">
+                      </div>
+                      <div class="col-sm-9">
+                        <p>"Personalised content and a fast chat service"</p>
+                        <small>Working Nomads - <a href="http://www.workingnomads.co" target="_blank">@workingnomads</a></small>
+                      </div>
+                    </div>
+                  </blockquote>
+                </div>
+              </div>
+
+              <!-- Carousel Buttons Next/Prev -->
+              <a data-slide="prev" href="#quote-carousel" class="left carousel-control visible-md visible-lg"><i class="fa fa-chevron-left"></i></a>
+              <a data-slide="next" href="#quote-carousel" class="right carousel-control  visible-md visible-lg"><i class="fa fa-chevron-right"></i></a>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- Gallery
+    ================================================== -->
+    <section id="gallery">
+
+      <div class="page-header text-center">
+        <h3>Screenshots</h3>
+        <h2>Here's a sneak peek</h2>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div id="owl-example" class="owl-carousel">
+              <div class="item">
+                <a href="{{url_for('static', filename='img/thumbs/thumb1.jpg') }}" class="popup-gallery">
+                  <img src="{{url_for('static', filename='img/thumbs/thumb1.jpg') }}" alt="Prestige Portfolio Thumbnail Image">
+                </a>
+              </div>
+              <div class="item">
+                <a href="{{url_for('static', filename='img/thumbs/thumb2.jpg') }}" class="popup-gallery">
+                  <img src="{{url_for('static', filename='img/thumbs/thumb2.jpg') }}" alt="Prestige Portfolio Thumbnail Image">
+                </a>
+              </div>
+              <div class="item">
+                <a href="{{url_for('static', filename='img/thumbs/thumb3.jpg') }}" class="popup-gallery">
+                  <img src="{{url_for('static', filename='img/thumbs/thumb3.jpg') }}" alt="Prestige Portfolio Thumbnail Image">
+                </a>
+              </div>
+              <div class="item">
+                <a href="{{url_for('static', filename='img/thumbs/thumb4.jpg') }}" class="popup-gallery">
+
+                  <img src="{{url_for('static', filename='img/thumbs/thumb4.jpg') }}" alt="Prestige Portfolio Thumbnail Image">
+                </a>
+              </div>
+              <div class="item">
+                <a href="{{url_for('static', filename='img/thumbs/thumb5.jpg') }}" class="popup-gallery">
+                  <img src="{{url_for('static', filename='img/thumbs/thumb5.jpg') }}" alt="Prestige Portfolio Thumbnail Image">
+                </a>
+              </div>
+              <div class="item">
+                <a href="{{url_for('static', filename='img/thumbs/thumb6.jpg') }}" class="popup-gallery">
+                  <img src="{{url_for('static', filename='img/thumbs/thumb6.jpg') }}" alt="Prestige Portfolio Thumbnail Image">
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- Pricing
+    ================================================== -->
+    <section id="pricing" class="dark">
+
+      <div class="page-header text-center">
+        <h3>Pricing</h3>
+        <h2>Pay as you grow</h2>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="plans">
+              <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="plan" data-scrollreveal="enter over 1s">
+                  <div class="plan-title">
+                    <h2>Jamaa</h2>
+                    <h3><sup>$</sup>13<sub>/ month</sub></h3>
+                  </div>
+
+                  <ul class="plan-features">
+                    <li>1 Option</li>
+                    <li>Upto 4 months</li>
+                    <li>2 workers</li>
+                  </ul>
+                  <div class="plan-cta">
+                    <p class="plan-buy"><a href="index.html" class="btn">Select plan</a></p>
+                 </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="plan featured" data-scrollreveal="enter over 1s">
+                  <div class="plan-title">
+                    <h2>Mwanzo</h2>
+                    <h3><sup>$</sup>23<sub>/ month</sub></h3>
+                  </div>
+
+                  <ul class="plan-features">
+                    <li><strong>5 Options</strong></li>
+                    <li>Upto 2 months</li>
+                    <li>6 workers</li>
+                  </ul>
+                  <div class="plan-cta">
+                    <p class="plan-buy"><a href="index.html" class="btn">Select plan</a></p>
+                 </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="plan featured" data-scrollreveal="enter over 1s">
+                  <div class="plan-title">
+                    <h2>Haraka</h2>
+                    <h3><sup>$</sup>35<sub>/ month</sub></h3>
+                  </div>
+
+                  <ul class="plan-features">
+                    <li><strong>6</strong></li>
+                    <li>1 month</li>
+                    <li>10 workers</li>
+                  </ul>
+                  <div class="plan-cta">
+                    <p class="plan-buy"><a href="index.html" class="btn">Select plan</a></p>
+                 </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="plan" data-scrollreveal="enter over 1s">
+                  <div class="plan-title">
+                    <h2>Enterprise</h2>
+                    <h3><sup>$</sup>47<sub>/ month</sub></h3>
+                  </div>
+
+                  <ul class="plan-features">
+                    <li><strong>Unlimited</strong></li>
+                    <li>Top Priority</li>
+                    <li>EveryOne</li>
+                  </ul>
+                  <div class="plan-cta">
+                    <p class="plan-buy"><a href="index.html" class="btn">Select plan</a></p>
+                 </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- Call to Action
+    ================================================== -->
+    <section class="cta text-center">
+
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-12">
+            <h2>Start freelancing now.</h2>
+            <p><a href="#" class="btn signup" role="button">Get started</a></p>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- Footer
+    ================================================== -->
+    <footer id="contact" class="footer">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="col-sm-3 col-md-3">
+              <div class="footer-logo">
+                <h2>TaskWangu</h2>
+                <p>00200-8771 Main Street, Nairobi Kenya<br>+254 701435067</p>
+                <br>
+                <p class="muted">© 2014 TaskWangu Inc.</p>
+                <a href="#">Terms of Service</a>
+                <a href="#">Privacy</a>
+              </div>
+            </div>
+            <div class="col-sm-3 col-md-3">
+              <h3>Product</h3>
+              <ul class="list-unstyled">
+                <li><a href="#">Product for iOS</a></li>
+                <li><a href="#">Product for Android</a></li>
+                <li><a href="#">Product for Windows</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-3 col-md-3">
+              <h3>Company</h3>
+              <ul class="list-unstyled">
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Our Team</a></li>
+                <li><a href="#">Jobs&emsp;<span class="label label-info">We're hiring!</span></a></li>
+              </ul>
+            </div>
+            <div class="col-sm-3 col-md-3">
+              <h3>Documentation</h3>
+              <ul class="list-unstyled">
+                <li><a href="#">Product Help</a></li>
+                <li><a href="#">Support</a></li>
+                <li><a href="#">Developer API</a></li>
+                <li><a href="#">Product Markdown</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <a class="icon" href="http://www.twitter.com/dparrelli" target="_blank"><i class="fa fa-twitter"></i></a>
+            <a class="icon" href="#" target="_blank"><i class="fa fa-facebook"></i></a>
+            <a class="icon" href="http://www.dribbble.com/dparrelli" target="_blank"><i class="fa fa-dribbble"></i></a>
+            <a class="icon" href="http://www.workingnomads.co" target="_blank"><i class="fa fa-globe"></i></a>
+          </div>
+        </div>
+      </div>
+
+		</footer>
+
+    <div id="login" class="overlay overlay-content">
+
+      <button type="button" class="overlay-close">Close</button>
+      <section class="login-part">
+        <p class="login-overlay">
+          Log In
+        </p>
+        <form>
+          <input class="form-control" type="text" id="mobileNo" name="u" placeholder="Username" required="required" />
+          <input class="form-control" type="password" id="getPass" name="p" placeholder="Password" required="required" />
+          <button id="signInData" type="submit" class="btn btn-primary btn-block btn-large">Log In</button>
+          <a href="/recoverpass" class="forgot-pw">Forgot password? We can help!</a>
+        </form>
+       </section>
+
+    </div>
+
+    <div id="signup" class="overlay overlay-content">
+
+      <button type="button" class="overlay-close">Close</button>
+      <section class="login-part">
+        <p class="login-overlay">
+          Sign up to TaskWangu
+        </p>
+        <form>
+          <input class="form-control" type="text" name="mobileNo" id="getmobileNo" placeholder="Username" required="required" />
+          <input class="form-control" type="email" name="email" id="email" placeholder="Email" required="required" />
+          <input class="form-control" type="password" name="pw" id="pw" placeholder="Password" required="required" />
+          <input class="form-control" type="password" name="repeat-pw" id="pwtwo" placeholder="Repeat Password" required="required" />
+          <button id="loginData" type="submit" class="btn btn-primary btn-block btn-large">Get started</button>
+          <p class="disclaimer">By signing up, you agree with our <a href="/terms/">Terms of Service</a> & <a href="/privacy/">Privacy Policy</a></p>
+        </form>
+       </section>
+
+    </div>
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{url_for('static', filename='js/jquery-1.10.2.min.js') }}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{url_for('static', filename='js/classie.js') }}"></script>
+		<script src="{{url_for('static', filename='js/cbpAnimatedHeader.min.js') }}"></script>
+    <script src="{{url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+    <script src="{{url_for('static', filename='js/scrollReveal.js') }}"></script>
+    <script src="{{url_for('static', filename='js/jquery.scrollTo.js') }}" defer="defer"></script>
+    <script src="{{url_for('static', filename='js/jquery.nav.js') }}" defer="defer"></script>
+    <script src="{{url_for('static', filename='js/imagesloaded.pkgd.min.js') }}" defer="defer"></script>
+    <script src="{{url_for('static', filename='js/isotope.min.js') }}" defer="defer"></script>
+    <script src="{{url_for('static', filename='js/jquery.magnific-popup.min.js') }}" defer="defer"></script>
+    <script src="{{url_for('static', filename='js/jqBootstrapValidation.js') }}" defer="defer"></script>
+    <script src="{{url_for('static', filename='js/custom.js') }}"></script>
+    <script src="{{url_for('static', filename='js/app.js') }}"></script>
+
+    <script>
+
+      $(document).ready(function(){
+        isotope();
+        signupOverlay();
+        loginOverlay();
+      });
+
+    </script>
+
+  </body>
+</html>

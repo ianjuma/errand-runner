@@ -1,0 +1,66 @@
+"fname": "Ian",
+"lname": "Juma"',
+"mobileNo": "07989344",
+"state": "have_ride",
+"car_plate": "09090",
+"car_model": "123",
+"car_brand": "BMW",
+"location": "08707",
+"id": 12
+
+
+$.ajax({
+	type: 'POST',
+	url: '/api/addUser/',
+	contentType: 'application/json',
+	success: function(result) {
+	  console.log(result);
+	},
+	data: userData
+});
+
+
+userData = {"fname":"Juma","lname":"Alex","mobileNo":"0721964754","state":"have_ride","car_plate":"KBD853","car_model":"320","car_brand":"Mercedes","location":"138763","_id":4}
+
+
+
+$.ajax({
+	type: 'DELETE',
+	url: '/api/removeUser/',
+	contentType: 'application/json',
+	success: function(result) {
+	  console.log(result);
+	},
+	data: userData
+});
+
+
+$.ajax({
+	type: 'DELETE',
+	url: '/api/removeUser/',
+	contentType: 'application/json',
+	success: function(result) {
+	  console.log(result);
+	},
+	data: userData
+});
+
+
+userData = {"fname":"","lname":"","mobileNo":"","state":"","car_plate":"","car_model":"","car_brand":"","location":"","_id":12}
+
+JSON.stringify(userData)
+
+
+# itearte over cursor object append to list
+data = r.table('User').filter({'state': 'have_ride'}).pluck('fname', 'mobileNo').limit(2).run(conn)
+for i in data:
+...     listy.append(i)
+
+
+data = r.table('User').filter({'state': 'have_ride'}).pluck('fname', 'mobileNo').limit(2).run(conn)
+
+r.table('User').filter({'state': 'have_ride'}).count().run(conn)
+
+
+# js
+r.db('CarPool').table('User').filter({fname: "Ian"}).forEach(r.db('CarPool').table('User').filter({fname: "Ian"}).update({lname: "Juma"}))

@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Profile</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap-other.css') }}">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/datepicker.css') }}">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/pos-style.css') }}">
+        <link rel="shortcut icon" href="{{url_for('static', filename='ico/favicon.ico') }}">
+
+        <link rel="author" href="humans.txt">
+    </head>
+    <body>
+
+		 <nav class="navbar navbar-default navbar-static-top" role="navigation">
+  			<div class="container">
+  				<a class="navbar-brand" href="/">TasKwangu</a>
+  				<ul class="nav nav-pills">
+			  		
+			  		<li>
+			  		<button type="button" onClick="window.location.href = '/tasks/'+username" class="btn buttons-top button-botton">New Task
+						<span class="glyphicon glyphicon-plus"></span>
+					</button>
+					</li>
+					<li>
+					<button type="button" onClick="window.location.href = '/allTasks/'+username" class="btn buttons-top button-botton">My Tasks
+						<span class="glyphicon glyphicon-hdd"></span>
+					</button>
+					</li>
+
+					<li>
+					<button type="button" onClick="window.location.href = '/profile/'+username" class="btn buttons-top button-botton">Profile
+						<span class="glyphicon glyphicon-user"></span>
+					</button>
+					</li>
+
+					<li>
+					<button type="button" onClick="window.location.href = '/'" class="btn btn-danger buttons-top button-botton">Log Out
+						<span class="glyphicon glyphicon-log-out"></span>
+					</button>
+					</li>
+
+					<li>
+					<button type="button" onClick="window.location.href = 'https://docs.google.com/forms/d/1JNhamPDhKgxwRWDObIJ8fsfmit6JbtWL6zZRkDZcFuc/viewform?c=0&w=1&usp=mail_form_link'" class="btn btn-info buttons-top button-botton">Help Us
+						<span class="glyphicon glyphicon-comment"></span>
+					</button>
+					</li>
+
+
+				</ul>
+  			</div>
+		</nav>
+
+
+		<div id="alert-all">
+		</div>
+
+		<div class="middle">
+
+			<strong>Update Your Information</strong>
+			<div class="well">
+				<label><strong>Name</strong></label>
+				<input id="name-data" type="text" class="form-control little"  value="{{name}}" placeholder="Name">
+				<label><strong>Country </strong></label>
+				<input id="state-data" type="text" class="form-control little" value="{{state}}" placeholder="Country">
+				<label><strong>Mobile Number </strong></label>
+				<input id="mobile-data" type="text" class="form-control little" value="{{mobileNo}}" placeholder="Mobile Number">
+				<label><strong>Email </strong></label>
+				<input id="email-data" type="email" class="form-control little" value="{{email}}" placeholder="Email">
+				<label><strong>SMS code</strong></label>
+				<input id="sms-data" type="text" class="form-control little" value="{{smscode}}" placeholder="SMS-Code">
+				<div class="lower-space">
+				<strong>Date of Birth</strong>
+            	<input type="text" class="form-control span2" value="16-6-2014" id="date-data" >
+          	</div>
+			</div>
+			<strong>Change Password</strong>
+			<div class="well">
+				<label><strong>Current Password </strong></label>
+				<input id="c_password-data" type="password" class="form-control little" value="{{password}}" placeholder="Current Password">
+				<label><strong>New Password </strong></label>
+				<input id="password-data" type="password" class="form-control little" placeholder="New Password">
+				<label><strong>Repeat Password </strong></label>
+				<input id="password2-data" type="password" class="form-control little" placeholder="Repeat Password">
+			</div>
+
+          	<!-- <strong>Almost Done!</strong> -->
+          	<!-- 
+          	<div class="progress">
+			  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100" style="width: 12%;">
+			    <span class="sr-only">12% Complete</span>
+			  </div>
+			</div>
+			 -->
+
+			<div class="well">
+				<button id="save-user" type="button" class="btn buttons-top">Save
+					<span class="glyphicon glyphicon-cloud-upload"></span>
+				</button>
+				<button id="delete-data" type="button" class="btn btn-danger buttons-top">Delete Account
+					<span class="glyphicon glyphicon-trash"></span>
+				</button>
+				<button id="clear-all" type="button" class="btn btn-warning buttons-top">Clear
+					<span class="glyphicon glyphicon-remove"></span>
+				</button>
+			</div>
+		</div>
+
+        <script src="{{url_for('static', filename='js/jquery.js') }}"></script>
+        <script src="{{url_for('static', filename='js/bootstrap-datepicker.js') }}"></script>
+        <script src="{{url_for('static', filename='js/bootstrap.js') }}"></script>
+        <script src="{{url_for('static', filename='js/notify.min.js') }}"></script>
+        <script src="{{url_for('static', filename='js/profile-ops.js') }}"></script>
+
+        <script>
+
+          $('#date-data').datepicker({
+				format: 'mm-dd-yyyy'
+		  });
+
+          var username = "{{username}}";
+          console.log(username);
+
+        </script>
+
+    </body>
+</html>
