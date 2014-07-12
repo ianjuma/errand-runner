@@ -10,7 +10,7 @@ This is a very buggy implementation of TaskWangu
 - [x] DB scripts
 - [x] Integrate SMS (AfricaIT)
 - [x] Email notifications Sendgrid/mailgun
-- [ ] Redis cache + store - zmq
+- [ ] Redis cache + store
 - [ ] new relic
 - [ ] celery - logging
 - [ ] log watching + control - logrotate
