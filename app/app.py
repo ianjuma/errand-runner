@@ -713,11 +713,6 @@ def resource_not_found(e):
                                   "Not Found"}), 404)
 
 
-@app.route('/app')
-def application():
-    return render_template('app.html')
-
-
 @app.route('/')
 def index():
     return render_template('index.html')
