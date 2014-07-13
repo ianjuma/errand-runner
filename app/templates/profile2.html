@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>New Task</title>
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="author" content="" />
+		<link rel="shortcut icon" href="favicon.ico">
+
+		<link rel="stylesheet" href="{{url_for('static', filename='css/font-awesome.min.css') }}">
+		<link rel="stylesheet" href="{{url_for('static', filename='css/froala_editor.min.css') }}">
+		<link rel="stylesheet" href="{{url_for('static', filename='css/nprogress.css') }}">
+		<link rel="stylesheet" href="{{url_for('static', filename='css/font-awesome.min.css') }}">
+
+
+		<link rel="stylesheet" href="{{url_for('static', filename='css/datepicker.css') }}">
+		<link rel="stylesheet" href="{{url_for('static', filename='css/normalize.css') }}">
+		<link rel="stylesheet" href="{{url_for('static', filename='css/icons.css') }}">
+
+		<link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css') }}">
+		<link rel="stylesheet" href="{{url_for('static', filename='css/menu.css') }}">
+		<link rel="stylesheet" href="{{url_for('static', filename='css/menu-style.css') }}">
+		<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css" />
+
+
+		<script src="{{url_for('static', filename='js/jquery.min.js') }}"></script>
+		<script src="{{url_for('static', filename='js/froala_editor.min.js') }}"></script>
+		<script src="{{url_for('static', filename='js/modernizr.custom.js') }}"></script>
+		<script src="{{url_for('static', filename='js/jquery.noty.packaged.min.js') }}"></script>
+		<script src="{{url_for('static', filename='js/nprogress.js') }}"></script>
+
+	</head>
+
+	<body>
+
+		<div class="container">
+			<nav id="bt-menu" class="bt-menu">
+				<a href="#" class="bt-menu-trigger"><span>Menu</span></a>
+				<ul>
+					<li><a href="/tasks/{{username}}/">New task</a></li>
+					<li><a href="/allTasks/{{username}}/">All Tasks</a></li>
+					<li><a href="/profile/{{username}}/">Profile</a></li>
+					<li><a href="/payments/{{username}}/">Payments</a></li>
+					<li><a href="/logout/{{username}}/">Logout</a></li>
+				</ul>
+			</nav>
+		</div>
+
+		<div class="middle">
+			<strong>Update Your Information</strong>
+			<div class="well">
+				<label><strong>Name</strong></label>
+				<input id="name-data" type="text" class="form-control little"  value="{{name}}" placeholder="Name">
+				<label><strong>Country </strong></label>
+				<input id="state-data" type="text" class="form-control little" value="{{state}}" placeholder="Country">
+				<label><strong>Mobile Number </strong></label>
+				<input id="mobile-data" type="text" class="form-control little" value="{{mobileNo}}" placeholder="Mobile Number">
+				<label><strong>Email </strong></label>
+				<input id="email-data" type="email" class="form-control little" value="{{email}}" placeholder="Email">
+				<label><strong>SMS code</strong></label>
+				<input id="sms-data" type="text" class="form-control little" value="{{smscode}}" placeholder="SMS-Code">
+				<div class="lower-space">
+				<strong>Date of Birth</strong>
+            	<input type="text" class="form-control span2" value="16-6-2014" id="date-data" >
+          	</div>
+			</div>
+			<strong>Change Password</strong>
+			<div class="well">
+				<label><strong>Current Password </strong></label>
+				<input id="c_password-data" type="password" class="form-control little" value="{{password}}" placeholder="Current Password">
+				<label><strong>New Password </strong></label>
+				<input id="password-data" type="password" class="form-control little" placeholder="New Password">
+				<label><strong>Repeat Password </strong></label>
+				<input id="password2-data" type="password" class="form-control little" placeholder="Repeat Password">
+			</div>
+
+			<div class="well">
+				<button id="save-user" type="button" class="btn buttons-top">Save
+					<span class="glyphicon glyphicon-cloud-upload"></span>
+				</button>
+				<button id="delete-data" type="button" class="btn btn-danger buttons-top">Delete Account
+					<span class="glyphicon glyphicon-trash"></span>
+				</button>
+				<button id="clear-all" type="button" class="btn btn-warning buttons-top">Clear
+					<span class="glyphicon glyphicon-remove"></span>
+				</button>
+			</div>
+		</div>
+
+	</body>
+
+
+	<script src="{{url_for('static', filename='js/bootstrap-datepicker.js') }}"></script>
+	<script src="{{url_for('static', filename='js/classie.js') }}"></script>
+	<script src="{{url_for('static', filename='js/borderMenu.js') }}"></script>
+	<script src="{{url_for('static', filename='js/jquery.label_better.min.js') }}"></script>
+	<script src="{{url_for('static', filename='js/profile-ops.js') }}"></script>
+
+	<script>
+
+		var username = "{{username}}";
+		console.log(username);
+
+		$(document).on('page:fetch',   function() { NProgress.set(0.0); });
+		$(document).on('page:change',  function() { NProgress.set(1.0); });
+
+		$('#date-data').datepicker({
+			format: 'mm-dd-yyyy'
+		});
+
+		$("#").label_better({
+		    position: "left",
+		    animationTime: 500,
+		    easing: "ease-in-out",
+		    offset: 20,
+		    hidePlaceholderOnFocus: true
+		});
+
+		$("#").label_better({
+		    position: "left",
+		    animationTime: 500,
+		    easing: "ease-in-out",
+		    offset: 20,
+		    hidePlaceholderOnFocus: true
+		});
+
+	</script>
+
+</html>
