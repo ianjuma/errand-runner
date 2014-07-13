@@ -2,8 +2,6 @@ linkus agency
 =========
 
 #### linkUs app
-This is a very buggy implementation of TaskWangu
-
 
 ### TODO
 - [x] Add Separate conf file
@@ -12,10 +10,8 @@ This is a very buggy implementation of TaskWangu
 - [x] Email notifications Sendgrid/mailgun
 - [ ] Redis cache + store
 - [ ] new relic
-- [ ] celery - logging
-- [ ] log watching + control - logrotate
+- [ ] log watching - logrotate
 - [ ] elastic search + rethinkDB river
-- [ ] class-based decomposition
 - [ ] defined exceptions - DBError
 - [ ] MVC structure + class decomposition
 - [ ] setup DB scripts

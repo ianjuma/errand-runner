@@ -49,7 +49,6 @@ LINK_DB = 'LinkUs'
 ONLINE_LAST_MINUTES = 5
 
 app.config[ONLINE_LAST_MINUTES] = 720
-CURRRENT_USER = "0701435178"
 
 
 def mark_online(user_id):
