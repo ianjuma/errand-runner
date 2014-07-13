@@ -30,12 +30,9 @@ $('#save-data').click( function() {
     success: function(result) {
       console.log(result);
       console.log(result.response);
-      $.notify("Task Updated!", "success");
-      $("#add-task").notify(
-        "Task Updated!",
-        { position:"bottom" }
-      );
+
       NProgress.set(1.0);
+      var n = noty({text: 'Task Updated!', layout: "topRight", type: "information"});
 
     },
     fail: function(result) {
@@ -102,17 +99,13 @@ $('#add-task').click( function() {
 
     success: function(result) {
       console.log(result);
-      $.notify("Task Updated!", "success");
-
-      $("#add-task").notify(
-        "Task Updated!", "success",
-        { position:"bottom" }
-      );
       NProgress.set(1.0);
+      var n = noty({text: 'Task Updated!', layout: "topRight", type: "information"});
 
     },
     fail: function(result) {
       alert('Failed to send Data');
+      var n = noty({text: 'Task Update Failed!', layout: "topRight", type: "information"});
     },
 
     data: userData

@@ -29,17 +29,13 @@ $('#save-data').click( function() {
     success: function(result) {
       console.log(result);
       console.log(result.response);
-      $.notify("Task Added!", "success");
-      $("#add-task").notify(
-        "Task Added!",
-        { position:"bottom" }
-      );
-
+      
+      var n = noty({text: 'Task Saved!', layout: "topRight", type: "information"});
       NProgress.set(1.0);
 
     },
     fail: function(result) {
-      alert('Failed to send Data');
+      var n = noty({text: 'Task Could not be Saved!', layout: "topRight", type: "information"});
     },
 
     data: userData
@@ -96,6 +92,7 @@ $('#add-task').click( function() {
   userData = JSON.stringify(data);
 
   NProgress.set(0.0);
+
   $.ajax({
     type: 'POST',
     url: '/api/addTask/',
@@ -103,18 +100,13 @@ $('#add-task').click( function() {
 
     success: function(result) {
       console.log(result);
-      console.log(result.response);
-      $.notify("Task Added!", "success");
+      var n = noty({text: 'Task saved!', layout: "topRight", type: "information"});
 
-      $("#add-task").notify(
-        "Task Added!", "success",
-        { position:"bottom" }
-      );
-      NProgress.set(0.0);
+      NProgress.set(1.0);
 
     },
     fail: function(result) {
-      alert('Failed to send Data');
+      var n = noty({text: 'Oops something went wrong, Task could not be saved!', layout: "topRight", type: "information"});
     },
 
     data: userData

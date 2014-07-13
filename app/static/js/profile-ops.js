@@ -24,6 +24,7 @@ $('#save-data').click( function() {
                 "due_date": date_data, "category": task_category };
 
   userData = JSON.stringify(data);
+  NProgress.set(0.0);
 
   $.ajax({
     type: 'POST',
@@ -32,8 +33,7 @@ $('#save-data').click( function() {
 
     success: function(result) {
       console.log(result);
-      console.log(result.response);
-
+      NProgress.set(1.0);
     },
     fail: function(result) {
       alert('Failed to send Data');
@@ -56,14 +56,17 @@ $('#delete-data').click( function() {
 
   userData = JSON.stringify(data);
 
+  NProgress.set(0.0);
   $.ajax({
     type: 'POST',
     url: '/api/removeUser/',
     contentType: 'application/json',
 
     success: function(result) {
+      NProgress.set(1.0);
       console.log(result);
-      $.notify("Your Account Has Been Deleted!", "success");
+      var n = noty({text: 'Account Deleted!', layout: "topRight", type: "information"});
+      window.location.href = '/';
     },
     fail: function(result) {
       alert('Failed to send Data');
@@ -116,15 +119,16 @@ $('#save-user').click( function() {
 
   userData = JSON.stringify(data);
 
+  NProgress.set(0.0);
   $.ajax({
     type: 'POST',
     url: '/profile/'+username+'/',
     contentType: 'application/json',
 
     success: function(result) {
+      NProgress.set(1.0);
       console.log(result);
-      console.log(result.response);
-      $.notify("Your Information Has Been Updated!", "success");
+      var n = noty({text: 'Task Updated!', layout: "topRight", type: "information"});
     },
     fail: function(result) {
       alert('Failed to send Data');
