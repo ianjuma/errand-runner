@@ -42,8 +42,8 @@ import requests
 from sendEMail import send_message
 
 
-RDB_HOST = os.environ.get('RDB_HOST') or 'localhost'
-RDB_PORT = os.environ.get('RDB_PORT') or 28015
+RDB_HOST = os.environ.get('RDB_HOST') or '188.226.195.158'
+RDB_PORT = os.environ.get('RDB_PORT') or 28016
 LINK_DB = 'LinkUs'
 
 ONLINE_LAST_MINUTES = 5
