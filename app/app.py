@@ -383,7 +383,6 @@ def credit(username):
             return resp
 
 
-
 @app.route('/payments/<username>/', methods=['POST', 'GET'])
 def payments(username):
 
@@ -553,9 +552,9 @@ def taskInfo(username, task_id):
         resp.cache_control.no_cache = True
         return resp
 
-    return render_template('editTask2.html', task_category=task_category, task_urgency=task_urgency,
+    return render_template(
+        'editTask2.html', task_category=task_category, task_urgency=task_urgency,
         task_desc=task_desc, task_title=task_title, due_date=due_date, username=username, task_id=task_id)
-
 
 
 @app.route('/api/editTask/<task_id>/', methods=['PUT', 'POST'])
@@ -585,16 +584,16 @@ def editTask(task_id):
             resp.cache_control.no_cache = True
             return resp
 
-
         resp = make_response(jsonify({"Task fetched": user_task}), 202)
         resp.headers['Content-Type'] = "application/json"
         resp.cache_control.no_cache = True
         return resp
 
     try:
-        r.table('Tasks').get(task_id).update({'task_desc': task_desc, 'task_title': task_title,
-            'task_category': task_category, 'task_urgency': task_urgency,
-            'due_date': due_date }).run(g.rdb_conn)
+        r.table(
+            'Tasks').get(task_id).update({'task_desc': task_desc, 'task_title': task_title,
+                                          'task_category': task_category, 'task_urgency': task_urgency,
+                                          'due_date': due_date}).run(g.rdb_conn)
 
     except RqlError:
         logging.warning('DB code verify failed on /api/editTask/')
