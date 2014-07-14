@@ -321,6 +321,68 @@ def profile(username):
         state=state, username=username, mobileNo=mobileNo)
 
 
+# credit API
+@app.route('/api/credit/<username>/', methods=['POST', 'GET'])
+def credit(username):
+
+    if request.method == 'GET':
+
+        if not request.json:
+            abort(400)
+
+        if request.headers['Content-Type'] != 'application/json':
+            abort(400)
+
+        password = request.json.get('password')
+        username = request.json.get('username')
+
+        try:
+            user = r.table(
+                'Payments').get(str(username)).pluck('credit_available').run(g.rdb_conn)
+
+            credit = json.dumps(user)
+            resp = make_response(jsonify(credit), 202)
+            resp.headers['Content-Type'] = "application/json"
+            resp.cache_control.no_cache = True
+            return resp
+
+        except RqlError:
+            logging.warning(
+                'DB code verify failed on /api/credit' + username)
+            resp = make_response(jsonify({"Error": "503 DB error"}), 503)
+            resp.headers['Content-Type'] = "application/json"
+            resp.cache_control.no_cache = True
+            return resp
+
+    if request.method == 'POST':
+
+        if not request.json:
+            abort(400)
+
+        if request.headers['Content-Type'] != 'application/json':
+            abort(400)
+
+        password = request.json.get('password')
+        username = request.json.get('username')
+
+        try:
+            user = r.table(
+                'Payments').get(str(username)).pluck('credit_available').run(g.rdb_conn)
+
+            resp = make_response(jsonify({"OK": "User Updated"}), 202)
+            resp.headers['Content-Type'] = "application/json"
+            resp.cache_control.no_cache = True
+            return resp
+
+        except RqlError:
+            logging.warning(
+                'DB code verify failed on /api/credit' + username)
+            resp = make_response(jsonify({"Error": "503 DB error"}), 503)
+            resp.headers['Content-Type'] = "application/json"
+            resp.cache_control.no_cache = True
+            return resp
+
+
 
 @app.route('/payments/<username>/', methods=['POST', 'GET'])
 def payments(username):
@@ -366,25 +428,19 @@ def payments(username):
             return resp
 
     try:
-        user = r.table('UsersInfo').get(str(username)).run(g.rdb_conn)
-
-        name = str(user['username'])
-        state = str(user['state'])
-        smscode = str(user['smscode'])
-        password = str(user['password'])
-        email = str(user['email'])
-        mobileNo = str(user['mobileNo'])
+        user = r.table('Payments').get(str(username)).run(g.rdb_conn)
+        username = str(user['username'])
+        credit = str(user['credit_available'])
 
     except RqlError:
-        logging.warning('DB code verify failed on /profile/' + mobileNo)
+        logging.warning('DB code verify failed on /payments/' + mobileNo)
         resp = make_response(jsonify({"Error": "503 DB error"}), 503)
         resp.headers['Content-Type'] = "application/json"
         resp.cache_control.no_cache = True
         return resp
 
     return render_template(
-        'payments.html', name=name, email=email, smscode=smscode,
-        state=state, username=username, mobileNo=mobileNo)
+        'payments.html', username=username, credit=credit)
 
 
 @app.route('/tasks/<username>/', methods=['POST', 'GET'])

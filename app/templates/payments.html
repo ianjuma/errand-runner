@@ -8,10 +8,10 @@
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 		<meta name="author" content="" />
-		<link rel="shortcut icon" href="favicon.ico">
+		<link rel="shortcut icon" href="{{url_for('static', filename='ico/favicon.ico') }}">
 
+		<link rel="stylesheet" href="{{url_for('static', filename='css/semantic.min.css') }}">
 		<link rel="stylesheet" href="{{url_for('static', filename='css/font-awesome.min.css') }}">
-		<link rel="stylesheet" href="{{url_for('static', filename='css/froala_editor.min.css') }}">
 		<link rel="stylesheet" href="{{url_for('static', filename='css/nprogress.css') }}">
 		<link rel="stylesheet" href="{{url_for('static', filename='css/font-awesome.min.css') }}">
 
@@ -27,7 +27,6 @@
 
 
 		<script src="{{url_for('static', filename='js/jquery.min.js') }}"></script>
-		<script src="{{url_for('static', filename='js/froala_editor.min.js') }}"></script>
 		<script src="{{url_for('static', filename='js/modernizr.custom.js') }}"></script>
 		<script src="{{url_for('static', filename='js/jquery.noty.packaged.min.js') }}"></script>
 		<script src="{{url_for('static', filename='js/nprogress.js') }}"></script>
@@ -50,8 +49,76 @@
 		</div>
 
 		<div class="middle">
-			
-		</div>
+
+			<ul class="nav nav-pills nav-stacked">
+			  <li class="active">
+			    <a href="#">
+			      <span id="badge-task-no" class="badge pull-right"> {{credit}} </span>
+			      You Have {{credit}} credit
+			    </a>
+			  </li>
+			</ul>
+
+			<div class="little">
+			<div class="ui four steps">
+			  <div class="ui active step">
+			    Shipping
+			  </div>
+			  <div class="ui disabled step">
+			    Billing
+			  </div>
+			  <div class="ui disabled step">
+			    Confirm Order
+			  </div>
+			  <div class="ui disabled step">
+			    Complete
+			  </div>
+			</div>
+			</div>
+
+			<form class="ui fluid form">
+			  <div class="field">
+			    <input type="text" placeholder="Street Address">
+			    <div class="ui pointing large label">
+			      Street Address
+			    </div>
+			  </div>
+			  <div class="ui simple divider"></div>
+			  <div class="field">
+			    <div class="ui pointing below large label">
+			      City/ Town
+			    </div>
+			    <input type="text" placeholder="City/ Town">
+			  </div>
+			  <div class="ui simple divider"></div>
+			  <div class="inline field">
+			    <input type="text" placeholder="Country">
+			    <div class="ui pointing left large label">
+			      Country
+			    </div>
+			  </div>
+
+			  <div class="inline field">
+			    <input type="text" placeholder="Address">
+			    <div class="ui pointing left large label">
+			      Address
+			    </div>
+			  </div>
+
+			  <div class="ui simple divider"></div>
+			  <div class="inline field">
+			    <div class="ui pointing right large label">
+			      Zip Code
+			    </div>
+			    <input type="password" placeholder="zipcode">
+			  </div>
+			</form>
+
+			<center>
+			<button id="add-task" type="button" class="btn btn-success buttons-top">Next
+				<span class="glyphicon glyphicon-arrow-right"></span>
+			</button>
+			</center>
 
 	</body>
 
