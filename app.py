@@ -51,7 +51,6 @@ ONLINE_LAST_MINUTES = 5
 app.config[ONLINE_LAST_MINUTES] = 720
 
 
-"""
 def mark_online(user_id):
     now = int(time.time())
     expires = now + (60 * 60) + 10
@@ -149,11 +148,8 @@ def dbSetup():
         logging.info('App database already exists')
     finally:
         connection.close()
-        
-"""
 
 
-"""
 # mark users online
 @app.before_request
 def mark_current_user_online():
@@ -176,7 +172,6 @@ def teardown_request(exception):
         g.rdb_conn.close()
     except AttributeError:
         pass
-"""
 
 
 @app.route('/admin/', methods=['POST', 'GET'])
