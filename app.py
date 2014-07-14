@@ -149,7 +149,7 @@ def dbSetup():
     finally:
         connection.close()
 
-"""
+
 # mark users online
 @app.before_request
 def mark_current_user_online():
@@ -173,7 +173,6 @@ def teardown_request(exception):
     except AttributeError:
         pass
 
-"""
 
 @app.route('/admin/', methods=['POST', 'GET'])
 def adminSign():
