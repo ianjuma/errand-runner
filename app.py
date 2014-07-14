@@ -95,7 +95,7 @@ class RedisSessionInterface(SessionInterface):
 
     def __init__(self, redis=None, prefix='session:'):
         if redis is None:
-            redis = StrictRedis(host='localhost', port=6379)
+            redis = StrictRedis(host='188.226.195.158', port=6379)
         self.redis = redis
         self.prefix = prefix
 
