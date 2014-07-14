@@ -51,7 +51,6 @@ ONLINE_LAST_MINUTES = 5
 app.config[ONLINE_LAST_MINUTES] = 720
 
 
-"""
 def mark_online(user_id):
     now = int(time.time())
     expires = now + (60 * 60) + 10
@@ -138,7 +137,6 @@ class RedisSessionInterface(SessionInterface):
 
 app.session_interface = RedisSessionInterface()
 
-"""
 
 def dbSetup():
     connection = r.connect(host=RDB_HOST, port=RDB_PORT)
@@ -151,12 +149,12 @@ def dbSetup():
     finally:
         connection.close()
 
-"""
+
 # mark users online
 @app.before_request
 def mark_current_user_online():
     mark_online(request.remote_addr)
-"""
+
 
 
 @app.before_request
