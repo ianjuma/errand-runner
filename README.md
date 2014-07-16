@@ -1,5 +1,5 @@
-Taskwetu App
-============
+Taskwetu
+========
 
 [![BuildStatus](https://travis-ci.org/ianjuma/recognise.png)](https://travis-ci.org/ianjuma/recognise)
 
