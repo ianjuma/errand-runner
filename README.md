@@ -17,4 +17,4 @@ http://taskwetu.herokuapp.com/
 - [ ] design UI
 - [ ] elastic search + postgres river
 - [ ] sendgrid API (add credit card)
-- [ ] postgres on heroku (add credit card)
+- [ ] postgres on heroku (add credit card) / run postgres on external server
