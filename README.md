@@ -1,16 +1,20 @@
-linkus agency
-=========
+Taskwetu App
+============
 
-#### linkUs app
+#### Taskwetu
 http://taskwetu.herokuapp.com/
 
 
 ### TODO
 - [x] Add Separate conf file
-- [x] DB scripts
+- [x] postgres DB scripts
 - [x] Integrate SMS (AfricaIT)
 - [x] Email notifications Sendgrid/mailgun
+- [x] defined exceptions - DBError
+- [x] MVC structure
+- [x] Heroku Procfile, deployment
+- [x] Tests
+- [ ] design UI
 - [ ] elastic search + postgres river
-- [ ] defined exceptions - DBError
-- [ ] MVC structure
-- [ ] setup DB scripts
+- [ ] sendgrid API (add credit card)
+- [ ] postgres on heroku (add credit card)
