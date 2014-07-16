@@ -1,6 +1,8 @@
 Taskwetu App
 ============
 
+[![BuildStatus](https://travis-ci.org/ianjuma/recognise.png)](https://travis-ci.org/ianjuma/recognise)
+
 #### Taskwetu
 http://taskwetu.herokuapp.com/
 
