@@ -12,3 +12,4 @@ librabbitmq
 gevent
 gunicorn
 psycopg2
+sendgrid==0.5.3
