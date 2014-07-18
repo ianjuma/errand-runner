@@ -8,6 +8,7 @@ from app import r
 from app import g
 from app import logging
 from app import salt
+from app import cursor
 
 
 from flask import (render_template, url_for)
