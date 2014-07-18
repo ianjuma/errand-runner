@@ -105,12 +105,6 @@ def getTasks():
 
     taskData = []
     try:
-        statement = "SELECT * FROM Tasks WHERE username=%"
-        cursor.execute(statement, (username))
-        conn.commit()
-
-        records = cursor.fetchall()
-
         tasks = r.table('Tasks').filter({"username": username}).run(g.rdb_conn)
         for data in tasks:
             taskData.append(data)
