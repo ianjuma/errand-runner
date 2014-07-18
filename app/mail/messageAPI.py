@@ -3,9 +3,8 @@ from AfricasTalkingGateway import AfricasTalkingGateway, AfricasTalkingGatewayEx
 import logging
 logging.basicConfig(filename='SMS.log', level=logging.DEBUG)
 
-# dummy key - secret
-username = "username"
-apikey = "9324a339c35fec8b0de6920a2db369426fa680bfd606a0c780b95eca3"
+username = "app27418636@heroku.com"
+apikey = ""
 # Please ensure you include the country code (+254 for Kenya in this case)
 
 
