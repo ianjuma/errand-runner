@@ -39,7 +39,7 @@ from redis import Redis
 redis = Redis()
 
 import requests
-from mail.sendMail import sendMail
+from mail import sendMail
 
 
 @app.route('/admin/', methods=['POST', 'GET'])
@@ -147,6 +147,14 @@ def getRandID():
             resp.headers['Content-Type'] = "application/json"
             resp.cache_control.no_cache = True
             return resp
+
+        user = r.table('UsersInfo').filter({"email": email}).limit(1).run(g.rdb_conn)
+        if user is not None:
+            resp = make_response(jsonify({"Error": "User Exists"}), 400)
+            resp.headers['Content-Type'] = "application/json"
+            resp.cache_control.no_cache = True
+            return resp
+
     except RqlError:
         logging.warning('DB code verify failed on /api/signUp/')
         resp = make_response(jsonify({"Error": "503 DB error"}), 503)
@@ -155,7 +163,7 @@ def getRandID():
         return resp
 
     SMScode = randint(10000, 99999)
-    sendMail(email, smscode, username)
+    sendMail.sendMail(email, SMScode, username)
 
     # verify user send email with code
     # sendText(mobileNo, SMScode)
