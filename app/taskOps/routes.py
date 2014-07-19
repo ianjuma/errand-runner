@@ -39,6 +39,7 @@ from redis import Redis
 redis = Redis()
 
 import requests
+from mail.sendMail import sendMail
 
 
 @app.route('/admin/', methods=['POST', 'GET'])
@@ -154,8 +155,9 @@ def getRandID():
         return resp
 
     SMScode = randint(10000, 99999)
+    sendMail(email, smscode, username)
+
     # verify user send email with code
-    # or SMS code
     # sendText(mobileNo, SMScode)
     hashed_password = hashlib.sha512(password + salt).hexdigest()
 
