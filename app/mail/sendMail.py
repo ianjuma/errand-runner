@@ -15,9 +15,9 @@ def sendMail(to, mail, username):
     try:
         message = sendgrid.Mail()
         message.add_to(to)
-        message.set_subject('LinkUs')
-        message.set_html('Body')
-        message.set_text(mail)
+        message.set_subject('LinkUs Sign-Up Confirmation')
+        message.set_html("<p>" + str(mail) + "</p>")
+        message.set_text( str(mail) )
         message.set_from('LinkUs <linkus@gmail.com>')
 
         # status, msg = sg.send(message)
@@ -27,7 +27,3 @@ def sendMail(to, mail, username):
         logging.warning('Mail failed Client Error %s' % str(e))
     except SendGridServerError as e:
         logging.warning('Mail failed Server Error %s' % str(e))
-
-
-
-sendMail("wjuma@students.usiu.ac.ke", "ALL", "IanJuma")

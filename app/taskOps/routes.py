@@ -139,6 +139,8 @@ def getRandID():
     email = request.json.get('email')
     # then update userInfo
     password = request.json.get('password')
+    email = str(email)
+    username = str(username)
 
     try:
         user = r.table('UsersInfo').get(username).run(g.rdb_conn)
@@ -148,12 +150,14 @@ def getRandID():
             resp.cache_control.no_cache = True
             return resp
 
+
         user = r.table('UsersInfo').filter({"email": email}).limit(1).run(g.rdb_conn)
         if user is not None:
             resp = make_response(jsonify({"Error": "User Exists"}), 400)
             resp.headers['Content-Type'] = "application/json"
             resp.cache_control.no_cache = True
             return resp
+
 
     except RqlError:
         logging.warning('DB code verify failed on /api/signUp/')
