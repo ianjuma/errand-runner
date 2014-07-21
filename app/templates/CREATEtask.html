@@ -360,6 +360,7 @@
 
   <script src="/static/js/classie.js"></script>
   <script src="/static/js/borderMenu.js"></script>
+  <script src="{{url_for('static', filename='js/task-ops.js') }}"></script>
 
   <script type="text/javascript">
     $("#credit_slider").slider().on("slide",function(e){
@@ -371,6 +372,10 @@
   </script>
   
   <script type="text/javascript">
+
+    var username = "{{username}}";
+    console.log(username);
+
     $(document).ready(function(){
       //initialize the javascript
       App.init();
