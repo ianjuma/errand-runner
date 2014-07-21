@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="images/favicon.png">
+
+    <title>View &middot; Task</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:300,200,100' rel='stylesheet' type='text/css'>
+
+    <!-- Bootstrap core CSS -->
+    <link href="js/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="js/bootstrap.datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" type="text/css" href="js/jquery.select2/select2.css" />
+    <link rel="stylesheet" type="text/css" href="js/bootstrap.slider/css/slider.css" />
+    <link href="js/fuelux/css/fuelux.css" rel="stylesheet">
+    <link href="js/fuelux/css/fuelux-responsive.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="fonts/font-awesome-4/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/pygments.css">
+
+    <link rel="stylesheet" type="text/css" href="js/bootstrap.datetimepicker/css/bootstrap-datetimepicker.min.css" />
+  
+  <!-- DateRange -->
+    <link rel="stylesheet" type="text/css" href="js/bootstrap.daterangepicker/daterangepicker-bs3.css" />
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="js/jquery.nanoscroller/nanoscroller.css" />
+    <link rel="stylesheet" type="text/css" href="js/bootstrap.switch/bootstrap-switch.css" />
+
+    <link rel="stylesheet" href="fonts/font-awesome-4/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/pygments.css">
+   <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet" />
+
+    <!-- menu -->
+    <script src="js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/menu-all.css" />
+    <link rel="stylesheet" type="text/css" href="css/nprogress.css" />
+
+    <style type="text/css">
+
+      .space-lower-div {
+        margin-top: 20px;
+      }
+
+      #cl-wrapper {
+        padding-top: 0px;
+      }
+
+      .menu-holder-custom {
+        padding-top: 0.85em;
+        padding-bottom: 0.85em;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        padding-left: 5.7em;
+      }
+
+      .top-space-reduce {
+        margin-top: 0px;
+      }
+
+      .right-space {
+        margin-right: 4px;
+      }
+
+      .keep-right {
+        margin-left: 32em;
+      }
+
+      .push-right {
+        margin-left: 12em;
+      }
+
+      .space-input-right {
+        margin-left: 10.5em;
+      }
+
+      .left-right-space {
+        margin-right: 25px;
+        margin-left: 40px;
+      }
+
+    </style>
+
+  </head>
+
+<body>
+
+  <div class="page-head menu-holder-custom">
+    <h2>Task &middot; Kwetu</h2>
+    <div class="container">
+      <nav id="bt-menu" class="bt-menu">
+        <a href="#" class="bt-menu-trigger"><span>Menu</span></a>
+        <ul>
+          <li><a href="#">New task</a></li>
+          <li><a href="#">All Tasks</a></li>
+          <li><a href="#">Profile</a></li>
+          <li><a href="#">Payments</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+</div>
+
+<div id="cl-wrapper">
+  <div class="container-fluid" id="pcont">
+    
+    <div class="cl-mcont left-right-space">    
+    <div class="row wizard-row">
+      <div class="col-md-12 fuelux">
+        <div class="block-wizard">
+
+      <div class="step-content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="block-flat">
+            <div class="header">              
+              <h3>Your Ordered Tasks</h3>
+            </div>
+            <div class="content">
+              <div class="table-responsive">
+              <table class="table no-border hover">
+                <thead class="no-border">
+                  <tr>
+                    <th style="width:30%;"><strong>Task Title</strong></th>
+                    <th class="text-right"><strong>Task Status</strong></th>
+                    <th style="width:15%;"><strong>Price</strong></th>
+                    <th style="width:15%;"><strong>Description</strong></th>
+                    <th style="width:15%;" class="text-center"><strong>Task Progress</strong></th>
+                  </tr>
+                </thead>
+                <tbody class="no-border-y">
+                  <tr>
+                    <td><input type="checkbox" /></td>
+                    <td>Template #1</td>
+                    <td class="text-right color-success">$25.2</td>
+                    <td>05/14/2013</td>
+                    <td class="color-success"><div class="progress"><div class="progress-bar progress-bar-success" style="width: 40%">40%</div></div></td>
+                    <td class="text-center"><a class="label label-default" href="#"><i class="fa fa-pencil"></i></a> <a class="label label-danger" href="#"><i class="fa fa-times"></i></a></td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" /></td>
+                    <td>Template #2</td>
+                    <td class="text-right color-success">$22.5</td>
+                    <td>05/14/2013</td>
+                    <td class="color-success"><div class="progress"><div class="progress-bar progress-bar-danger" style="width: 30%">30%</div></div></td>
+                    <td class="text-center"><a class="label label-default" href="#"><i class="fa fa-pencil"></i></a> <a class="label label-danger" href="#"><i class="fa fa-times"></i></a></td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" /></td>
+                    <td>Template #3</td>
+                    <td class="text-right color-success">$21</td>
+                    <td>05/14/2013</td>
+                    <td class="color-success"><div class="progress"><div class="progress-bar progress-bar-primary" style="width: 50%">50%</div></div></td>
+                    <td class="text-center"><a class="label label-default" href="#"><i class="fa fa-pencil"></i></a> <a class="label label-danger" href="#"><i class="fa fa-times"></i></a></td>
+                  </tr>
+                </tbody>
+              </table>
+              </div>
+
+
+            </div>
+          </div>        
+        </div>
+
+      </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    </div>
+  </div> 
+</div>
+
+  <script src="js/jquery.js"></script>
+  <script src="js/jquery.select2/select2.min.js" type="text/javascript"></script>
+  <script src="js/jquery.parsley/dist/parsley.js" type="text/javascript"></script>
+  <script src="js/bootstrap.slider/js/bootstrap-slider.js" type="text/javascript"></script>
+  <script type="text/javascript" src="js/fuelux/loader.min.js"></script>  
+  <script src="js/modernizr.js" type="text/javascript"></script>
+  <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
+  <script type="text/javascript" src="js/bootstrap.switch/bootstrap-switch.min.js"></script>
+  <script type="text/javascript" src="js/jquery.nestable/jquery.nestable.js"></script>
+  <script type="text/javascript" src="js/bootstrap.datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+
+  <script type="text/javascript" src="js/jquery.icheck/icheck.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.daterangepicker/moment.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.daterangepicker/daterangepicker.js"></script>
+
+  <script type="text/javascript" src="js/behaviour/general.js"></script>
+  <script src="js/jquery.ui/jquery-ui.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    $("#credit_slider").slider().on("slide",function(e){
+      $("#credits").html("$" + e.value);
+    });
+    $("#rate_slider").slider().on("slide",function(e){
+      $("#rate").html(e.value + "%");
+    });
+  </script>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+      //initialize the javascript
+      App.init();
+      App.wizard();
+
+    });
+  </script>
+
+    <script src="js/behaviour/voice-commands.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/borderMenu.js"></script
+
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+</body>
+</html>
