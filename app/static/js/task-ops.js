@@ -18,7 +18,7 @@ $('#completeAll').click( function() {
 
 
   data = { "username": username, "title": task_title, "description": task_desc, "urgency": task_urgency,
-                "due_date": date_data, "category": task_category, "contact_p": contact_p, "location" : location  };
+                "due_date": date_data, "category": task_category, "contact_p": contact_p };
 
   userData = JSON.stringify(data);
 
