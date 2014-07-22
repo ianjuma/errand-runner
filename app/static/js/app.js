@@ -42,7 +42,7 @@ $('#loginData').click( function() {
           contentType: 'application/json',
           success: function(result) {
             console.log(result);
-            window.location.replace("/profile/"+username);
+            window.location.href = "/profile/"+username;
           },
           fail: function(result) {
             alert('Failed to send Data');
@@ -70,7 +70,7 @@ $('#signInData').click( function() {
 
     success: function(result) {
       console.log(result);
-      window.location.replace("/tasks/"+username);
+      window.location.href = "/tasks/"+username;
     },
     fail: function(result) {
       alert('Failed to send Data');
