@@ -7,16 +7,18 @@ $('#clear-all').click( function() {
 });
 
 
-$('#save-data').click( function() {
+$('#completeAll').click( function() {
   task_title = $('#taskTitle-data').val();
   task_desc = $('#task-desc').val();
   task_urgency = $('#urgent-data').val();
-  date_data = $('#date-data').val();
+  date_data = $('#reportrange').val();
+  location = $('#locationData').val();
   task_category = $('#category-data').val();
+  contact_p = $('#contactPersons').val();
 
 
   data = { "username": username, "title": task_title, "description": task_desc, "urgency": task_urgency,
-                "due_date": date_data, "category": task_category };
+                "due_date": date_data, "category": task_category, "contact_p": contact_p, "location" : location  };
 
   userData = JSON.stringify(data);
 
@@ -28,14 +30,13 @@ $('#save-data').click( function() {
 
     success: function(result) {
       console.log(result);
-      console.log(result.response);
       
-      var n = noty({text: 'Task Saved!', layout: "topRight", type: "information"});
+      
       NProgress.set(1.0);
 
     },
     fail: function(result) {
-      var n = noty({text: 'Task Could not be Saved!', layout: "topRight", type: "information"});
+      
     },
 
     data: userData
