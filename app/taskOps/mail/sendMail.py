@@ -13,7 +13,7 @@ sg = sendgrid.SendGridClient('app27418636@heroku.com', 'w4do409h', raise_errors=
 
 def sendMail(to, mail, username):
     try:
-        to_send = "http://taskwetu.heroku.com/confirm/+" str(username) + "/" + str(mail) + "/"
+        to_send = "http://taskwetu.heroku.com/confirm/" + str(username) + "/" + str(mail) + "/"
 
         message = sendgrid.Mail()
         message.add_to(to)
