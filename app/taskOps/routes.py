@@ -219,3 +219,27 @@ def addNewsLetter():
     resp.headers['Content-Type'] = "application/json"
     resp.cache_control.no_cache = True
     return resp
+
+
+@app.route('/confirm/<username>/<smscode>/', methods=['PUT', 'POST'])
+def confirmUser(username, smscode):
+    # make request to get one task
+    try:
+        user = r.table('UsersInfo').get(username).pluck('smscode').run(g.rdb_conn)
+    except RqlError:
+        logging.warning('DB op failed on /confirmUser/')
+        resp = make_response(jsonify({"Error": "503 DB error"}), 503)
+        resp.headers['Content-Type'] = "application/json"
+        resp.cache_control.no_cache = True
+        return resp
+
+    if str(user) is not str(smscode):
+        return 
+        """ 
+        EMAIL VERFICATION FAILED
+        """
+
+
+    url = "/tasks/" + username + "/"
+
+    return redirect(url, code=302)
