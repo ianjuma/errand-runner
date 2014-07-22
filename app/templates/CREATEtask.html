@@ -47,6 +47,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/normalize.css" />
     <link rel="stylesheet" type="text/css" href="/static/css/menu-all.css" />
     <link rel="stylesheet" type="text/css" href="/static/css/nprogress.css" />
+    <script src="{{url_for('static', filename='js/nprogress.js') }}"></script>
 
 
     <style type="text/css">
@@ -104,11 +105,11 @@
       <nav id="bt-menu" class="bt-menu">
         <a href="#" class="bt-menu-trigger"><span>Menu</span></a>
         <ul>
-          <li><a href="#">New task</a></li>
-          <li><a href="#">All Tasks</a></li>
-          <li><a href="#">Profile</a></li>
-          <li><a href="#">Payments</a></li>
-          <li><a href="#">Logout</a></li>
+          <li><a href="/tasks/{{username}}/">New task</a></li>
+          <li><a href="/allTasks/{{username}}/">All Tasks</a></li>
+          <li><a href="/profile/{{username}}/">Profile</a></li>
+          <li><a href="/profile/{{username}}/">Payments</a></li>
+          <li><a href="/logout/{{username}}/">Logout</a></li>
         </ul>
       </nav>
     </div>
