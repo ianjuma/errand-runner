@@ -31,12 +31,21 @@ $('#completeAll').click( function() {
     success: function(result) {
       console.log(result);
       
-      
+      $.gritter.add({
+          title: 'Task Saved!',
+          text: 'Your Task has been saved',
+          class_name: 'success'
+        });
       NProgress.set(1.0);
 
     },
     fail: function(result) {
-      
+      // gritter fail
+      $.gritter.add({
+          title: 'Oops',
+          text: 'Your Task Could not be saved',
+          class_name: 'success'
+        });
     },
 
     data: userData
