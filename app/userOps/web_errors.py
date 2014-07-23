@@ -14,15 +14,11 @@ from flask import redirect, make_response
 from flask import Response, jsonify
 from flask import abort, request
 from flask import session, g
-from datetime import timedelta
-from json import dumps
 
 import os
 import logging
-import hashlib
 from random import randint
 
-from datetime import datetime
 
 # Basic Error handlers
 @app.errorhandler(404)
