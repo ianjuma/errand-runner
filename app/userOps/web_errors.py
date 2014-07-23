@@ -9,24 +9,17 @@ from app import logging
 from app import salt
 
 
-from flask import (render_template, url_for)
-from flask import redirect, make_response, Flask
+from flask import (render_template)
+from flask import redirect, make_response
 from flask import Response, jsonify
 from flask import abort, request
 from flask import session, g
-import pickle
 from datetime import timedelta
-from uuid import uuid4
-from redis import Redis
-from redis import StrictRedis
-from werkzeug.datastructures import CallbackDict
-from flask.sessions import SessionInterface, SessionMixin
 from json import dumps
 
 import os
 import logging
 import hashlib
-import uuid
 from random import randint
 
 from datetime import datetime
