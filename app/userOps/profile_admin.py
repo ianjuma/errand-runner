@@ -14,7 +14,7 @@ from flask import (render_template)
 from flask import redirect, make_response
 from flask import Response, jsonify
 from flask import abort, request
-from flask import session, g
+from flask import session
 from datetime import timedelta
 from json import dumps
 

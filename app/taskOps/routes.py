@@ -9,15 +9,14 @@ from app import g
 from app import logging
 from app import salt
 from app import cursor
-from app import
+from app import RqlError
 
 
 from flask import (render_template)
 from flask import redirect, make_response
 from flask import Response, jsonify
 from flask import abort, request
-from flask import session, g
-import pickle
+from flask import session
 from json import dumps
 
 import os
