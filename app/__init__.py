@@ -49,7 +49,6 @@ conn_string = "host='188.226.195.158' dbname='LinkUs' user='synod' password='j63
 conn = psycopg2.connect(conn_string)
 cursor = conn.cursor()
 
-
 ONLINE_LAST_MINUTES = 5
 
 app.config[ONLINE_LAST_MINUTES] = 720
