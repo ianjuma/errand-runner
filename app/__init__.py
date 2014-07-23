@@ -3,17 +3,10 @@ __version__ = '0.5'
 
 from flask import Flask
 from flask import session, g
-from flask import (render_template, url_for)
+from flask import (render_template)
 from flask import redirect, make_response, Flask
-from flask import Response, jsonify
+from flask import jsonify
 from flask import abort, request
-import pickle
-from datetime import timedelta
-from uuid import uuid4
-from redis import Redis
-from redis import StrictRedis
-from werkzeug.datastructures import CallbackDict
-from flask.sessions import SessionInterface, SessionMixin
 from json import dumps
 
 import os
@@ -24,9 +17,6 @@ from random import randint
 
 app = Flask('app')
 app.debug = True
-
-from redis import Redis
-redis = Redis()
 
 import os
 
@@ -52,6 +42,7 @@ cursor = conn.cursor()
 ONLINE_LAST_MINUTES = 5
 
 app.config[ONLINE_LAST_MINUTES] = 720
+
 
 def dbSetup():
     connection = r.connect(host=RDB_HOST, port=RDB_PORT)
