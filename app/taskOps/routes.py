@@ -9,6 +9,7 @@ from app import g
 from app import logging
 from app import salt
 from app import cursor
+from app import
 
 
 from flask import (render_template)
@@ -148,7 +149,6 @@ def getRandID():
             return resp
         """
 
-
     except RqlError:
         logging.warning('DB code verify failed on /api/signUp/')
         resp = make_response(jsonify({"Error": "503 DB error"}), 503)
@@ -215,7 +215,8 @@ def addNewsLetter():
 def confirmUser(username, smscode):
     # make request to get one task
     try:
-        user = r.table('UsersInfo').get(username).pluck('smscode').run(g.rdb_conn)
+        user = r.table(
+            'UsersInfo').get(username).pluck('smscode').run(g.rdb_conn)
     except RqlError:
         logging.warning('DB op failed on /confirmUser/')
         resp = make_response(jsonify({"Error": "503 DB error"}), 503)
@@ -224,11 +225,10 @@ def confirmUser(username, smscode):
         return resp
 
     if str(user) is not str(smscode):
-        return 
-        """ 
+        return
+        """
         EMAIL VERFICATION FAILED
         """
-
 
     url = "/tasks/" + username + "/"
 
