@@ -9,19 +9,17 @@ from app import g
 from app import logging
 from app import salt
 from app import cursor
+from app import RqlError
 
 from flask import (render_template)
 from flask import redirect, make_response
-from flask import Response, jsonify
+from flask import jsonify
 from flask import abort, request
 
 from json import dumps
 
-import os
 import hashlib
 from random import randint
-
-import time
 
 
 @app.route('/tasks/<username>/', methods=['POST', 'GET'])

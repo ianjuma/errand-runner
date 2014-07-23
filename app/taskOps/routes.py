@@ -14,18 +14,14 @@ from app import RqlError
 
 from flask import (render_template)
 from flask import redirect, make_response
-from flask import Response, jsonify
+from flask import jsonify
 from flask import abort, request
 from flask import session
 from json import dumps
 
-import os
 import logging
 import hashlib
 from random import randint
-
-
-import time
 
 import requests
 from mail import sendMail
