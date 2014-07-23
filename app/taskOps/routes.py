@@ -17,7 +17,6 @@ from flask import Response, jsonify
 from flask import abort, request
 from flask import session, g
 import pickle
-from datetime import timedelta
 from json import dumps
 
 import os
@@ -27,7 +26,6 @@ from random import randint
 
 
 import time
-from datetime import datetime
 
 import requests
 from mail import sendMail
