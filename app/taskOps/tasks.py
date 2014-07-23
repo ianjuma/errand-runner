@@ -90,7 +90,7 @@ def getAdminTasks():
 @app.route('/allTasks/<username>/', methods=['POST', 'GET'])
 def getAllTasks(username):
     username = username
-    return render_template('allTasks2.html', username=username)
+    return render_template('VIEWtasks.html', username=username)
 
 
 @app.route('/api/getTasks/', methods=['POST', 'GET'])
