@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" href="/static/favicon.png">
+
+
+	<title>Reset Password</title>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Raleway:300,200,100' rel='stylesheet' type='text/css'>
+
+	<!-- Bootstrap core CSS -->
+	<link href="/static/js/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+
+	<link rel="stylesheet" href="/static/fonts/font-awesome-4/css/font-awesome.min.css">
+
+
+	<!-- Custom styles for this template -->
+	<link href="/static/css/style-template.css" rel="stylesheet" />	
+
+</head>
+
+<body class="texture">
+
+<div id="cl-wrapper" class="forgotpassword-container">
+
+	<div class="middle">
+		<div class="block-flat">
+			<div class="header">							
+				<h3 class="text-center"><img class="logo-img" src="/static/img/logo.png" alt="logo"/> TaskWetu</h3>
+			</div>
+			<div>
+				<div style="margin-bottom: 0px !important;" class="form-horizontal" parsley-validate>
+					<div class="content">
+						<h5 class="title text-center"><strong>Forgot your password?</strong></h5>
+            <p class="text-center">Don't worry, we'll send you an email to reset your password.</p>
+              <hr/>
+
+              
+							<div class="form-group">
+								<div class="col-sm-12">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+										<input id="emailData" type="email" name="email" parsley-trigger="change" parsley-error-container="#email-error" required placeholder="Your Email" class="form-control">
+									</div>
+                  <div id="email-error"></div>
+								</div>
+							</div>
+             <p class="spacer text-center">Don't remember your email? <a href="/support/">Contact Support</a>.</p>
+            <button id="submit-email" class="btn btn-block btn-primary btn-rad btn-lg">Reset Password</button>
+							
+					</div>
+			  </div>
+			</div>
+		</div>
+		<div class="text-center out-links"><a href="/">&copy; 2014 TaskWetu</a></div>
+	</div> 
+	
+</div>
+
+
+  <script src="/static/js/jquery.js"></script>
+  <script src="/static/js/jquery.parsley/dist/parsley.js" type="text/javascript"></script>
+  <script src="/static/js/behaviour/general.js" type="text/javascript"></script>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/static/js/behaviour/voice-commands.js"></script>
+<script src="/static/js/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.flot/jquery.flot.js"></script>
+<script type="text/javascript" src="/static/js/jquery.flot/jquery.flot.pie.js"></script>
+<script type="text/javascript" src="/static/js/jquery.flot/jquery.flot.resize.js"></script>
+<script type="text/javascript" src="/static/js/jquery.flot/jquery.flot.labels.js"></script>
+<script type="text/javascript" src="/static/js/resetPass.js"></script>
+
+</body>
+</html>

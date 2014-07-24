@@ -9,8 +9,9 @@ from app import g
 from app import logging
 from app import salt
 from app import cursor
+from app import RqlError
 
-from flask import (render_template)
+from flask import (render_template, json)
 from flask import redirect, make_response
 from flask import Response, jsonify
 from flask import abort, request
@@ -21,9 +22,11 @@ from json import dumps
 import os
 import logging
 import hashlib
+from random import randint
 
 import time
 from datetime import datetime
+from mail import sendMail
 
 
 @app.route('/profile/<username>/', methods=['POST', 'GET'])
@@ -89,7 +92,6 @@ def profile(username):
     return render_template(
         'profile2.html', name=name, email=email, smscode=smscode,
         state=state, username=username, mobileNo=mobileNo)
-
 
 
 @app.route('/payments/<username>/', methods=['POST', 'GET'])
@@ -280,3 +282,49 @@ def credit(username):
             resp.cache_control.no_cache = True
             return resp
 
+
+@app.route('/reset/', methods=['POST', 'GET'])
+def forgotPassword():
+    if request.method == 'POST':
+
+        if not request.json:
+            abort(400)
+
+        if request.headers['Content-Type'] != 'application/json':
+            abort(400)
+
+        email = request.json.get('email')
+
+        try:
+            user = r.table('UsersInfo').filter(
+                {"email": email}).limit(1).pluck('username').run(g.rdb_conn)
+            if user is None:
+                resp = make_response(jsonify({'Missing': 'Not Found'}), 400)
+                resp.headers['Content-Type'] = "application/json"
+                resp.cache_control.no_cache = True
+                return resp
+
+            new_password = randint(10000, 99999)
+            new_password = str(new_password)
+            hashed_password = hashlib.sha512(new_password + salt).hexdigest()
+            data = []
+
+            for el in user:
+                data.append(el)
+
+            username = data[0]['username']
+
+            r.table('UsersInfo').get(
+                username).update({"password": hashed_password}).run(g.rdb_conn)
+
+            sendMail.passwordReset(email, new_password)
+
+        except RqlError:
+            logging.warning('DB pass reset failed on /reset/')
+
+        resp = make_response(jsonify({'OK': 'Email Sent'}), 200)
+        resp.headers['Content-Type'] = "application/json"
+        resp.cache_control.no_cache = True
+        return resp
+
+    return render_template('forgot-pass.html')
