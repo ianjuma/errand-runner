@@ -1389,7 +1389,7 @@ input::-webkit-input-speech-button {
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 body.texture {
-  background: url(../images/bg.jpg);
+  background: url(../img/bg.jpg);
 }
 .gallery-cont .item {
   width: 25%;
