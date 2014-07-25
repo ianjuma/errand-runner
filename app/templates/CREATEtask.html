@@ -83,6 +83,10 @@
         margin-left: 12em;
       }
 
+      .push-right2 {
+        margin-left: 17em;
+      }
+
       .space-input-right {
         margin-left: 9.25em;
       }
@@ -160,163 +164,6 @@
             <form class="form-horizontal group-border-dashed" action="#" data-parsley-namespace="data-parsley-" data-parsley-validate novalidate>
 
               <div class="step-pane active" id="step1">
-                <div class="form-group no-padding">
-                  <div class="col-sm-7">
-                    <h3 class="hthin">Create Task</h3>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-3 control-label">Task Title</label>
-                  <div class="col-sm-6">
-                    <input id="taskTitle-data" type="text" class="form-control" placeholder="Task Title">
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="col-sm-3 control-label">Task Description</label>
-                  <div class="col-sm-6">
-                    <textarea id="task-desc" rows="6" class="form-control" placeholder="Please describe the task you want to be undertaken"></textarea>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="col-sm-3 control-label">Location</label>
-                  <div class="col-sm-6">
-                    <input id="locationData" class="tags" type="hidden" placeholder="I&M House UpperHill Nairobi" value="" />
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="col-sm-3 control-label">Contact Person(s)</label>
-                  <div class="col-sm-6">
-                     <input id="contactPersons" class="tags" type="hidden" placeholder="contact name and number" value="" />
-                  </div>
-                </div>
-
-                <!--  
-                <div class="form-group">
-                  <label class="col-sm-3 control-label">Due Date</label>
-                  <div class="col-sm-6">
-                    <div class="input-group date datetime col-md-5 col-xs-7" data-start-view="2" data-date="1979-09-16T05:25:07Z" data-date-format="yyyy-mm-dd - HH:ii" data-link-field="dtp_input1">
-                      <input class="form-control" size="16" type="text" value="" />
-                      <span class="input-group-addon btn btn-primary"><span class="glyphicon glyphicon-th"></span></span>
-                    </div>              
-                  </div>
-                </div>
-                -->
-
-                <div class="form-group">
-
-                 <div class="col-sm-6">
-                  <label class="col-sm-3 control-label push-right">Due Date</label>
-                  <div id="reportrange" class="pull-left" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-                     <i class="glyphicon glyphicon-calendar fa fa-calendar"></i> 
-                     <span></span> <b class="caret"></b>
-                  </div>
-                 </div>
-
-                 <div class="col-sm-6">
-                    <label class="checkbox-inline space-input-right"> <input id="urgent-data" type="checkbox" checked="" name="rad1" class="icheck">   Task is Urgent</label>
-                 </div>
-
-                </div>
-
-                <div class="form-group">
-                  <div class="col-sm-offset-2 col-sm-10">
-                    <button class="btn btn-default">Cancel</button>
-                    <button data-wizard="#wizard1" class="btn btn-primary wizard-next">Next Step <i class="fa fa-caret-right"></i></button>
-                  </div>
-                </div>
-
-              </div>
-
-              <div class="step-pane" id="step2">
-                  <div class="form-group no-padding">
-                    <div class="col-sm-7">
-                      <h3 class="hthin">Place Order</h3>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-6 col-lg-6 space-lower-div">
-                  <div class="block-flat">
-                    <div class="content">
-                        <div class="form-group">
-                          <label class="col-sm-3 control-label">Choose Payment Method</label>
-                          <div class="col-sm-6">
-                          <select class="select2">
-                             <optgroup label="MPESA">
-                               <option value="MPESA">Mpesa</option>
-                             </optgroup>
-                             <optgroup label="Electronic Cards">
-                               <option value="VISA">VISA</option>
-                               <option value="MasterCard">MasterCard</option>
-                             </optgroup>
-                            </select>
-                          </div>
-                        </div>
-
-                      <div class="form-group">
-                        <div class="col-sm-6">
-                          <label class="control-label">Buy Credits: <span id="credits">$0</span></label>
-                          <p>This option allow you to buy an amount of credits.</p>
-                          <input id="credit_slider" type="text" class="bslider form-control" value="0" />
-                        </div>
-                      </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-sm-6 col-md-6 col-lg-6 space-lower-div">
-                <div class="block-flat">
-                  <div class="content">
-                    <div class="block-flat">
-                      <div class="header">
-                        <h3>Your Ordered Tasks</h3>
-                      </div>
-                      <div class="content">
-                        <table class="no-border">
-                          <thead class="no-border">
-                            <tr>
-                              <th style="width:50%;">Task</th>
-                              <th>Date</th>
-                              <th class="text-right">Amount</th>
-                            </tr>
-                          </thead>
-                          <tbody class="no-border-y">
-                            <tr>
-                              <td style="width:30%;">Filet Mignon</td>
-                              <td>05/14/2013</td>
-                              <td class="text-right">$5,230.000</td>
-                            </tr>
-                            <tr>
-                              <td style="width:30%;">Blue beer</td>
-                              <td>16/08/2013</td>
-                              <td class="text-right">$5,230.000</td>
-                            </tr>
-                            <tr>
-                              <td style="width:30%;">T-shirts</td>
-                              <td>22/12/2013</td>
-                              <td class="text-right">$5,230.000</td>
-                            </tr>
-                          </tbody>
-                        </table>            
-                      </div>
-                      </div>
-                  </div>
-                </div>
-              </div>
-  	
-                <div class="form-group">
-                  <div class="col-sm-12">
-                    <button data-wizard="#wizard1" class="btn btn-default wizard-previous"><i class="fa fa-caret-left"></i> Previous</button>
-
-                    <button data-wizard="#wizard1" class="btn btn-primary wizard-next">Next Step <i class="fa fa-caret-right"></i></button>
-                    </div>
-                  </div>
-              </div>
-
-              <!-- STEP 3 -->
-              <div class="step-pane" id="step3">
 
                 <!-- panel 1 -->
                   <div class="col-sm-6 col-md-6 col-lg-6">
@@ -529,6 +376,166 @@
 
                   </div>
                 </div>
+
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button class="btn btn-default">Cancel</button>
+                    <button data-wizard="#wizard1" class="btn btn-primary wizard-next">Next Step <i class="fa fa-caret-right"></i></button>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="step-pane" id="step2">
+
+                <div class="form-group no-padding">
+                  <div class="col-sm-7">
+                    <h3 class="hthin">Create Task</h3>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Task Title</label>
+                  <div class="col-sm-6">
+                    <input id="taskTitle-data" type="text" class="form-control" placeholder="Task Title">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Task Description</label>
+                  <div class="col-sm-6">
+                    <textarea id="task-desc" rows="6" class="form-control" placeholder="Please describe the task you want to be undertaken"></textarea>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Location</label>
+                  <div class="col-sm-6">
+                    <input id="locationData" class="tags" type="hidden" placeholder="I&M House UpperHill Nairobi" value="" />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Contact Person(s)</label>
+                  <div class="col-sm-6">
+                     <input id="contactPersons" class="tags" type="hidden" placeholder="contact name and number" value="" />
+                  </div>
+                </div>
+
+                <!--  
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Due Date</label>
+                  <div class="col-sm-6">
+                    <div class="input-group date datetime col-md-5 col-xs-7" data-start-view="2" data-date="1979-09-16T05:25:07Z" data-date-format="yyyy-mm-dd - HH:ii" data-link-field="dtp_input1">
+                      <input class="form-control" size="16" type="text" value="" />
+                      <span class="input-group-addon btn btn-primary"><span class="glyphicon glyphicon-th"></span></span>
+                    </div>              
+                  </div>
+                </div>
+                -->
+
+                <div class="form-group">
+
+                 <div class="col-sm-6">
+                  <label class="col-sm-3 control-label push-right">Due Date</label>
+                  <div id="reportrange" class="pull-left" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                     <i class="glyphicon glyphicon-calendar fa fa-calendar"></i> 
+                     <span></span> <b class="caret"></b>
+                  </div>
+                 </div>
+
+                 <div class="col-sm-6">
+                    <label class="checkbox-inline space-input-right"> <input id="urgent-data" type="checkbox" checked="" name="rad1" class="icheck">   Task is Urgent</label>
+                 </div>
+
+                </div>
+
+  	
+                <div class="form-group">
+                  <div class="col-sm-12 push-right2">
+                    <button data-wizard="#wizard1" class="btn btn-default wizard-previous"><i class="fa fa-caret-left"></i> Previous</button>
+
+                    <button data-wizard="#wizard1" class="btn btn-primary wizard-next">Next Step <i class="fa fa-caret-right"></i></button>
+                    </div>
+                  </div>
+              </div>
+
+              <!-- STEP 3 -->
+              <div class="step-pane" id="step3">
+
+                <div class="form-group no-padding">
+                    <div class="col-sm-7">
+                      <h3 class="hthin">Place Order</h3>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-6 col-lg-6 space-lower-div">
+                  <div class="block-flat">
+                    <div class="content">
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label">Choose Payment Method</label>
+                          <div class="col-sm-6">
+                          <select class="select2">
+                             <optgroup label="MPESA">
+                               <option value="MPESA">Mpesa</option>
+                             </optgroup>
+                             <optgroup label="Electronic Cards">
+                               <option value="VISA">VISA</option>
+                               <option value="MasterCard">MasterCard</option>
+                             </optgroup>
+                            </select>
+                          </div>
+                        </div>
+
+                      <div class="form-group">
+                        <div class="col-sm-6">
+                          <label class="control-label">Buy Credits: <span id="credits">$0</span></label>
+                          <p>This option allow you to buy an amount of credits.</p>
+                          <input id="credit_slider" type="text" class="bslider form-control" value="0" />
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-6 col-md-6 col-lg-6 space-lower-div">
+                <div class="block-flat">
+                  <div class="content">
+                    <div class="block-flat">
+                      <div class="header">
+                        <h3>Your Ordered Tasks</h3>
+                      </div>
+                      <div class="content">
+                        <table class="no-border">
+                          <thead class="no-border">
+                            <tr>
+                              <th style="width:50%;">Task</th>
+                              <th>Date</th>
+                              <th class="text-right">Amount</th>
+                            </tr>
+                          </thead>
+                          <tbody class="no-border-y">
+                            <tr>
+                              <td style="width:30%;">Filet Mignon</td>
+                              <td>05/14/2013</td>
+                              <td class="text-right">$5,230.000</td>
+                            </tr>
+                            <tr>
+                              <td style="width:30%;">Blue beer</td>
+                              <td>16/08/2013</td>
+                              <td class="text-right">$5,230.000</td>
+                            </tr>
+                            <tr>
+                              <td style="width:30%;">T-shirts</td>
+                              <td>22/12/2013</td>
+                              <td class="text-right">$5,230.000</td>
+                            </tr>
+                          </tbody>
+                        </table>            
+                      </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
 
                 <!--  
                 <div class="form-group no-padding">
