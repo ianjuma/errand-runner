@@ -92,6 +92,30 @@
         margin-left: 40px;
       }
 
+      .space-button {
+        margin-left: 36em;
+      }
+
+      .space-button-less {
+        margin-left: 32em;
+      }
+
+      .space-button-less2 {
+        margin-left: 34.5em;
+      }
+
+      .space-button-less3 {
+        margin-left: 31.5em;
+      }
+
+      .space-button-lesser {
+        margin-left: 28.4em;
+      }
+
+      .top-space {
+        margin-top: 5em;
+      }
+
     </style>
 
   </head>
@@ -291,9 +315,222 @@
                   </div>
               </div>
 
-
+              <!-- STEP 3 -->
               <div class="step-pane" id="step3">
 
+                <!-- panel 1 -->
+                  <div class="col-sm-6 col-md-6 col-lg-6">
+                    <div class="panel-group accordion accordion-semi" id="accordion3">
+
+                      <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion3" href="#ac3-1">
+                          <i class="fa fa-angle-right"></i> Home Package
+                        </a>
+                        </h4>
+                      </div>
+                      <div id="ac3-1" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                               <!-- body on panel -->
+                               House Cleaning
+                               <button type="button" id="getHouse" class="btn btn-xs space-button"><i class="fa fa-plus-circle fa-lg"></i> Add
+                        </div>
+                      </div>
+                      </div>
+
+                      <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-2">
+                          <i class="fa fa-angle-right"></i> Bills per account owner (e.g electricity, rent, water)
+                        </a>
+                        </h4>
+                      </div>
+                      <div id="ac3-2" class="panel-collapse collapse">
+                        <div class="panel-body">
+                        <!-- body on panel -->
+                           Electicity paybill 
+                           <button id="getBill" type="button" class="btn btn-xs space-button"><i class="fa fa-plus-circle fa-lg"></i> Add
+                        </div>
+                      </div>
+                      </div>
+
+                      <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-13">
+                          <i class="fa fa-angle-right"></i> Document Procurement (eg. Visa, Passport)
+                        </a>
+                        </h4>
+                      </div>
+                      <div id="ac3-13" class="panel-collapse collapse">
+                        <div class="panel-body">
+                        <!-- body on panel -->
+                           Passport Processing
+                           <button id="getProcurement" type="button" class="btn btn-xs space-button-less"><i class="fa fa-plus-circle fa-lg"></i> Add
+                        </div>
+                      </div>
+                      </div>
+
+
+                      <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-3">
+                          <i class="fa fa-angle-right"></i> Access to translators
+                        </a>
+                        </h4>
+                      </div>
+                      <div id="ac3-3" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            Add a Translator
+                           <button id="getTranslators" type="button" class="btn btn-xs space-button-less2"><i class="fa fa-plus-circle fa-lg"></i> Add
+                        </div>
+                      </div>
+                      </div>
+
+
+                      <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-10">
+                          <i class="fa fa-angle-right"></i> Corporate Package (eg. City council, KRA)
+                        </a>
+                        </h4>
+                      </div>
+                      <div id="ac3-10" class="panel-collapse collapse">
+                        <div class="panel-body">
+                           Document Procurement
+                           <button id="corporatePackages" type="button" class="btn btn-xs space-button-less3"><i class="fa fa-plus-circle fa-lg"></i> Add
+                        </div>
+                      </div>
+                      </div>
+
+
+                      <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-4">
+                          <i class="fa fa-angle-right"></i> Booking Services (eg. venues, hotels)
+                        </a>
+                        </h4>
+                      </div>
+                      <div id="ac3-4" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            Book a venue, hotels, tents etc
+                           <button id="getBooking" type="button" class="btn btn-xs space-button-lesser"><i class="fa fa-plus-circle fa-lg"></i> Add
+                        </div>
+                      </div>
+                      </div>
+
+                      <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-12">
+                          <i class="fa fa-angle-right"></i> Clearance
+                        </a>
+                        </h4>
+                      </div>
+                      <div id="ac3-12" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            Clearing and forwarding
+                           <button id="getClearance" type="button" class="btn btn-xs space-button-less3"><i class="fa fa-plus-circle fa-lg"></i> Add
+                        </div>
+                      </div>
+                      </div>
+
+
+                      <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-5">
+                          <i class="fa fa-angle-right"></i> Shopping
+                        </a>
+                        </h4>
+                      </div>
+                      <div id="ac3-5" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            Let Us shop for You
+                           <button id="getShopping" type="button" class="btn btn-xs space-button-less3"><i class="fa fa-plus-circle fa-lg"></i> Add
+                        </div>
+                      </div>
+                      </div>
+
+                      <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-6">
+                          <i class="fa fa-angle-right"></i> Property management
+                        </a>
+                        </h4>
+                      </div>
+                      <div id="ac3-6" class="panel-collapse collapse">
+                        <div class="panel-body">
+                           Rent Collection, Rates
+                           <button id="getProperty" type="button" class="btn btn-xs space-button-less"><i class="fa fa-plus-circle fa-lg"></i> Add
+                        </div>
+                      </div>
+                      </div>
+
+                      <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-14">
+                          <i class="fa fa-angle-right"></i> Other Task
+                        </a>
+                        </h4>
+                      </div>
+                      <div id="ac3-14" class="panel-collapse collapse">
+                        <div class="panel-body">
+                          <div class="form-group">
+                            <label class="col-sm-3 control-label">Nature of Task</label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" placeholder="How would you classify your Task?">
+                            </div>
+                          </div>
+                          <button type="button" class="btn btn-xs"><i class="fa fa-plus-circle fa-lg"></i> Add
+                        </div>
+                      </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                  <div class="header">
+                      <h3>Your Order</h3>
+                  </div>
+                  <div class="content">
+                    <table class="no-border">
+                      <thead class="no-border">
+                        <tr>
+                          <th style="width:50%;">Task</th>
+                          <th>Number</th>
+                          <th class="text-right">Amount</th>
+                          <th style="width:15%;" class="text-center"><strong>Remove</strong></th>
+                        </tr>
+                      </thead>
+                      <tbody id="order-table" class="no-border-x no-border-y">
+
+                      </tbody>
+                    </table>
+
+                    <div id="alert-div">
+                    
+                    </div>
+
+                    <div id="alert-price">
+                      <div class="list-group tickets top-space">
+                          <li href="#" class="list-group-item">Total<span value="10" class="badge badge-success">$10</span></li>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <!--  
                 <div class="form-group no-padding">
                   <div class="col-sm-7">
                     <h3 class="hthin">Choose Task Package</h3>
@@ -313,6 +550,7 @@
                   </div>
 
                 </div>
+                -->
 
                 <div class="form-group">
                   <div class="col-sm-12">
@@ -354,7 +592,9 @@
 
   <script src="/static/js/classie.js"></script>
   <script src="/static/js/borderMenu.js"></script>
+  <script src="/static/js/fillTable.js"></script>
   <script src="{{url_for('static', filename='js/task-ops.js') }}"></script>
+
 
   <script type="text/javascript">
     $("#credit_slider").slider().on("slide",function(e){
