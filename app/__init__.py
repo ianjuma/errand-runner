@@ -35,9 +35,9 @@ RDB_PORT = os.environ.get('RDB_PORT') or 28015
 LINK_DB = 'LinkUs'
 
 
-conn_string = "host='188.226.195.158' dbname='LinkUs' user='synod' password='j633.125**//'"
-conn = psycopg2.connect(conn_string)
-cursor = conn.cursor()
+# conn_string = "host='188.226.195.158' dbname='LinkUs' user='synod' password='j633.125**//'"
+# conn = psycopg2.connect(conn_string)
+# cursor = conn.cursor()
 
 ONLINE_LAST_MINUTES = 5
 

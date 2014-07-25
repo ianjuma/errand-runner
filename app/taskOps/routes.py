@@ -8,7 +8,7 @@ from app import r
 from app import g
 from app import logging
 from app import salt
-from app import cursor
+#from app import cursor
 from app import RqlError
 
 
