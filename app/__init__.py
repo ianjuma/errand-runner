@@ -30,7 +30,7 @@ logging.basicConfig(filename='TaskWangu.log', level=logging.DEBUG)
 salt = 'd40037e1ff7841838235533d910bbf24'
 
 
-RDB_HOST = os.environ.get('RDB_HOST') or '188.226.195.158'
+RDB_HOST = os.environ.get('RDB_HOST') or '127.0.0.1'
 RDB_PORT = os.environ.get('RDB_PORT') or 28015
 LINK_DB = 'LinkUs'
 

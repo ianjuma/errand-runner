@@ -38,6 +38,8 @@ $('#completeAll').click( function() {
         });
       NProgress.set(1.0);
 
+      window.location.href = '/';
+
     },
     fail: function(result) {
       // gritter fail

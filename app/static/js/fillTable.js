@@ -50,9 +50,11 @@ $('#getProperty').click(function () {
 	total+= 10;
 });
 
+
 $('#other').click(function () {
 	task_cat = $('#text-input').val();
 	renderTask(task_cat);
+	renderTaskTwo(task_cat);
 	total+= 10;
 });
 
@@ -72,6 +74,19 @@ function renderTask (package) {
     console.log(package);
 
     $('#order-table').append('<tr>' +
+      '<td style="width:30%;">'+ package +'</td>' +
+      '<td> $10 </td>' +
+      '<td class="text-right"> $10 </td>' +
+      '<td class="text-center"> <a class="label' + 
+      'label-danger" href="#"><i class="fa fa-times"></i></a></td>' +
+    '</tr>');
+}
+
+function renderTaskTwo (package) {
+
+    console.log(package);
+
+    $('#order-table2').append('<tr>' +
       '<td style="width:30%;">'+ package +'</td>' +
       '<td> $10 </td>' +
       '<td class="text-right"> $10 </td>' +
