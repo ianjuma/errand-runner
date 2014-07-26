@@ -3,11 +3,12 @@ __version__ = '0.5'
 
 from flask import Flask
 from flask import session, g
-from flask import (render_template)
+from flask import (render_template, url_for)
 from flask import redirect, make_response, Flask
 from flask import jsonify
 from flask import abort, request
 from json import dumps
+from functools import wraps
 
 import os
 import logging
@@ -42,6 +43,7 @@ LINK_DB = 'LinkUs'
 ONLINE_LAST_MINUTES = 5
 
 app.config[ONLINE_LAST_MINUTES] = 720
+app.secret = 'I\xf9\x9cF\x1e\x04\xe6\xfaF\x8f\xe6)-\xa432'
 
 
 def dbSetup():
@@ -62,6 +64,15 @@ def dbSetup():
 def mark_current_user_online():
     mark_online(request.remote_addr)
 """
+
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if session[username] is None:
+            return redirect(url_for('index', next=request.url))
+        return f(*args, **kwargs)
+    return decorated_function
 
 
 @app.before_request
