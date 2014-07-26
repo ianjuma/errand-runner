@@ -26,6 +26,12 @@ def get_online_users():
                          for x in minutes])
 
 
+# mark users online
+@app.before_request
+def mark_current_user_online():
+    mark_online(request.remote_addr)
+
+
 class RedisSession(CallbackDict, SessionMixin):
 
     def __init__(self, initial=None, sid=None, new=False):
