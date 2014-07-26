@@ -15,7 +15,9 @@ http://taskwetu.herokuapp.com/
 - [x] MVC structure
 - [x] Heroku Procfile, deployment
 - [x] Tests
-- [ ] design UI
+- [x] design UI
 - [ ] elastic search + postgres river
-- [ ] sendgrid API (add credit card)
-- [ ] postgres on heroku (add credit card) / run postgres on external server
+- [x] sendgrid API (add credit card)
+- [x] postgres on heroku (add credit card) / run postgres on external server
+- [ ] Migrate App instance to EU
+- [ ] Static Assets (CDN) - minimise + compress
