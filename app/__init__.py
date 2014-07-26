@@ -58,13 +58,6 @@ def dbSetup():
         connection.close()
 
 
-"""
-# mark users online
-@app.before_request
-def mark_current_user_online():
-    mark_online(request.remote_addr)
-"""
-
 
 def login_required(f):
     @wraps(f)
