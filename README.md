@@ -21,3 +21,4 @@ http://taskwetu.herokuapp.com/
 - [x] postgres on heroku (add credit card) / run postgres on external server
 - [ ] Migrate App instance to EU
 - [ ] Static Assets (CDN) - minimise + compress
+- [ ] setup nginx- server static assets
