@@ -73,6 +73,7 @@ def login_required(f):
 
 @app.before_request
 def log_request():
+    
     log_data = "LOG_INFO=" + simplejson.dumps(
     {
        'DB Error':'DB',
