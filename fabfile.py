@@ -1,5 +1,5 @@
 def setup_server():
-
+    pass
 
 def prepare_deploy():
 	app_dir = '/root/TaskWetu/'
