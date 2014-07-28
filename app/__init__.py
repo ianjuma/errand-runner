@@ -36,6 +36,9 @@ RDB_PORT = os.environ.get('RDB_PORT') or 28015
 LINK_DB = 'LinkUs'
 
 
+import requests
+import simplejson
+
 # conn_string = "host='188.226.195.158' dbname='LinkUs' user='synod' password='j633.125**//'"
 # conn = psycopg2.connect(conn_string)
 # cursor = conn.cursor()
@@ -66,6 +69,18 @@ def login_required(f):
             return redirect(url_for('index', next=request.url))
         return f(*args, **kwargs)
     return decorated_function
+
+
+@app.before_request
+def log_request():
+    log_data = "LOG_INFO=" + simplejson.dumps(
+    {
+       'DB Error':'DB',
+       'db error':{
+            'some':'error'
+       }
+    })
+    requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", log_data)
 
 
 @app.before_request
