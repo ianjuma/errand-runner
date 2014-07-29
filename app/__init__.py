@@ -73,13 +73,10 @@ def login_required(f):
 
 @app.before_request
 def log_request():
-    
+
     log_data = "LOG_INFO=" + simplejson.dumps(
     {
-       'DB Error':'DB',
-       'db error':{
-            'some':'error'
-       }
+       'Request':'app.before',
     })
     requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", log_data)
 

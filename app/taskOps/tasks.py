@@ -100,6 +100,9 @@ def getTasks():
             taskData.append(data)
 
     except RqlError:
+        payload = "LOG_INFO=" + simplejson.dumps({ 'Request':'app.before' })
+        requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
+
         logging.warning('DB code verify failed on /api/getTasks/')
         resp = make_response(jsonify({"Error": "503 DB error"}), 503)
         resp.headers['Content-Type'] = "application/json"
@@ -126,6 +129,9 @@ def taskInfo(username, task_id):
         due_date = str(user['due_date'])
 
     except RqlError:
+        payload = "LOG_INFO=" + simplejson.dumps({ '/editTask/<username>/<task_id>/':'DB operation failed on /editTask/<task_id>/' })
+        requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
+
         logging.warning('DB operation failed on /editTask/<task_id>/')
         resp = make_response(jsonify({"Error": "503 DB error"}), 503)
         resp.headers['Content-Type'] = "application/json"
@@ -188,7 +194,7 @@ def editTask(task_id):
     return resp
 
 
-@app.route('/api/deleteTask/', methods=['PUT', 'POST'])
+@app.route('/api/deleteTask/', methods=['PUT', 'POST', 'DELETE'])
 def deleteTask():
     if not request.json:
         abort(400)
@@ -203,6 +209,10 @@ def deleteTask():
         r.table('Tasks').get(task_id).delete().run(g.rdb_conn)
     except RqlError:
         logging.warning('DB code verify failed on /api/deleteTask/')
+
+        payload = "LOG_INFO=" + simplejson.dumps({ '/editTask/<username>/<task_id>/':'DB operation failed on /editTask/<task_id>/' })
+        requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
+        
         resp = make_response(jsonify({"Error": "503 DB error"}), 503)
         resp.headers['Content-Type'] = "application/json"
         resp.cache_control.no_cache = True
@@ -239,6 +249,10 @@ def addTask():
         r.table('Tasks').insert(taskData).run(g.rdb_conn)
     except RqlError:
         logging.warning('DB code verify failed on /api/addTask/')
+
+        payload = "LOG_INFO=" + simplejson.dumps({ '/api/addTask/':'DB operation failed on /addTask/' })
+        requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
+
         resp = make_response(jsonify({"Error": "503 DB error"}), 503)
         resp.headers['Content-Type'] = "application/json"
         resp.cache_control.no_cache = True
