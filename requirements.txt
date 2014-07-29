@@ -13,3 +13,4 @@ gevent==1.0.1
 gunicorn==19.0.0
 psycopg2==2.5.3
 sendgrid==0.5.3
+simplejson
