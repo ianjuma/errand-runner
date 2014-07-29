@@ -9,7 +9,10 @@ def setup_server():
     with cd('/tmp/TaskWetu'):
         run('git clone https://github.com/nailab/linkus.git')
         with cd('/tmp/TaskWetu/linkus'):
-            run('pip install -r requirements.txt && gunicorn -c config-gunicorn.py app:app')
+            result = run('pip install -r requirements.txt && gunicorn -c config-gunicorn.py app:app')
+            if result.failed:
+                local('GUNICORN failed')
+
             run('gunicorn -c config-gunicorn.py app:app')
             prepare_deploy()
 
