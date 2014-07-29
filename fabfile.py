@@ -10,8 +10,9 @@ def setup_server():
         run('git clone https://github.com/nailab/linkus.git')
         with cd('linkus'):
             run('pip install -r requirements.txt')
-            prepare_deploy()
             run('gunicorn -c config-gunicorn.py app:app')
+            prepare_deploy()
+
 
 def clean():
     run('rmdir /tmp/TaskWetu')
