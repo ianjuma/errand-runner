@@ -8,17 +8,17 @@ def setup_server():
     run('mkdir /tmp/TaskWetu')
     with cd('/tmp/TaskWetu'):
         run('git clone https://github.com/nailab/linkus.git')
-        with cd('linkus'):
+        with cd('/tmp/TaskWetu/linkus'):
             run('pip install -r requirements.txt')
             run('gunicorn -c config-gunicorn.py app:app')
             prepare_deploy()
 
 
 def clean():
-    run('rmdir /tmp/TaskWetu')
-    run('rmdir /tmp/TaskWetu/linkus')
+    run('rm -r /tmp/TaskWetu')
+    run('rm -r /tmp/TaskWetu/linkus')
     run('apt-get clean && apt-get dist-upgrade')
-    local('echo cleaning ...')
+    local('server cleaned up ...')
 
 
 def installDeps():

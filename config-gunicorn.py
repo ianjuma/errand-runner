@@ -8,7 +8,7 @@ def numCPUs():
     return os.sysconf('SC_NPROCESSORS_ONLN')
 
 
-bind = '0.0.0.0:5000'
+bind = '0.0.0.0:8000'
 workers = 4
 worker_class = 'gevent'
 debug = True
