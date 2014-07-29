@@ -6,21 +6,29 @@ env.hosts = ['188.226.195.158']
 
 def setup_server():
     run('mkdir /tmp/TaskWetu')
-    with cd('tmp/TaskWetu'):
-        run('pip install -r requirements.txt')
-        prepare_deploy()
-        deploy()
-        run('gunicorn -c config-gunicorn.py app:app')
+    with cd('/tmp/TaskWetu'):
+        run('git clone https://github.com/nailab/linkus.git')
+        with cd('linkus'):
+            run('pip install -r requirements.txt')
+            prepare_deploy()
+            run('gunicorn -c config-gunicorn.py app:app')
+
+def clean():
+    run('rmdir /tmp/TaskWetu')
+    run('rmdir /tmp/TaskWetu/linkus')
+    run('apt-get clean && apt-get dist-upgrade')
+    local('echo cleaning ...')
 
 
 def prepare_deploy():
-	app_dir = '/tmp/TaskWetu/'
-    local("apt-get update && apt-get -y dist-upgrade")
+    run("apt-get update && apt-get -y dist-upgrade")
 
 
 def restartNginx():
-    sudo('service nginx restart')
+    run('service nginx restart')
 
 
 def deploy():
-    run('gunicorn -c config-gunicorn.py app:app')
+    prepare_deploy()
+    setup_server()
+    restartNginx()
