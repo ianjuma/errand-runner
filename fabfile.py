@@ -22,7 +22,9 @@ def clean():
 
 
 def installDeps():
-    pass
+    run('apt-get install redis')
+    run('apt-get install postgresql9.3')
+    run('apt-get install rethinkdb')
 
 
 def prepare_deploy():
