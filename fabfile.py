@@ -4,6 +4,11 @@ env.user = 'root'
 env.hosts = ['188.226.195.158']
 
 
+def gunicorn():
+    with cd('tmp/TaskWetu/linkus'):
+        run('gunicorn -c config-gunicorn.py app:app')
+
+
 def setup_server():
     run('mkdir /tmp/TaskWetu')
     with cd('/tmp/TaskWetu'):
