@@ -10,6 +10,7 @@ def gunicorn():
 
 
 def setup_server():
+    run('pty=False')
     run('mkdir /tmp/TaskWetu')
     with cd('/tmp/TaskWetu'):
         run('git clone https://github.com/nailab/linkus.git')
