@@ -21,6 +21,9 @@ def clean():
     local('echo cleaning ...')
 
 
+def installDeps():
+    pass
+
 def prepare_deploy():
     run("apt-get update && apt-get -y dist-upgrade")
 
