@@ -5,7 +5,7 @@ env.hosts = ['188.226.195.158']
 
 
 def gunicorn():
-    with cd('tmp/TaskWetu/linkus'):
+    with cd('/tmp/TaskWetu/linkus'):
         run('gunicorn -c config-gunicorn.py app:app')
 
 
