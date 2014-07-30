@@ -90,7 +90,7 @@ def profile(username):
         return resp
 
     return render_template(
-        'profile.html', name=name, email=email, smscode=smscode,
+        'PROFILE22.html', name=name, email=email, smscode=smscode,
         state=state, username=username, mobileNo=mobileNo)
 
 
