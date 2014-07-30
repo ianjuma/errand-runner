@@ -628,15 +628,6 @@
         format: 'MM/DD/YYYY h:mm A'
       });
 
-      var cb = function(start, end) {
-        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-        alert("Callback has fired: [" + start.format('MMMM D, YYYY') + " to " + end.format('MMMM D, YYYY') + "]");
-      }
-
-      $('#reportrange span').html(moment().subtract('days', 29).format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
-
-      $('#reportrange').daterangepicker(optionSet1, cb);
-
     });
   </script>
     <script src="/static/js/behaviour/voice-commands.js"></script>
