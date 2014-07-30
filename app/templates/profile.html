@@ -1,64 +1,55 @@
-<!doctype html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Profile</title>
-        <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap-other.css') }}">
-        <link rel="stylesheet" href="{{url_for('static', filename='css/datepicker.css') }}">
-        <link rel="stylesheet" href="{{url_for('static', filename='css/pos-style.css') }}">
-        <link rel="shortcut icon" href="{{url_for('static', filename='ico/favicon.ico') }}">
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>New Task</title>
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="author" content="" />
+		<link rel="shortcut icon" href="{{url_for('static', filename='ico/favicon.ico') }}">
 
-        <link rel="author" href="humans.txt">
-    </head>
-    <body>
-
-		 <nav class="navbar navbar-default navbar-static-top" role="navigation">
-  			<div class="container">
-  				<a class="navbar-brand" href="/">TasKwangu</a>
-  				<ul class="nav nav-pills">
-			  		
-			  		<li>
-			  		<button type="button" onClick="window.location.href = '/tasks/'+username" class="btn buttons-top button-botton">New Task
-						<span class="glyphicon glyphicon-plus"></span>
-					</button>
-					</li>
-					<li>
-					<button type="button" onClick="window.location.href = '/allTasks/'+username" class="btn buttons-top button-botton">My Tasks
-						<span class="glyphicon glyphicon-hdd"></span>
-					</button>
-					</li>
-
-					<li>
-					<button type="button" onClick="window.location.href = '/profile/'+username" class="btn buttons-top button-botton">Profile
-						<span class="glyphicon glyphicon-user"></span>
-					</button>
-					</li>
-
-					<li>
-					<button type="button" onClick="window.location.href = '/'" class="btn btn-danger buttons-top button-botton">Log Out
-						<span class="glyphicon glyphicon-log-out"></span>
-					</button>
-					</li>
-
-					<li>
-					<button type="button" onClick="window.location.href = 'https://docs.google.com/forms/d/1JNhamPDhKgxwRWDObIJ8fsfmit6JbtWL6zZRkDZcFuc/viewform?c=0&w=1&usp=mail_form_link'" class="btn btn-info buttons-top button-botton">Help Us
-						<span class="glyphicon glyphicon-comment"></span>
-					</button>
-					</li>
+		<link rel="stylesheet" href="{{url_for('static', filename='css/font-awesome.min.css') }}">
+		<link rel="stylesheet" href="{{url_for('static', filename='css/froala_editor.min.css') }}">
+		<link rel="stylesheet" href="{{url_for('static', filename='css/nprogress.css') }}">
+		<link rel="stylesheet" href="{{url_for('static', filename='css/font-awesome.min.css') }}">
 
 
+		<link rel="stylesheet" href="{{url_for('static', filename='css/datepicker.css') }}">
+		<link rel="stylesheet" href="{{url_for('static', filename='css/normalize.css') }}">
+		<link rel="stylesheet" href="{{url_for('static', filename='css/icons.css') }}">
+
+		<link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css') }}">
+		<link rel="stylesheet" href="{{url_for('static', filename='css/menu.css') }}">
+		<link rel="stylesheet" href="{{url_for('static', filename='css/menu-style.css') }}">
+		<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css" />
+
+
+		<script src="{{url_for('static', filename='js/jquery.min.js') }}"></script>
+		<script src="{{url_for('static', filename='js/froala_editor.min.js') }}"></script>
+		<script src="{{url_for('static', filename='js/modernizr.custom.js') }}"></script>
+		<script src="{{url_for('static', filename='js/jquery.noty.packaged.min.js') }}"></script>
+		<script src="{{url_for('static', filename='js/nprogress.js') }}"></script>
+
+	</head>
+
+	<body>
+
+		<div class="container">
+			<nav id="bt-menu" class="bt-menu">
+				<a href="#" class="bt-menu-trigger"><span>Menu</span></a>
+				<ul>
+					<li><a href="/tasks/{{username}}/">New task</a></li>
+					<li><a href="/allTasks/{{username}}/">All Tasks</a></li>
+					<li><a href="/profile/{{username}}/">Profile</a></li>
+					<li><a href="/payments/{{username}}/">Payments</a></li>
+					<li><a href="/logout/{{username}}/">Logout</a></li>
 				</ul>
-  			</div>
-		</nav>
-
-
-		<div id="alert-all">
+			</nav>
 		</div>
 
 		<div class="middle">
-
 			<strong>Update Your Information</strong>
 			<div class="well">
 				<label><strong>Name</strong></label>
@@ -86,15 +77,6 @@
 				<input id="password2-data" type="password" class="form-control little" placeholder="Repeat Password">
 			</div>
 
-          	<!-- <strong>Almost Done!</strong> -->
-          	<!-- 
-          	<div class="progress">
-			  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100" style="width: 12%;">
-			    <span class="sr-only">12% Complete</span>
-			  </div>
-			</div>
-			 -->
-
 			<div class="well">
 				<button id="save-user" type="button" class="btn buttons-top">Save
 					<span class="glyphicon glyphicon-cloud-upload"></span>
@@ -108,22 +90,43 @@
 			</div>
 		</div>
 
-        <script src="{{url_for('static', filename='js/jquery.js') }}"></script>
-        <script src="{{url_for('static', filename='js/bootstrap-datepicker.js') }}"></script>
-        <script src="{{url_for('static', filename='js/bootstrap.js') }}"></script>
-        <script src="{{url_for('static', filename='js/notify.min.js') }}"></script>
-        <script src="{{url_for('static', filename='js/profile-ops.js') }}"></script>
+	</body>
 
-        <script>
 
-          $('#date-data').datepicker({
-				format: 'mm-dd-yyyy'
-		  });
+	<script src="{{url_for('static', filename='js/bootstrap-datepicker.js') }}"></script>
+	<script src="{{url_for('static', filename='js/classie.js') }}"></script>
+	<script src="{{url_for('static', filename='js/borderMenu.js') }}"></script>
+	<script src="{{url_for('static', filename='js/jquery.label_better.min.js') }}"></script>
+	<script src="{{url_for('static', filename='js/profile-ops.js') }}"></script>
 
-          var username = "{{username}}";
-          console.log(username);
+	<script>
 
-        </script>
+		var username = "{{username}}";
+		console.log(username);
 
-    </body>
+		$(document).on('page:fetch',   function() { NProgress.set(1.0); });
+		$(document).on('page:change',  function() { NProgress.set(1.0); });
+
+		$('#date-data').datepicker({
+			format: 'mm-dd-yyyy'
+		});
+
+		$("#").label_better({
+		    position: "left",
+		    animationTime: 500,
+		    easing: "ease-in-out",
+		    offset: 20,
+		    hidePlaceholderOnFocus: true
+		});
+
+		$("#").label_better({
+		    position: "left",
+		    animationTime: 500,
+		    easing: "ease-in-out",
+		    offset: 20,
+		    hidePlaceholderOnFocus: true
+		});
+
+	</script>
+
 </html>
