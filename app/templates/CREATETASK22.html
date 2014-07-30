@@ -26,6 +26,7 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <![endif]-->
     <link rel="stylesheet" type="text/css" href="/static/js/jquery.nanoscroller/nanoscroller.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/nprogress.css" />
     <link rel="stylesheet" type="text/css" href="/static/js/bootstrap.switch/bootstrap-switch.css" />
    <!-- Custom styles for this template -->
     <link href="/static/css/style.css" rel="stylesheet" />
@@ -652,7 +653,8 @@
   <script type="text/javascript" src="/static/js/bootstrap.daterangepicker/daterangepicker.js"></script>
 	<script type="text/javascript" src="/static/js/behaviour/general.js"></script>
   <script src="/static/js/jquery.ui/jquery-ui.js" type="text/javascript"></script>
-  
+
+  <script src="{{url_for('static', filename='js/nprogress.js') }}"></script>
   <script src="/static/js/fillTable.js"></script>
   <script src="{{url_for('static', filename='js/task-ops.js') }}"></script>
   
@@ -682,8 +684,6 @@
     });
 
   </script>
-  
-  <script src="/static/js/behaviour/voice-commands.js"></script>
 
   <!-- Bootstrap core JavaScript
   ================================================== -->
