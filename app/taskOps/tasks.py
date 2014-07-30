@@ -27,7 +27,7 @@ def tasks(username):
     # task = RegistrationForm(request.form)
     # get mobileNo
     # check if no exists
-    return render_template('CREATETASK22.html', username=username)
+    return render_template('CREATEtask.html', username=username)
 
 
 @app.route('/adminTasks/', methods=['POST', 'GET'])
@@ -80,7 +80,7 @@ def getAdminTasks():
 @app.route('/allTasks/<username>/', methods=['POST', 'GET'])
 def getAllTasks(username):
     username = username
-    return render_template('ALLTASKS22.html', username=username)
+    return render_template('VIEWtasks.html', username=username)
 
 
 @app.route('/api/getTasks/', methods=['POST', 'GET'])
