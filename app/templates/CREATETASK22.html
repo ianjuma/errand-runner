@@ -154,7 +154,7 @@
       </ul>
   <ul class="nav navbar-nav navbar-right user-nav">
     <li class="dropdown profile_menu">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img alt="Avatar" src="/static/images/avatar2.jpg" />Ian Juma <b class="caret"></b></a>
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img alt="Avatar" src="/static/images/avatar2.jpg" />{{username}} <b class="caret"></b></a>
       <ul class="dropdown-menu">
         <li><a href="#">Notifications</a></li>
         <li><a href="#">Profile</a></li>
@@ -635,7 +635,7 @@
     </div>
     
     </div>
-  </div> 
+  </div>
 </div>
 
   <script src="/static/js/jquery.js"></script>
@@ -648,26 +648,40 @@
 	<script type="text/javascript" src="/static/js/bootstrap.switch/bootstrap-switch.min.js"></script>
 	<script type="text/javascript" src="/static/js/jquery.nestable/jquery.nestable.js"></script>
 	<script type="text/javascript" src="/static/js/bootstrap.datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+  <script type="text/javascript" src="/static/js/bootstrap.daterangepicker/moment.min.js"></script>
+  <script type="text/javascript" src="/static/js/bootstrap.daterangepicker/daterangepicker.js"></script>
 	<script type="text/javascript" src="/static/js/behaviour/general.js"></script>
   <script src="/static/js/jquery.ui/jquery-ui.js" type="text/javascript"></script>
+  <script src="{{url_for('static', filename='js/task-ops.js') }}"></script>
   
   <script type="text/javascript">
-    $("#credit_slider").slider().on("slide",function(e){
+    $("#credit_slider").slider().on("slide",function(e) {
       $("#credits").html("$" + e.value);
     });
-    $("#rate_slider").slider().on("slide",function(e){
+    $("#rate_slider").slider().on("slide",function(e) {
       $("#rate").html(e.value + "%");
     });
-  </script>
-  
-  <script type="text/javascript">
-    $(document).ready(function(){
+
+    var username = "{{username}}";
+    console.log(username);
+
+    $(document).ready(function() {
       //initialize the javascript
       App.init();
       App.wizard();
+
+      $('#reservation').daterangepicker();
+      $('#reservationtime').daterangepicker({
+        timePicker: true,
+        timePickerIncrement: 30,
+        format: 'MM/DD/YYYY h:mm A'
+      });
+
     });
+
   </script>
-    <script src="/static/js/behaviour/voice-commands.js"></script>
+  
+  <script src="/static/js/behaviour/voice-commands.js"></script>
 
   <!-- Bootstrap core JavaScript
   ================================================== -->
