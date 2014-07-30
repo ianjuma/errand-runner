@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="images/favicon.png">
+
+    <title>Profile</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:300,200,100' rel='stylesheet' type='text/css'>
+
+    <!-- Bootstrap core CSS -->
+    <link href="js/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="js/bootstrap.datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" type="text/css" href="js/jquery.select2/select2.css" />
+    <link rel="stylesheet" type="text/css" href="js/bootstrap.slider/css/slider.css" />
+    <link href="js/fuelux/css/fuelux.css" rel="stylesheet">
+    <link href="js/fuelux/css/fuelux-responsive.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="fonts/font-awesome-4/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/pygments.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="js/jquery.nanoscroller/nanoscroller.css" />
+    <link rel="stylesheet" type="text/css" href="js/bootstrap.switch/bootstrap-switch.css" />
+   <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet" />
+
+    <style>
+      .cl-mcont {
+        margin-left: 5em;
+        margin-right: 5em;
+      }
+
+      .space-lower-div {
+        margin-top: 20px;
+      }
+
+      .top-space-reduce {
+        margin-top: 0px;
+      }
+
+      .right-space {
+        margin-right: 4px;
+      }
+
+      .keep-right {
+        margin-left: 32em;
+      }
+
+      .push-right {
+        margin-left: 12em;
+      }
+
+      .push-right2 {
+        margin-left: 17em;
+      }
+
+      .space-input-right {
+        margin-left: 9.25em;
+      }
+
+      .left-right-space {
+        margin-right: 25px;
+        margin-left: 40px;
+      }
+
+      .space-button {
+        margin-left: 36em;
+      }
+
+      .space-button-less {
+        margin-left: 32em;
+      }
+
+      .space-button-less2 {
+        margin-left: 34.5em;
+      }
+
+      .space-button-less3 {
+        margin-left: 31.5em;
+      }
+
+      .space-button-lesser {
+        margin-left: 28.4em;
+      }
+
+
+    </style>
+
+  </head>
+
+<body>
+
+
+<!-- Fixed navbar -->
+<div id="head-nav" class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="fa fa-gear"></span>
+      </button>
+      <a class="navbar-brand" href="#"><span>Task Wetu</span></a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tasks <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">View all Tasks</a></li>
+            <li><a href="#">Check Credits</a></li>
+    <li class="dropdown-submenu"><a href="#">Payments</a>
+      <ul class="dropdown-menu">
+        <li><a href="#">Transaction history</a></li>
+        <li><a href="#">Add Credits</a></li>
+        </ul>
+    </li>              
+    </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Payments <b class="caret"></b></a>
+    <ul class="dropdown-menu col-menu-2">
+      <li class="col-sm-6 no-padding">
+        <ul>
+        <li class="dropdown-header"><i class="fa fa-group"></i>Tasks</li>
+        <li><a href="#">Create new Task</a></li>
+        <li><a href="#">View All Tasks</a></li>
+        <li class="dropdown-header"><i class="fa fa-gear"></i>Config</li>
+        <li><a href="#">Add credit</a></li>
+        <li><a href="#">Check available credit</a></li>
+        </ul>
+      </li>
+      <li  class="col-sm-6 no-padding">
+        <ul>
+        <li class="dropdown-header"><i class="fa fa-legal"></i>Payments</li>
+        <li><a href="#">New sale</a></li>
+        <li><a href="#">Register a product</a></li>
+        <li><a href="#">Register a client</a></li>
+        <li><a href="#">Month sales</a></li>
+        <li><a href="#">Delivered orders</a></li>
+        </ul>
+      </li>
+    </ul>
+        </li>
+      </ul>
+  <ul class="nav navbar-nav navbar-right user-nav">
+    <li class="dropdown profile_menu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img alt="Avatar" src="images/avatar2.jpg" />Ian Juma <b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li><a href="#">Notifications</a></li>
+        <li><a class="active" href="/profile/">Profile</a></li>
+        <li><a href="#">Messages</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Sign Out</a></li>
+      </ul>
+    </li>
+  </ul>			
+  <ul class="nav navbar-nav navbar-right not-nav">
+    <li class="button dropdown">
+      <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"><i class=" fa fa-comments"></i></a>
+      <ul class="dropdown-menu messages">
+        <li>
+          <div class="nano nscroller">
+            <div class="content">
+              <ul>
+                <li>
+                  <a href="#">
+                    <img src="images/avatar2.jpg" alt="avatar" /><span class="date pull-right">13 Sept.</span> <span class="name">Daniel</span> I'm following you, and I want your money! 
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <img src="images/avatar_50.jpg" alt="avatar" /><span class="date pull-right">20 Oct.</span><span class="name">Adam</span> is now following you 
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <img src="images/avatar4_50.jpg" alt="avatar" /><span class="date pull-right">2 Nov.</span><span class="name">Michael</span> is now following you 
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <img src="images/avatar3_50.jpg" alt="avatar" /><span class="date pull-right">2 Nov.</span><span class="name">Lucy</span> is now following you 
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <ul class="foot"><li><a href="#">View all messages </a></li></ul>           
+        </li>
+      </ul>
+    </li>
+    <li class="button dropdown">
+      <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe"></i><span class="bubble">2</span></a>
+      <ul class="dropdown-menu">
+        <li>
+          <div class="nano nscroller">
+            <div class="content">
+              <ul>
+                <li><a href="#"><i class="fa fa-cloud-upload info"></i><b>Daniel</b> is now following you <span class="date">2 minutes ago.</span></a></li>
+                <li><a href="#"><i class="fa fa-male success"></i> <b>Michael</b> is now following you <span class="date">15 minutes ago.</span></a></li>
+                <li><a href="#"><i class="fa fa-bug warning"></i> <b>Mia</b> commented on post <span class="date">30 minutes ago.</span></a></li>
+                <li><a href="#"><i class="fa fa-credit-card danger"></i> <b>Andrew</b> killed someone <span class="date">1 hour ago.</span></a></li>
+              </ul>
+            </div>
+          </div>
+          <ul class="foot"><li><a href="#">View all activity </a></li></ul>           
+        </li>
+      </ul>
+    </li>
+    <li class="button"><a href="javascript:;" class="speech-button"><i class="fa fa-microphone"></i></a></li>				
+  </ul>
+
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
+
+<div id="cl-wrapper">
+ <div class="page-head">
+      <h2>My Profile</h2>
+      <ol class="breadcrumb">
+        <li><a href="/addTask/">Home</a></li>
+        <li class="active">Profile</li>
+      </ol>
+  </div>
+
+  <div class="cl-mcont">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="tab-container">
+          <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#home">Information</a></li>
+            <li><a data-toggle="tab" href="#settings">Settings</a></li>
+          </ul>
+          <div class="tab-content">
+            <div id="home" class="tab-pane active cont">
+              <table class="no-border no-strip information">
+                <tbody class="no-border-x no-border-y">
+                  <tr>
+                    <td style="width:20%;" class="category"><strong>CONTACT</strong></td>
+                    <td>
+                      <table class="no-border no-strip skills">
+                        <tbody class="no-border-x no-border-y">
+                          <tr><td style="width:20%;"><b>Website</b></td><td>www.website.com</td></tr>
+                          <tr><td style="width:20%;"><b>E-mail</b></td><td>johnny@example.com</td></tr>
+                          <tr><td style="width:20%;"><b>Mobile</b></td><td>(999) 999-9999</td></tr>
+                          <tr><td style="width:20%;"><b>Location</b></td><td>Montreal, Canada</td></tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="category"><strong>ABOUT ME</strong></td>
+                    <td><p>I am a web developer and desginer based in Medellín - Colombia, I like read books, good music and nature.</p></td>
+                  </tr>
+
+
+                </tbody>
+              </table>
+            </div>
+            
+            <div id="settings" class="tab-pane">
+              <form role="form" class="form-horizontal">
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="nick">Avatar</label>
+                    <div class="col-sm-9"> 
+                      <div class="avatar-upload">
+                        <img src="images/av.jpg" class="profile-avatar img-thumbnail" />
+                        <input id="fileupload" type="file" name="files[]">
+                        <div id="progress" class="overlay"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="nick">Nick</label>
+                    <div class="col-sm-9">
+                      <input type="email" placeholder="Your Nickname" id="nick" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="name">Name</label>
+                    <div class="col-sm-9">
+                      <input type="email" placeholder="Your Name" id="name" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="inputEmail3">Email</label>
+                    <div class="col-sm-9">
+                      <input type="email" placeholder="Email" id="inputEmail3" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group spacer2">
+                    <div class="col-sm-3"></div>
+                    <label class="col-sm-9" for="inputPassword3">Change Password</label>
+
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="inputPassword3">Password</label>
+                    <div class="col-sm-9">
+                      <input type="password" placeholder="Password" id="inputPassword3" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="inputPassword4">Repeat Password</label>
+                    <div class="col-sm-9">
+                      <input type="password" placeholder="Password" id="inputPassword4" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-9">
+                      <button class="btn btn-primary" type="submit">Update</button>
+                      <button class="btn btn-default">Reset</button>
+                    </div>
+                  </div>
+              </form>
+              <div class="md-overlay"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block-transparent">
+          <div class="header">
+            <h4>My Tasks</h4>
+          </div>
+          <div class="list-group todo list-widget">
+            <li href="#" class="list-group-item"><span class="date"><i class="fa fa-clock-o"></i> 20 Dec</span> Dinner with my family</li>
+            <li href="#" class="list-group-item"><span class="date"><i class="fa fa-clock-o"></i> 13 Jan</span> Meeting with our partners</li>
+            <li href="#" class="list-group-item"><span class="date"><i class="fa fa-clock-o"></i> 18 Feb</span> Work in new project</li>
+            <li href="#" class="list-group-item"><span class="date"><i class="fa fa-clock-o"></i> 21 Feb</span> Go to the doctor</li>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-sm-4 side-right">
+          <div class="block-transparent">
+          <div class="header">
+            <h4>Timeline</h4>
+          </div>
+          <ul class="timeline">
+            <li>
+              <i class="fa fa-comment"></i>
+              <span class="date">5 Jan</span>
+              <div class="content">
+                <p><strong>John</strong> has called Shenlong with <strong>You</strong>.</p>
+                <small>A minute ago</small>
+              </div>
+            </li>
+            <li>
+              <i class="fa fa-envelope green"></i>
+              <span class="date">5 Jan</span>
+              <div class="content">
+                <i class="fa fa-paperclip pull-right"></i>
+                <p><strong>Bob</strong><br/>This is a message for you in your birthday.</p>
+                <a class="image-zoom" href="images/gallery/img4.jpg"><img src="images/gallery/img4.jpg" class="img-thumbnail" style="height:64px;" /></a>
+                <a class="image-zoom" href="images/gallery/img6.jpg"><img src="images/gallery/img6.jpg" class="img-thumbnail" style="height:64px;" /></a>
+              </div>
+            </li>
+            <li>
+              <i class="fa fa-file red"></i>
+              <span class="date">5 Jan</span>
+              <div class="content">
+                <p><strong>Michael</strong> has wrote on your wall:</p>
+                <blockquote>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                  <small>Some historic guy</small>
+                </blockquote>
+              </div>
+            </li>
+            <li><i class="fa fa-globe purple"></i><span class="date">5 Jan</span><div class="content"><p><strong>María</strong> This is a message for you in your birthday.</p></div></li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  </div>
+
+  <script src="js/jquery.js"></script>
+  <script src="js/jquery.select2/select2.min.js" type="text/javascript"></script>
+  <script src="js/jquery.parsley/dist/parsley.js" type="text/javascript"></script>
+  <script src="js/bootstrap.slider/js/bootstrap-slider.js" type="text/javascript"></script>
+  <script type="text/javascript" src="js/fuelux/loader.min.js"></script>	
+  <script src="js/modernizr.js" type="text/javascript"></script>
+  <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
+	<script type="text/javascript" src="js/bootstrap.switch/bootstrap-switch.min.js"></script>
+	<script type="text/javascript" src="js/jquery.nestable/jquery.nestable.js"></script>
+	<script type="text/javascript" src="js/bootstrap.datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript" src="js/behaviour/general.js"></script>
+  <script src="js/jquery.ui/jquery-ui.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    $("#credit_slider").slider().on("slide",function(e){
+      $("#credits").html("$" + e.value);
+    });
+    $("#rate_slider").slider().on("slide",function(e){
+      $("#rate").html(e.value + "%");
+    });
+  </script>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+      //initialize the javascript
+      App.init();
+      App.wizard();
+    });
+  </script>
+    <script src="js/behaviour/voice-commands.js"></script>
+
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+</body>
+</html>
