@@ -121,3 +121,78 @@ $('#add-task').click( function() {
 
   console.log(userData);
 });
+
+
+$('#updateUserInfo').click( function() {
+  first_name = $('#firstname').val();
+  last_name = $('#lastname').val();
+  email = $('#email').val();
+  mobileNo = $('#mobileNo').val();
+  password = $('#password').val();
+  state = $('#country').val();
+
+  data = { "username": username, "first_name": first_name, "state": state, "email": email,
+                "password": password, "mobileNo": mobileNo, "dob": "", "last_name": last_name };
+
+  userData = JSON.stringify(data);
+  NProgress.set(0.0);
+
+  $.ajax({
+    type: 'POST',
+    url: '/profile/'+ username + '/',
+    contentType: 'application/json',
+
+    success: function(result) {
+      console.log(result);
+      NProgress.set(1.0);
+    },
+    fail: function(result) {
+
+    },
+
+    data: userData
+  });
+
+  console.log(userData);
+});
+
+
+function  getTaskData() {
+  
+  data = { "username": username };
+
+  taskData = JSON.stringify(data);
+  console.log(taskData);
+  NProgress.set(0.0);
+
+  $.ajax({
+    type: 'POST',
+    url: '/api/getTasks/',
+    contentType: 'application/json',
+
+    success: function(result) {
+      // console.log(result);
+      renderSample(result);
+      NProgress.set(1.0);
+
+    },
+    fail: function(result) {
+      alert('Failed to send Data');
+    },
+    data: taskData
+  });
+}
+
+
+function renderSample (package) {
+
+    _.map(package, function (task) {
+      console.log(task);
+
+      task_summary = '<li href="#" class="list-group-item"><span class="date"><i class="fa fa-clock-o"></i>' + 
+       '20 Dec </span>' + task[task_title] + '</li>'
+
+      $('#addTo').append(task_summary);
+      
+    });
+}
