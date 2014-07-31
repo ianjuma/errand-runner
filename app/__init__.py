@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-__version__ = '0.5'
+__version__ = '0.1.0'
 
 from flask import Flask
 from flask import session, g
