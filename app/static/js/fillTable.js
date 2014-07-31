@@ -2,7 +2,7 @@ var total = 0;
 
 $('#getHouse').click(function () {
 	// $('#alert-price').remove();
-	renderTask("Home Package - House cleaning");
+	renderTaskTwo("Property Management");
 	// renderTotal(10);
 	total+= 10;
 	//updateTotal(10);
@@ -10,51 +10,50 @@ $('#getHouse').click(function () {
 
 
 $('#getBill').click(function () {
-	renderTask("Bills per Account");
+	renderTaskTwo("Property Management");
 	total+= 10;
 });
 
 $('#getProcurement').click(function () {
-	renderTask("Document Procurement");
+	renderTaskTwo("Property Management");
 	total+= 10;
 });
 
 
 $('#getTranslators').click(function () {
-	renderTask("Access To Translators");
+	renderTaskTwo("Property Management");
 	total+= 10;
 });
 
 $('#corporatePackages').click(function () {
-	renderTask("Corporate Packages");
+	renderTaskTwo("Property Management");
 	total+= 10;
 });
 
 $('#getBooking').click(function () {
-	renderTask("Booking Services");
+	renderTaskTwo("Property Management");
 	total+= 10;
 });
 
 $('#getClearance').click(function () {
-	renderTask("Clearance");
+	renderTaskTwo("Property Management");
 	total+= 10;
 });
 
 $('#getShopping').click(function () {
-	renderTask("Shopping");
+	renderTaskTwo("Property Management");
 	total+= 10;
 });
 
 $('#getProperty').click(function () {
-	renderTask("Property Management");
+	renderTaskTwo("Property Management");
 	total+= 10;
 });
 
 
 $('#other').click(function () {
 	task_cat = $('#text-input').val();
-	renderTask(task_cat);
-	renderTaskTwo(task_cat);
+	renderTaskTwo("Property Management");
 	total+= 10;
 });
 

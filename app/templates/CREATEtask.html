@@ -80,7 +80,7 @@
       }
 
       .push-right {
-        margin-left: 12em;
+        margin-left: 3em;
       }
 
       .push-right2 {
@@ -156,9 +156,8 @@
         <div class="block-wizard">
           <div id="wizard1" class="wizard wizard-ux">
             <ul class="steps">
-              <li data-target="#step1" class="active">Step 1<span class="chevron"></span></li>
-              <li data-target="#step2">Step 2<span class="chevron"></span></li>
-              <li data-target="#step3">Step 3<span class="chevron"></span></li>
+              <li data-target="#step1" class="active">Create Task<span class="chevron"></span></li>
+              <li data-target="#step3">Complete<span class="chevron"></span></li>
             </ul>
             <div class="actions">
               <button type="button" class="btn btn-xs btn-prev btn-default"> <i class="icon-arrow-left"></i>Prev</button>
@@ -406,83 +405,10 @@
                 <div class="form-group">
                   <div class="col-sm-offset-2 col-sm-10">
                     <button class="btn btn-default">Cancel</button>
-                    <button data-wizard="#wizard1" class="btn btn-primary wizard-next">Next Step <i class="fa fa-caret-right"></i></button>
+                    <button id="completeAll2" class="btn btn-primary wizard-next">Next Step <i class="fa fa-caret-right"></i></button>
                   </div>
                 </div>
 
-              </div>
-
-              <div class="step-pane" id="step2">
-
-                <div class="form-group no-padding">
-                  <div class="col-sm-7">
-                    <h3 class="hthin">Create Task</h3>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-3 control-label">Task Title</label>
-                  <div class="col-sm-6">
-                    <input id="taskTitle-data" type="text" class="form-control" placeholder="Task Title">
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="col-sm-3 control-label">Task Description</label>
-                  <div class="col-sm-6">
-                    <textarea id="task-desc" rows="6" class="form-control" placeholder="Please describe the task you want to be undertaken"></textarea>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="col-sm-3 control-label">Location</label>
-                  <div class="col-sm-6">
-                    <input id="locationData" class="tags" type="hidden" placeholder="I&M House UpperHill Nairobi" value="" />
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="col-sm-3 control-label">Contact Person(s)</label>
-                  <div class="col-sm-6">
-                     <input id="contactPersons" class="tags" type="hidden" placeholder="contact name and number" value="" />
-                  </div>
-                </div>
-
-                <!--  
-                <div class="form-group">
-                  <label class="col-sm-3 control-label">Due Date</label>
-                  <div class="col-sm-6">
-                    <div class="input-group date datetime col-md-5 col-xs-7" data-start-view="2" data-date="1979-09-16T05:25:07Z" data-date-format="yyyy-mm-dd - HH:ii" data-link-field="dtp_input1">
-                      <input class="form-control" size="16" type="text" value="" />
-                      <span class="input-group-addon btn btn-primary"><span class="glyphicon glyphicon-th"></span></span>
-                    </div>              
-                  </div>
-                </div>
-                -->
-
-                <div class="form-group">
-
-                 <div class="col-sm-6">
-                  <label class="col-sm-3 control-label push-right">Due Date</label>
-                  <div id="reportrange" class="pull-left" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-                     <i class="glyphicon glyphicon-calendar fa fa-calendar"></i> 
-                     <span></span> <b class="caret"></b>
-                  </div>
-                 </div>
-
-                 <div class="col-sm-6">
-                    <label class="checkbox-inline space-input-right"> <input id="urgent-data" type="checkbox" checked="" name="rad1" class="icheck">   Task is Urgent</label>
-                 </div>
-
-                </div>
-
-  	
-                <div class="form-group">
-                  <div class="col-sm-12 push-right2">
-                    <button data-wizard="#wizard1" class="btn btn-default wizard-previous"><i class="fa fa-caret-left"></i> Previous</button>
-
-                    <button data-wizard="#wizard1" class="btn btn-primary wizard-next">Next Step <i class="fa fa-caret-right"></i></button>
-                    </div>
-                  </div>
               </div>
 
               <!-- STEP 3 -->
@@ -546,7 +472,7 @@
                     </table>
 
                     <div id="alert-div">
-                    
+                      
                     </div>
 
                     <div id="alert-price">
@@ -560,28 +486,6 @@
                   </div>
                 </div>
               </div>
-
-                <!--  
-                <div class="form-group no-padding">
-                  <div class="col-sm-7">
-                    <h3 class="hthin">Choose Task Package</h3>
-                  </div>
-                </div>
-
-                <div class="form-group">
-
-                  <div class="col-sm-6">
-                    <label class="control-label">Plans: <span id="credits">$0</span></label>
-                  </div>
-
-                  <div class="col-sm-6">
-                    <label class="control-label">Change Plan</label>
-                    <p>Change your plan many times as you want.</p>
-                    
-                  </div>
-
-                </div>
-                -->
 
                 <div class="form-group">
                   <div class="col-sm-12">

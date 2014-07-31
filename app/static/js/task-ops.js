@@ -33,7 +33,13 @@ $('#completeAll').click( function() {
       
       NProgress.set(1.0);
 
-      window.location.href = '/';
+      $.gritter.add({
+        title: 'Success',
+        text: 'Task Successfully Created',
+        class_name: 'success'
+      });
+
+      window.location.href = '/allTasks/' + username;
 
     },
     fail: function(result) {
@@ -102,13 +108,12 @@ $('#add-task').click( function() {
 
     success: function(result) {
       console.log(result);
-      var n = noty({text: 'Task saved!', layout: "topRight", type: "information"});
 
       NProgress.set(1.0);
 
     },
     fail: function(result) {
-      var n = noty({text: 'Oops something went wrong, Task could not be saved!', layout: "topRight", type: "information"});
+
     },
 
     data: userData
