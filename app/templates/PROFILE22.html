@@ -21,6 +21,13 @@
     <link rel="stylesheet" href="/static/fonts/font-awesome-4/css/font-awesome.min.css">
     <link rel="stylesheet" href="/static/css/pygments.css">
 
+    <script src="/static/js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/menu-all.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/nprogress.css" />
+    <script src="{{url_for('static', filename='js/nprogress.js') }}"></script>
+
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -89,6 +96,14 @@
         margin-left: 28.4em;
       }
 
+      .menu-holder-custom {
+        padding-top: 1.85em;
+        padding-bottom: 1.85em;
+      }
+
+      .push-down {
+        margin-top: 0em;
+      }
 
     </style>
 
@@ -96,145 +111,32 @@
 
 <body>
 
-
-<!-- Fixed navbar -->
-<div id="head-nav" class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="fa fa-gear"></span>
-      </button>
-      <a class="navbar-brand" href="#"><span>Task Wetu</span></a>
+<div class="page-head menu-holder-custom">
+    <img src="/static/ico/taskwetu_logo.png" alt="TaskWetu Logo">
+    <div class="container">
+      <nav id="bt-menu" class="bt-menu">
+        <a href="#" class="bt-menu-trigger"><span>Menu</span></a>
+        <ul>
+          <li><a href="/tasks/{{username}}/">New task</a></li>
+          <li><a href="/allTasks/{{username}}/">All Tasks</a></li>
+          <li><a href="/profile/{{username}}/">Profile</a></li>
+          <li><a href="/profile/{{username}}/">Payments</a></li>
+          <li><a href="/logout/{{username}}/">Logout</a></li>
+        </ul>
+      </nav>
     </div>
-    <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tasks <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">View all Tasks</a></li>
-            <li><a href="#">Check Credits</a></li>
-    <li class="dropdown-submenu"><a href="#">Payments</a>
-      <ul class="dropdown-menu">
-        <li><a href="#">Transaction history</a></li>
-        <li><a href="#">Add Credits</a></li>
-        </ul>
-    </li>              
-    </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Payments <b class="caret"></b></a>
-    <ul class="dropdown-menu col-menu-2">
-      <li class="col-sm-6 no-padding">
-        <ul>
-        <li class="dropdown-header"><i class="fa fa-group"></i>Tasks</li>
-        <li><a href="#">Create new Task</a></li>
-        <li><a href="#">View All Tasks</a></li>
-        <li class="dropdown-header"><i class="fa fa-gear"></i>Config</li>
-        <li><a href="#">Add credit</a></li>
-        <li><a href="#">Check available credit</a></li>
-        </ul>
-      </li>
-      <li  class="col-sm-6 no-padding">
-        <ul>
-        <li class="dropdown-header"><i class="fa fa-legal"></i>Payments</li>
-        <li><a href="#">New sale</a></li>
-        <li><a href="#">Register a product</a></li>
-        <li><a href="#">Register a client</a></li>
-        <li><a href="#">Month sales</a></li>
-        <li><a href="#">Delivered orders</a></li>
-        </ul>
-      </li>
-    </ul>
-        </li>
-      </ul>
-  <ul class="nav navbar-nav navbar-right user-nav">
-    <li class="dropdown profile_menu">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img alt="Avatar" src="/static/images/avatar2.jpg" />{{username}} <b class="caret"></b></a>
-      <ul class="dropdown-menu">
-        <li><a href="#">Notifications</a></li>
-        <li><a class="active" href="/profile/">Profile</a></li>
-        <li><a href="#">Messages</a></li>
-        <li class="divider"></li>
-        <li><a href="#">Sign Out</a></li>
-      </ul>
-    </li>
-  </ul>			
-  <ul class="nav navbar-nav navbar-right not-nav">
-    <li class="button dropdown">
-      <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"><i class=" fa fa-comments"></i></a>
-      <ul class="dropdown-menu messages">
-        <li>
-          <div class="nano nscroller">
-            <div class="content">
-              <ul>
-                <li>
-                  <a href="#">
-                    <img src="/static/images/avatar2.jpg" alt="avatar" /><span class="date pull-right">13 Sept.</span> <span class="name">Daniel</span> I'm following you, and I want your money! 
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="/static/images/avatar_50.jpg" alt="avatar" /><span class="date pull-right">20 Oct.</span><span class="name">Adam</span> is now following you 
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="/static/images/avatar4_50.jpg" alt="avatar" /><span class="date pull-right">2 Nov.</span><span class="name">Michael</span> is now following you 
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="/static/images/avatar3_50.jpg" alt="avatar" /><span class="date pull-right">2 Nov.</span><span class="name">Lucy</span> is now following you 
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <ul class="foot"><li><a href="#">View all messages </a></li></ul>           
-        </li>
-      </ul>
-    </li>
-    <li class="button dropdown">
-      <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe"></i><span class="bubble">2</span></a>
-      <ul class="dropdown-menu">
-        <li>
-          <div class="nano nscroller">
-            <div class="content">
-              <ul>
-                <li><a href="#"><i class="fa fa-cloud-upload info"></i><b>Daniel</b> is now following you <span class="date">2 minutes ago.</span></a></li>
-                <li><a href="#"><i class="fa fa-male success"></i> <b>Michael</b> is now following you <span class="date">15 minutes ago.</span></a></li>
-                <li><a href="#"><i class="fa fa-bug warning"></i> <b>Mia</b> commented on post <span class="date">30 minutes ago.</span></a></li>
-                <li><a href="#"><i class="fa fa-credit-card danger"></i> <b>Andrew</b> killed someone <span class="date">1 hour ago.</span></a></li>
-              </ul>
-            </div>
-          </div>
-          <ul class="foot"><li><a href="#">View all activity </a></li></ul>           
-        </li>
-      </ul>
-    </li>			
-  </ul>
-
-    </div><!--/.nav-collapse -->
-  </div>
 </div>
 
+<div class="push-down">
 <div id="cl-wrapper">
- <div class="page-head">
-      <h2>My Profile</h2>
-      <ol class="breadcrumb">
-        <li><a href="/addTask/">Home</a></li>
-        <li class="active">Profile</li>
-      </ol>
-  </div>
 
   <div class="cl-mcont">
     <div class="row">
       <div class="col-sm-8">
         <div class="tab-container">
           <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#home">Information</a></li>
-            <li><a data-toggle="tab" href="#settings">Settings</a></li>
+            <li class="active"><a data-toggle="tab" href="#home">Location</a></li>
+            <li><a data-toggle="tab" href="#settings"></a></li>
           </ul>
           <div class="tab-content">
             <div id="home" class="tab-pane active cont">
@@ -253,11 +155,6 @@
                       </table>
                     </td>
                   </tr>
-                  <tr>
-                    <td class="category"><strong>ABOUT ME</strong></td>
-                    <td><p>I am a web developer and desginer based in Medellín - Colombia, I like read books, good music and nature.</p></td>
-                  </tr>
-
 
                 </tbody>
               </table>
@@ -381,8 +278,11 @@
   </div>
 
   </div>
+</div>
 
   <script src="/static/js/jquery.js"></script>
+  <script src="/static/js/classie.js"></script>
+  <script src="/static/js/borderMenu.js"></script>
   <script src="/static/js/jquery.select2/select2.min.js" type="text/javascript"></script>
   <script src="/static/js/jquery.parsley/dist/parsley.js" type="text/javascript"></script>
   <script src="/static/js/bootstrap.slider/js/bootstrap-slider.js" type="text/javascript"></script>
