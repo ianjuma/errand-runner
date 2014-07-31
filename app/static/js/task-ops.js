@@ -183,16 +183,21 @@ function  getTaskData() {
   });
 }
 
-
 function renderSample (package) {
 
     _.map(package, function (task) {
       console.log(task);
 
-      task_summary = '<li href="#" class="list-group-item"><span class="date"><i class="fa fa-clock-o"></i>' + 
-       '20 Dec </span>' + task[task_title] + '</li>'
+    var task_summary;
 
-      $('#addTo').append(task_summary);
-      
+    if (task['task_title'] === "") {
+      task_summary = '<li href="#" class="list-group-item"><span class="date"><i class="fa fa-clock-o"></i>' + 
+     '20 Dec </span> Task Title undefined</li>'
+    } else {
+      task_summary = '<li href="#" class="list-group-item"><span class="date"><i class="fa fa-clock-o"></i>' + 
+      '20 Dec </span>' + task['task_title'] + '</li>'
+    }
+
+    $('#addTo').append(task_summary);
     });
 }

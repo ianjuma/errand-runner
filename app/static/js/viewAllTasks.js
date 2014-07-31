@@ -3,14 +3,7 @@ function renderTask (result) {
   _.map(result, function (task) {
     console.log(task);
 
-    /*
-    $('#taskBody').append('<tr>' +
-      '<td>'+ task['task_title'] +'</td>' +
-      '<td>'+ task['task_urgency'] +'</td>' +
-      '<td>'+ task['task_desc'] +'</td>' +
-      '<td><a href="#">#' + task['task_id'] + '</a></td>' +
-    '</tr>');
-    */
+    url = '/editTask/' + username + '/' + task['task_id'] + '/';
 
     $('#taskBody').append(
     '<tr>' +
@@ -19,7 +12,7 @@ function renderTask (result) {
       '<td class="text-right color-success">w47w07q07wr7wq</td>' +
       '<td>' + task['task_urgency'] + '</td>' +
       '<td class="color-success"><div class="progress"><div class="progress-bar progress-bar-success" style="width: 40%">40%</div></div></td>' +
-      '<td class="text-center"><a class="label label-default" href="#"><i class="fa fa-pencil"></i></a> <a class="label label-danger" href="#"><i class="fa fa-times"></i></a></td>' +
+      '<td class="text-center"><a class="label label-default" href="'+ url + '"><i class="fa fa-pencil"></i></a> <a class="label label-danger" href="' + url + '"><i class="fa fa-times"></i></a></td>' +
     '</tr>'
     );
 
