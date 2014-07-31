@@ -120,6 +120,11 @@
         margin-top: 5em;
       }
 
+      .menu-holder-custom {
+        padding-top: 1.85em;
+        padding-bottom: 1.85em;
+      }
+
     </style>
 
   </head>
@@ -127,7 +132,7 @@
 <body>
 
 <div class="page-head menu-holder-custom">
-    <h2>Task &middot; Kwetu</h2>
+    <img src="/static/ico/taskwetu_logo.png" alt="TaskWetu Logo">
     <div class="container">
       <nav id="bt-menu" class="bt-menu">
         <a href="#" class="bt-menu-trigger"><span>Menu</span></a>
@@ -344,37 +349,58 @@
                     </div>
                   </div>
 
-
+                <!-- column 2 create task -->
                 <div class="col-sm-6 col-md-6 col-lg-6">
-                  <div class="header">
-                      <h3>Your Order</h3>
+                    <div class="form-group no-padding">
+                  <div class="col-sm-7">
+                    <h3 class="hthin">Create Task</h3>
                   </div>
-                  <div class="content">
-                    <table class="no-border">
-                      <thead class="no-border">
-                        <tr>
-                          <th style="width:50%;">Task</th>
-                          <th>Number</th>
-                          <th class="text-right">Amount</th>
-                          <th style="width:15%;" class="text-center"><strong>Remove</strong></th>
-                        </tr>
-                      </thead>
-                      <tbody id="order-table" class="no-border-x no-border-y">
-
-                      </tbody>
-                    </table>
-
-                    <div id="alert-div">
-                    
-                    </div>
-
-                    <div id="alert-price">
-                      <div class="list-group tickets top-space">
-                          <li href="#" class="list-group-item">Total<span value="10" class="badge badge-success">$10</span></li>
-                      </div>
-                    </div>
-
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Task Title</label>
+                  <div class="col-sm-9">
+                    <input id="taskTitle-data" type="text" class="form-control" placeholder="Task Title">
                   </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Task Description</label>
+                  <div class="col-sm-9">
+                    <textarea id="task-desc" rows="4" class="form-control" placeholder="Please describe the task you want to be undertaken"></textarea>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Location</label>
+                  <div class="col-sm-9">
+                    <input id="locationData" class="tags" type="hidden" placeholder="I&M House UpperHill Nairobi" value="" />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Contact Person(s)</label>
+                  <div class="col-sm-9">
+                     <input id="contactPersons" class="tags" type="hidden" placeholder="contact name and number" value="" />
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+
+                 <div class="col-sm-6">
+                  <label class="col-sm-3 control-label push-right">Due Date</label>
+                  <div id="reportrange" class="pull-left" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                     <i class="glyphicon glyphicon-calendar fa fa-calendar"></i> 
+                     <span></span> <b class="caret"></b>
+                  </div>
+                 </div>
+
+                 <div class="col-sm-6">
+                    <label class="checkbox-inline space-input-right"> <input id="urgent-data" type="checkbox" checked="" name="rad1" class="icheck">   Task is Urgent</label>
+                 </div>
+
+                </div>
+
                 </div>
 
                 <div class="form-group">
