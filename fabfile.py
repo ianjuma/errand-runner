@@ -10,7 +10,8 @@ def gunicorn():
 
 
 def supervisor():
-    run('')
+    with cd('/tmp/TaskWetu/linkus'):
+    run('supervisord start TaskWetu')
 
 
 def setup_server():
