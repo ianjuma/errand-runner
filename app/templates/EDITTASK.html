@@ -179,28 +179,26 @@
                 </div>
 
                 <div class="form-group">
-                <label class="col-sm-3 control-label">Due Date</label>
-                  <div class="col-sm-6">
-                     <div class="input-prepend input-group">
-                       <span class="add-on input-group-addon primary"><span class="glyphicon glyphicon-th"></span></span><input type="text" style="width: 200px" name="reservation" id="reservation" class="form-control" value="03/18/2014 - 03/23/2014"> 
-                     </div>
-                  </div>
-                </div>
-
-                <div class="form-group">
                   <label class="col-sm-3 control-label">Contact Person(s)</label>
                   <div class="col-sm-6">
                      <input id="contactPersons" class="tags" type="hidden" placeholder="contact name and number" value="" />
                   </div>
                 </div>
 
-              <div class="form-group">
-                <label class="col-sm-3 control-label">Task ID</label>
-                <div class="col-sm-6">
-                  <input type="text" readonly="readonly" class="form-control" value="task_id">
+                <div class="form-group">
+                <label class="col-sm-3 control-label">Due Date</label>
+                  <div class="col-sm-6">
+                     <div class="input-group">
+                       <span class="add-on input-group-addon primary"><span class="glyphicon glyphicon-th"></span></span><input type="text" style="width: 200px" id="reservation" class="form-control" value="03/18/2014 - 03/23/2014">
+                     </div>
+                  </div>
                 </div>
+
+              <div class="form-group">
+                <button id="update-task" class="btn btn-success keep-right"><i class="fa fa-check"></i> Update Task</button>
+                <button id="delete-task" class="btn btn-danger"><i class="fa  fa-trash-o"></i> Delete Task</button>
               </div>
-              
+
             </form>
           </div>
         </div>
@@ -230,16 +228,6 @@
 <script src="/static/js/borderMenu.js"></script>
 <script src="{{url_for('static', filename='js/taskUpdate.js') }}"></script>
 
-
-<script type="text/javascript">
-  $("#credit_slider").slider().on("slide",function(e){
-    $("#credits").html("$" + e.value);
-  });
-  $("#rate_slider").slider().on("slide",function(e){
-    $("#rate").html(e.value + "%");
-  });
-</script>
-
 <script type="text/javascript">
 
   var username = "{{username}}";
@@ -250,10 +238,14 @@
   var due_date = "{{due_date}}";
   var task_title = "{{task_title}}";
   var task_cat = "{{task_category}}";
+  var locationData = "{{locationData}}";
+  var contactPersons = "{{contactPersons}}";
 
   $('#task-desc').val(task_desc);
-  $('#date-data').val(due_date);
+  $('#reservation').val(due_date);
   $('#taskTitle-data').val(task_title);
+  $('#contactPersons').val(contactPersons);
+  $('#locationData').val(locationData);
 
   console.log(task_id);
 
@@ -263,70 +255,11 @@
     App.wizard();
 
     $('#reservation').daterangepicker();
-      $('#reservationtime').daterangepicker({
-        timePicker: true,
-        timePickerIncrement: 30,
-        format: 'MM/DD/YYYY h:mm A'
-      });
-      var cb = function(start, end) {
-        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-        alert("Callback has fired: [" + start.format('MMMM D, YYYY') + " to " + end.format('MMMM D, YYYY') + "]");
-      }
-
-      var optionSet1 = {
-        startDate: moment().subtract('days', 29),
-        endDate: moment(),
-        minDate: '01/01/2012',
-        maxDate: '12/31/2014',
-        dateLimit: { days: 60 },
-        showDropdowns: true,
-        showWeekNumbers: true,
-        timePicker: false,
-        timePickerIncrement: 1,
-        timePicker12Hour: true,
-        ranges: {
-           'Today': [moment(), moment()],
-           'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
-           'Last 7 Days': [moment().subtract('days', 6), moment()],
-           'Last 30 Days': [moment().subtract('days', 29), moment()],
-           'This Month': [moment().startOf('month'), moment().endOf('month')],
-           'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
-        },
-        opens: 'left',
-        buttonClasses: ['btn'],
-        applyClass: 'btn-small btn-primary',
-        cancelClass: 'btn-small',
-        format: 'MM/DD/YYYY',
-        separator: ' to ',
-        locale: {
-            applyLabel: 'Submit',
-            cancelLabel: 'Clear',
-            fromLabel: 'From',
-            toLabel: 'To',
-            customRangeLabel: 'Custom',
-            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr','Sa'],
-            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            firstDay: 1
-        }
-      };
-
-      var optionSet2 = {
-        startDate: moment().subtract('days', 7),
-        endDate: moment(),
-        opens: 'left',
-        ranges: {
-           'Today': [moment(), moment()],
-           'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
-           'Last 7 Days': [moment().subtract('days', 6), moment()],
-           'Last 30 Days': [moment().subtract('days', 29), moment()],
-           'This Month': [moment().startOf('month'), moment().endOf('month')],
-           'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
-        }
-      };
-
-      $('#reportrange span').html(moment().subtract('days', 29).format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
-
-      $('#reportrange').daterangepicker(optionSet1, cb);
+    $('#reservationtime').daterangepicker({
+      timePicker: true,
+      timePickerIncrement: 30,
+      format: 'MM/DD/YYYY h:mm A'
+    });
 
   });
 </script>
