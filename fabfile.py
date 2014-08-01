@@ -54,6 +54,7 @@ def restartNginx():
 
 
 def deploy():
-    prepare_deploy()
+    moveSupervisor()
+    supervisor()
     setup_server()
-    restartNginx()
+    # restartNginx()
