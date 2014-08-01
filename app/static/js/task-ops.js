@@ -32,6 +32,7 @@ $('#completeAll').click( function() {
       console.log(result);
       
       NProgress.set(1.0);
+      console.log("Sending Data");
 
       $.gritter.add({
         title: 'Success',
@@ -137,6 +138,7 @@ $('#updateUserInfo').click( function() {
   userData = JSON.stringify(data);
   NProgress.set(0.0);
 
+  console.log('Data sent');
   $.ajax({
     type: 'POST',
     url: '/profile/'+ username + '/',
