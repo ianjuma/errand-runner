@@ -9,6 +9,10 @@ def gunicorn():
         run('gunicorn -c config-gunicorn.py app:app')
 
 
+def supervisor():
+    run('')
+
+
 def setup_server():
     run('pty=False')
     run('mkdir /tmp/TaskWetu')
