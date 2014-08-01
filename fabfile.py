@@ -9,9 +9,13 @@ def gunicorn():
         run('gunicorn -c config-gunicorn.py app:app')
 
 
+def moveSupervisor():
+    run('mv /tmp/TaskWetu/linkus/supervisord.conf/ /etc/supervisord.conf/')
+
+
 def supervisor():
     with cd('/tmp/TaskWetu/linkus'):
-    run('supervisord start TaskWetu')
+        run('supervisord start TaskWetu')
 
 
 def setup_server():
