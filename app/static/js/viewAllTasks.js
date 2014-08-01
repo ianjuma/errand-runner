@@ -8,10 +8,10 @@ function renderTask (result) {
     $('#taskBody').append(
     '<tr>' +
       '<td><input type="checkbox" />' + task['task_title'] + '</td>' +
-      '<td> view details </td>' +
+      '<td> <a href="' + url + '"> view details </a> </td>' + 
       '<td class="text-right color-success">w47w07q07wr7wq</td>' +
       '<td>' + task['task_urgency'] + '</td>' +
-      '<td class="color-success"><div class="progress"><div class="progress-bar progress-bar-success" style="width: 40%">40%</div></div></td>' +
+      '<td class="color-success"><div class="progress"><div class="progress-bar progress-bar-danger" style="width: 10%">0%</div></div></td>' +
       '<td class="text-center"><a class="label label-default" href="'+ url + '"><i class="fa fa-pencil"></i></a> <a class="label label-danger" href="' + url + '"><i class="fa fa-times"></i></a></td>' +
     '</tr>'
     );

@@ -145,9 +145,19 @@ $('#updateUserInfo').click( function() {
     success: function(result) {
       console.log(result);
       NProgress.set(1.0);
+      
+      $.gritter.add({
+        title: 'User Info Updated',
+        text: 'User Information Updated',
+        class_name: 'success'
+      });
     },
     fail: function(result) {
-
+      $.gritter.add({
+        title: 'Update Failed',
+        text: 'Failed',
+        class_name: 'failure'
+      });
     },
 
     data: userData

@@ -7,16 +7,18 @@ $('#clear-all').click( function() {
 });
 
 
-$('#save-data').click( function() {
+$('#update-task').click( function() {
   task_title = $('#taskTitle-data').val();
   task_desc = $('#task-desc').val();
   task_urgency = $('#urgent-data').val();
-  date_data = $('#date-data').val();
+  reservation = $('#reservation').val();
   task_category = $('#category-data').val();
+  contactPersons = $('#contactPersons').val();
+  console.log("in update");
 
 
-  data = { "task_id": task_id, "username": username, "title": task_title, "description": task_desc, "urgency": task_urgency,
-                "due_date": date_data, "category": task_category };
+  data = { "task_id": task_id, "username": username, "title": task_title, "description": task_desc,
+                "due_date": reservation };
 
   userData = JSON.stringify(data);
 
@@ -32,7 +34,12 @@ $('#save-data').click( function() {
       console.log(result.response);
 
       NProgress.set(1.0);
-      var n = noty({text: 'Task Updated!', layout: "topRight", type: "information"});
+
+      $.gritter.add({
+        title: 'Task Updated',
+        text: 'Task Successfully Updated',
+        class_name: 'success'
+      });
 
     },
     fail: function(result) {

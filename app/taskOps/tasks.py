@@ -139,7 +139,7 @@ def taskInfo(username, task_id):
         return resp
 
     return render_template(
-        'EDITTASK.html', task_category=task_category, task_urgency=task_urgency,
+        'EDITTASK.html', task_category=task_category, task_urgency=task_urgency, locationData= "Nairobi", contactPersons="James",
         task_desc=task_desc, task_title=task_title, due_date=due_date, username=username, task_id=task_id)
 
 

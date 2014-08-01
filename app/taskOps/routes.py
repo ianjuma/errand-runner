@@ -206,6 +206,12 @@ def addNewsLetter():
     return resp
 
 
+@app.route('/logout/<username>/', methods=['POST', 'PUT', 'GET'])
+def logout(username):
+    # remove from session
+    return redirect('/')
+
+
 @app.route('/confirm/<username>/<smscode>/', methods=['PUT', 'POST'])
 def confirmUser(username, smscode):
     # make request to get one task
