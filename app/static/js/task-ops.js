@@ -32,7 +32,7 @@ $('#completeAll').click( function() {
       console.log(result);
       
       NProgress.set(1.0);
-      console.log("Sending Data");
+      console.log("Sending Data ... ");
 
       $.gritter.add({
         title: 'Success',
@@ -40,7 +40,7 @@ $('#completeAll').click( function() {
         class_name: 'success'
       });
 
-      window.location.href = '/allTasks/' + username;
+      window.location.href = '/allTasks/' + username + '/';
 
     },
     fail: function(result) {
