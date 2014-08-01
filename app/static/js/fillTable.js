@@ -2,6 +2,7 @@ var total = 0;
 
 $('#getHouse').click(function () {
 	// $('#alert-price').remove();
+	$('#taskCat').val("Property Management");
 	renderTaskTwo("Property Management");
 	// renderTotal(10);
 	total+= 10;
@@ -10,50 +11,58 @@ $('#getHouse').click(function () {
 
 
 $('#getBill').click(function () {
-	renderTaskTwo("Property Management");
+	$('#taskCat').val("Pay Bill");
+	renderTaskTwo("Pay Bill");
 	total+= 10;
 });
 
 $('#getProcurement').click(function () {
-	renderTaskTwo("Property Management");
+	$('#taskCat').val("Procurement");
+	renderTaskTwo("Procurement");
 	total+= 10;
 });
 
 
 $('#getTranslators').click(function () {
-	renderTaskTwo("Property Management");
+	$('#taskCat').val("Translators");
+	renderTaskTwo("Translators");
 	total+= 10;
 });
 
 $('#corporatePackages').click(function () {
-	renderTaskTwo("Property Management");
+	$('#taskCat').val("Corporate Packages");
+	renderTaskTwo("Corporate Packages");
 	total+= 10;
 });
 
 $('#getBooking').click(function () {
-	renderTaskTwo("Property Management");
+	$('#taskCat').val("Booking");
+	renderTaskTwo("Booking");
 	total+= 10;
 });
 
 $('#getClearance').click(function () {
-	renderTaskTwo("Property Management");
+	$('#taskCat').val("Clearance");
+	renderTaskTwo("Clearance");
 	total+= 10;
 });
 
 $('#getShopping').click(function () {
-	renderTaskTwo("Property Management");
+	$('#taskCat').val("Shopping");
+	renderTaskTwo("Shopping");
 	total+= 10;
 });
 
 $('#getProperty').click(function () {
-	renderTaskTwo("Property Management");
+	$('#taskCat').val("Property");
+	renderTaskTwo("Property");
 	total+= 10;
 });
 
 
 $('#other').click(function () {
 	task_cat = $('#text-input').val();
-	renderTaskTwo("Property Management");
+	renderTaskTwo(task_cat);
 	total+= 10;
 });
 

@@ -11,7 +11,7 @@ $('#completeAll').click( function() {
   task_title = $('#taskTitle-data').val();
   task_desc = $('#task-desc').val();
   task_urgency = $('#urgent-data').val();
-  date_data = $('#reportrange').val();
+  date_data = $('#reservation').val();
   location = $('#locationData').val();
   task_category = $('#category-data').val();
   contact_p = $('#contactPersons').val();
