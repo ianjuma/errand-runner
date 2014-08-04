@@ -10,7 +10,8 @@ def gunicorn():
 
 
 def moveSupervisor():
-    run('mv /tmp/TaskWetu/linkus/supervisord.conf/ /etc/supervisord.conf/')
+    #run('mv /tmp/TaskWetu/linkus/supervisord.conf/ /etc/supervisord.conf/')
+    put('supervisord.conf')
 
 
 def supervisor():
