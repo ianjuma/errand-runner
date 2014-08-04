@@ -1,13 +1,7 @@
-$('#clear-all').click( function() {
-  $('#taskTitle-data').val("");
-  $('#task-desc').val("");
-  $('#urgent-data').val("");
-
-  console.log("All cleaned");
-});
-
-
 $('#completeAll').click( function() {
+
+  validate();
+
   task_title = $('#taskTitle-data').val();
   task_desc = $('#task-desc').val();
   task_urgency = $('#urgent-data').val();
@@ -54,12 +48,16 @@ $('#completeAll').click( function() {
 });
 
 
-$('#add-task').click( function() {
+
+function validate() {
+  // validate all inputs
   task_title = $('#taskTitle-data').val();
   task_desc = $('#task-desc').val();
   task_urgency = $('#urgent-data').val();
-  date_data = $('#date-data').val();
+  date_data = $('#reservation').val();
+  location = $('#locationData').val();
   task_category = $('#category-data').val();
+  contact_p = $('#contactPersons').val();
 
 
   if ($('#taskTitle-data').val() == "") {
@@ -84,44 +82,16 @@ $('#add-task').click( function() {
   }
 
 
-  if ($('#date-data').val() == "") {
+  if ($('#locationData').val() == "") {
     alert('Your Task needs a date');
     return 0;
   }
 
-  if (typeof($('#date-data').val()) != "string") {
+  if (typeof($('#contactPersons').val()) != "string") {
     alert('Your date needs to be in text form');
     return 0;
   }
-
-
-  data = { "username": username, "title": task_title, "description": task_desc, "urgency": task_urgency,
-                "due_date": date_data, "category": task_category };
-
-  userData = JSON.stringify(data);
-
-  NProgress.set(0.0);
-
-  $.ajax({
-    type: 'POST',
-    url: '/api/addTask/',
-    contentType: 'application/json',
-
-    success: function(result) {
-      console.log(result);
-
-      NProgress.set(1.0);
-
-    },
-    fail: function(result) {
-
-    },
-
-    data: userData
-  });
-
-  console.log(userData);
-});
+}
 
 
 $('#updateUserInfo').click( function() {

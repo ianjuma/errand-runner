@@ -23,7 +23,7 @@ function renderTask (result) {
 function renderInfo() {
       html = '<div class="alert alert-success">' +
           '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>' +
-          '<i class="fa fa-check sign"></i><strong>You Have to tasks! Create a task</strong>' +
+          '<i class="fa fa-check sign"></i><strong>You Have no tasks. Create a task</strong>' +
       '</div>';
 
       $('#info').append(html);
