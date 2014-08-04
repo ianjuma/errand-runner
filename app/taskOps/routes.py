@@ -109,7 +109,7 @@ def signIn():
     return resp
 
 
-@app.route('/api/callback/', methods=['POST', 'GET'])
+@app.route('/login/', methods=['POST', 'GET'])
 def oauthCallback():
     if not request.json:
         abort(400)
