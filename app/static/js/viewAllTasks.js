@@ -20,6 +20,15 @@ function renderTask (result) {
 }
 
 
+function renderInfo() {
+      html = '<div class="alert alert-success">' +
+          '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>' +
+          '<i class="fa fa-check sign"></i><strong>You Have to tasks! Create a task</strong>' +
+      '</div>';
+
+      $('#info').append(html);
+}
+
 function  getTaskData() {
   
   data = { "username": username };
@@ -34,7 +43,12 @@ function  getTaskData() {
     contentType: 'application/json',
 
     success: function(result) {
-      // console.log(result);
+
+      if (result.length == 0) {
+        console.log("Empty List");
+        renderInfo();
+      }
+
       renderTask(result);
       NProgress.set(1.0);
 
