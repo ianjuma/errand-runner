@@ -79,6 +79,11 @@
         margin-left: 32em;
       }
 
+      .my-next-group {
+        margin-top: 6em;
+        margin-left: 65em;
+      }
+
       .push-right {
         margin-left: 3em;
       }
@@ -159,10 +164,6 @@
               <li data-target="#step1" class="active">Create Task<span class="chevron"></span></li>
               <li data-target="#step2">Complete<span class="chevron"></span></li>
             </ul>
-            <div class="actions">
-              <button type="button" class="btn btn-xs btn-prev btn-default"> <i class="icon-arrow-left"></i>Prev</button>
-              <button type="button" class="btn btn-xs btn-next btn-default" data-last="Finish">Next<i class="icon-arrow-right"></i></button>
-            </div>
           </div>
           <div class="step-content">
             <form class="form-horizontal group-border-dashed" action="#" data-parsley-namespace="data-parsley-" data-parsley-validate novalidate>
@@ -409,11 +410,9 @@
                 </div>
                 </div>
 
-                <div class="form-group">
-                  <div class="col-sm-offset-2 col-sm-10">
+                <div class="form-group my-next-group">
                     <button class="btn btn-default">Cancel</button>
                     <button id="completeAll2" data-wizard="#wizard1" data-last="Finish" class="btn btn-primary wizard-next">Next Step <i class="fa fa-caret-right"></i></button>
-                  </div>
                 </div>
 
               </div>
