@@ -12,7 +12,8 @@ $('#update-task').click( function() {
   console.log("in update");
 
   data = { "task_id": task_id, "username": username, "title": task_title, "description": task_desc,
-                "due_date": reservation, "contactPersons": contactPersons, "locationData": locationData };
+                "due_date": reservation, "contactPersons": contactPersons, "locationData": locationData, 
+                "task_urgency": task_urgency };
 
   userData = JSON.stringify(data);
 
