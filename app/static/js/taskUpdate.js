@@ -1,15 +1,18 @@
 $('#update-task').click( function() {
+
   task_title = $('#taskTitle-data').val();
   task_desc = $('#task-desc').val();
   task_urgency = $('#urgent-data').val();
   reservation = $('#reservation').val();
   task_category = $('#category-data').val();
   contactPersons = $('#contactPersons').val();
+  locationData = $('#locationData').val();
+  contactPersons = $('#contactPersons').val();
+
   console.log("in update");
 
-
   data = { "task_id": task_id, "username": username, "title": task_title, "description": task_desc,
-                "due_date": reservation };
+                "due_date": reservation, "contactPersons": contactPersons, "locationData": locationData };
 
   userData = JSON.stringify(data);
 
