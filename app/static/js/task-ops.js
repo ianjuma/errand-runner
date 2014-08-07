@@ -1,20 +1,20 @@
 $('#completeAll').click( function() {
 
-  validate();
-
+  // validate();
   task_title = $('#taskTitle-data').val();
   task_desc = $('#task-desc').val();
   task_urgency = $('#urgent-data').val();
   date_data = $('#reservation').val();
-  location = $('#locationData').val();
-  task_category = $('#category-data').val();
+  my_location = $('#locationData').val();
+  task_category = $('#taskCat').val();
   contact_p = $('#contactPersons').val();
 
 
   data = { "username": username, "title": task_title, "description": task_desc, "urgency": task_urgency,
-              "due_date": date_data, "category": task_category, "contactPersons": contact_p, "locationData": location };
+              "due_date": date_data, "category": task_category, "contactPersons": contact_p, "locationData": my_location };
 
   userData = JSON.stringify(data);
+  console.log(data);
 
   NProgress.set(0.0);
   $.ajax({
