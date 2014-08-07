@@ -127,7 +127,7 @@ def taskInfo(username, task_id):
         task_urgency = str(user['task_urgency'])
         task_category = str(user['task_category'])
         due_date = str(user['due_date'])
-        contactPersons = str(user['contact_persons'])
+        contactPersons = str(user['contactPersons'])
         location = str(user['locationData'])
 
 
@@ -160,6 +160,8 @@ def editTask(task_id):
     task_category = request.json.get('category')
     due_date = request.json.get('due_date')
     task_id = request.json.get('task_id')
+    locationData = request.json.get('locationData')
+    contactPersons = request.json.get('contactPersons')
 
     # make request to get one task
     if request.method == 'GET':
@@ -182,7 +184,8 @@ def editTask(task_id):
         r.table(
             'Tasks').get(task_id).update({'task_desc': task_desc, 'task_title': task_title,
                                           'task_category': task_category, 'task_urgency': task_urgency,
-                                          'due_date': due_date}).run(g.rdb_conn)
+                                          'due_date': due_date, "locationData": locationData, 
+                                          'contactPersons': contactPersons }).run(g.rdb_conn)
 
     except RqlError:
         logging.warning('DB code verify failed on /api/editTask/')
