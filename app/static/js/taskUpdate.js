@@ -48,6 +48,43 @@ $('#update-task').click( function() {
 });
 
 
+$(delete-task).click( function() {
+
+  NProgress.set(0.0);
+  data = { "task_id": task_id };
+
+  userData = JSON.stringify(data);
+
+  $.ajax({
+    type: 'POST',
+    url: '/api/deleteTask/',
+    contentType: 'application/json',
+
+    success: function(result) {
+      console.log(result);
+      console.log(result.response);
+
+      NProgress.set(1.0);
+
+      $.gritter.add({
+        title: 'Task Updated',
+        text: 'Task Successfully Deleted',
+        class_name: 'success'
+      });
+
+    },
+    fail: function(result) {
+      alert('Failed to send Data');
+    },
+
+    data: userData
+  });
+
+  console.log(userData);
+
+});
+
+
 $('#add-task').click( function() {
   task_title = $('#taskTitle-data').val();
   task_desc = $('#task-desc').val();
