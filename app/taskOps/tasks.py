@@ -154,10 +154,10 @@ def editTask(task_id):
     if request.headers['Content-Type'] != 'application/json':
         abort(400)
 
-    task_urgency = request.json.get('urgency')
+    task_urgency = request.json.get('task_urgency')
     task_title = request.json.get('title')
     task_desc = request.json.get('description')
-    task_category = request.json.get('category')
+    # task_category = request.json.get('category')
     due_date = request.json.get('due_date')
     task_id = request.json.get('task_id')
     locationData = request.json.get('locationData')
@@ -183,7 +183,7 @@ def editTask(task_id):
     try:
         r.table(
             'Tasks').get(task_id).update({'task_desc': task_desc, 'task_title': task_title,
-                                          'task_category': task_category, 'task_urgency': task_urgency,
+                                          'task_urgency': task_urgency,
                                           'due_date': due_date, "locationData": locationData, 
                                           'contactPersons': contactPersons }).run(g.rdb_conn)
 
