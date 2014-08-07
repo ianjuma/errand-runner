@@ -242,7 +242,7 @@ def addTask():
     task_category = request.json.get('category')
     task_urgency = request.json.get('urgency')
     due_date = request.json.get('due_date')
-    location = request.json.get('locationData')
+    locationData = request.json.get('locationData')
     contactPersons = request.json.get('contactPersons')
 
     taskData = { "username": username, "task_title": task_title, "task_desc": task_desc, "locationData": locationData,
