@@ -1,12 +1,3 @@
-$('#clear-all').click( function() {
-  $('#taskTitle-data').val("");
-  $('#task-desc').val("");
-  $('#urgent-data').val("");
-
-  console.log("All cleaned");
-});
-
-
 $('#update-task').click( function() {
   task_title = $('#taskTitle-data').val();
   task_desc = $('#task-desc').val();
