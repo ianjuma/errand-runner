@@ -16,7 +16,7 @@ $('#completeAll').click( function() {
   userData = JSON.stringify(data);
   console.log(data);
 
-  NProgress.set(0.0);
+  //NProgress.set(0.0);
   $.ajax({
     type: 'POST',
     url: '/api/addTask/',
