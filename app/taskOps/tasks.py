@@ -127,6 +127,9 @@ def taskInfo(username, task_id):
         task_urgency = str(user['task_urgency'])
         task_category = str(user['task_category'])
         due_date = str(user['due_date'])
+        contactPersons = str(user['contact_persons'])
+        location = str(user['locationData'])
+
 
     except RqlError:
         payload = "LOG_INFO=" + simplejson.dumps({ '/editTask/<username>/<task_id>/':'DB operation failed on /editTask/<task_id>/' })
@@ -139,7 +142,7 @@ def taskInfo(username, task_id):
         return resp
 
     return render_template(
-        'EDITTASK.html', task_category=task_category, task_urgency=task_urgency, locationData= "Nairobi", contactPersons="James",
+        'EDITTASK.html', task_category=task_category, task_urgency=task_urgency, locationData=location, contactPersons=contactPersons,
         task_desc=task_desc, task_title=task_title, due_date=due_date, username=username, task_id=task_id)
 
 
@@ -239,9 +242,11 @@ def addTask():
     task_category = request.json.get('category')
     task_urgency = request.json.get('urgency')
     due_date = request.json.get('due_date')
+    location = request.json.get('locationData')
+    contactPersons = request.json.get('contactPersons')
 
-    taskData = {"username": username, "task_title": task_title, "task_desc": task_desc,
-                "task_category": task_category, "task_urgency": "started", "due_date": due_date}
+    taskData = { "username": username, "task_title": task_title, "task_desc": task_desc, "locationData": locationData,
+                "task_category": task_category, "task_urgency": "started", "due_date": due_date, "contactPersons": contactPersons }
 
     text_all = "LinkUs new task -> " + task_title + task_desc
 
