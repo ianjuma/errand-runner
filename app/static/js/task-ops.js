@@ -37,6 +37,10 @@ $('#completeAll').click( function() {
       window.location.href = '/allTasks/' + username + '/';
 
     },
+    always: function(result) {
+      window.location.href = '/allTasks/' + username + '/';
+    },
+
     fail: function(result) {
       // gritter fail
     },
