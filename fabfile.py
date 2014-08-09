@@ -18,7 +18,12 @@ def supervisor():
     run('supervisord -c /etc/supervisord.conf')
 
 
-def setup_server():
+def moveStatic():
+    with cd('/tmp/TaskWetu/linkus/app/'):
+        run('mv static ')
+
+
+def setup_server(branch="master"):
     run('pty=False')
     run('mkdir /tmp/TaskWetu')
     with cd('/tmp/TaskWetu'):
