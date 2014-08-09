@@ -10,19 +10,21 @@ def gunicorn():
 
 
 def moveSupervisor():
-    run('mv /tmp/TaskWetu/linkus/supervisord.conf/ /etc/supervisord.conf/')
+    run('mv /tmp/TaskWetu/linkus/supervisord.conf /etc/supervisord.conf')
     with cd('/tmp/TaskWetu/linkus'):
         put('supervisord.conf')
 
 
+def setSupervisordLog():
+    run('mkdir /var/log/supervisord/')
+
+
 def supervisor():
-    with cd('/tmp/TaskWetu/linkus'):
-        run('supervisord start TaskWetu')
+    run('supervisord -c /etc/supervisord.conf')
 
 
 def setup_server():
     run('pty=False')
-    run('mkdir /var/log/supervisord/ && touch /var/log/supervisord/takwetu-stdout.log && /var/log/supervisord/taskwetu-stderr.log')
     run('mkdir /tmp/TaskWetu')
     with cd('/tmp/TaskWetu'):
         run('git clone https://github.com/nailab/linkus.git')
@@ -37,9 +39,7 @@ def setup_server():
 
 def clean():
     run('rm -r /tmp/TaskWetu')
-    run('rm -r /tmp/TaskWetu/linkus')
     run('apt-get clean && apt-get dist-upgrade')
-    local('server cleaned up ...')
 
 
 def installDeps():
