@@ -21,6 +21,7 @@ def supervisor():
 
 def setup_server():
     run('pty=False')
+    run('mkdir /var/log/supervisord/ && touch /var/log/supervisord/takwetu-stdout.log && /var/log/supervisord/taskwetu-stderr.log')
     run('mkdir /tmp/TaskWetu')
     with cd('/tmp/TaskWetu'):
         run('git clone https://github.com/nailab/linkus.git')
