@@ -34,7 +34,6 @@ def setup_server(version):
 
 def clean():
     run('rm -r /tmp/TaskWetu')
-    run('apt-get clean && apt-get autoremove -y')
 
 
 def installDeps():
@@ -50,6 +49,7 @@ def mvStatic():
 
 def prepare_deploy():
     run("apt-get update && apt-get -y dist-upgrade")
+    run('apt-get clean && apt-get autoremove -y')
 
 
 def restartNginx():
