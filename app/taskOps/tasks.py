@@ -19,6 +19,8 @@ from flask import abort, request
 from json import dumps
 
 import hashlib
+import simplejson
+import requests
 from random import randint
 
 
