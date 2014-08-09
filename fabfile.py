@@ -23,11 +23,12 @@ def moveStatic():
         run('mv static ')
 
 
-def setup_server(branch="master"):
+def setup_server(version):
     run('pty=False')
     run('mkdir /tmp/TaskWetu')
     with cd('/tmp/TaskWetu'):
         run('git clone https://github.com/nailab/linkus.git')
+        run('git checkout tags/%s' % (version,))
         with cd('/tmp/TaskWetu/linkus'):
             result = run('pip install -r requirements.txt')
             if result.failed:
@@ -55,8 +56,8 @@ def restartNginx():
     run('service nginx restart')
 
 
-def deploy():
-    setup_server()
+def deploy(version="v0.1.3"):
+    setup_server(version)
     moveSupervisor()
     supervisor()
     restartNginx()
