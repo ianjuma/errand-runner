@@ -28,8 +28,8 @@ def setup_server(version):
     run('mkdir /tmp/TaskWetu')
     with cd('/tmp/TaskWetu'):
         run('git clone https://github.com/nailab/linkus.git')
-        run('git checkout tags/%s' % (version,))
         with cd('/tmp/TaskWetu/linkus'):
+            run('git checkout tags/%s' % (version,))
             result = run('pip install -r requirements.txt')
             if result.failed:
                 local('GUNICORN failed')
