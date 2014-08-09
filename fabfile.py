@@ -18,11 +18,6 @@ def supervisor():
     run('supervisord -c /etc/supervisord.conf')
 
 
-def moveStatic():
-    with cd('/tmp/TaskWetu/linkus/app/'):
-        run('mv static ')
-
-
 def setup_server(version):
     run('pty=False')
     run('mkdir /tmp/TaskWetu')
@@ -48,6 +43,11 @@ def installDeps():
     run('apt-get install rethinkdb')
 
 
+def mvStatic():
+    run('rm -rf /www/data/static')
+    run('mv /tmp/TaskWetu/linkus/app/static /www/data/')
+
+
 def prepare_deploy():
     run("apt-get update && apt-get -y dist-upgrade")
 
@@ -59,5 +59,6 @@ def restartNginx():
 def deploy(version="v0.1.3"):
     setup_server(version)
     moveSupervisor()
+    mvStatic()
     supervisor()
     restartNginx()
