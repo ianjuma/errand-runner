@@ -39,7 +39,7 @@ def setup_server():
 
 def clean():
     run('rm -r /tmp/TaskWetu')
-    run('apt-get clean && apt-get dist-upgrade')
+    run('apt-get clean && apt-get autoremove -y')
 
 
 def installDeps():
