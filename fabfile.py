@@ -4,11 +4,6 @@ env.user = 'root'
 env.hosts = ['188.226.195.158']
 
 
-def gunicorn():
-    with cd('/tmp/TaskWetu/linkus'):
-        run('gunicorn -c config-gunicorn.py app:app')
-
-
 def moveSupervisor():
     run('mv /tmp/TaskWetu/linkus/supervisord.conf /etc/supervisord.conf')
     with cd('/tmp/TaskWetu/linkus'):
@@ -29,11 +24,10 @@ def setup_server():
     with cd('/tmp/TaskWetu'):
         run('git clone https://github.com/nailab/linkus.git')
         with cd('/tmp/TaskWetu/linkus'):
-            result = run('pip install -r requirements.txt && gunicorn -c config-gunicorn.py app:app')
+            result = run('pip install -r requirements.txt')
             if result.failed:
                 local('GUNICORN failed')
 
-            run('gunicorn -c config-gunicorn.py app:app')
             prepare_deploy()
 
 
@@ -60,4 +54,4 @@ def deploy():
     setup_server()
     moveSupervisor()
     supervisor()
-    # restartNginx()
+    restartNginx()
