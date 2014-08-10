@@ -56,7 +56,7 @@ def restartNginx():
     run('service nginx restart')
 
 
-def deploy(version="v0.1.3"):
+def deploy(version):
     setup_server(version)
     moveSupervisor()
     mvStatic()
