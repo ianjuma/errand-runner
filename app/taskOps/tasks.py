@@ -119,7 +119,7 @@ def getTasks():
     return resp
 
 
-@app.route('/editTask/<username>/<task_id>/')
+@app.route('/editTask/<username>/<task_id>/', methods=['POST', 'GET', 'PUT', 'DELETE'])
 def taskInfo(username, task_id):
     try:
         user = r.table('Tasks').get(task_id).run(g.rdb_conn)
