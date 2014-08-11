@@ -15,4 +15,4 @@ psycopg2==2.5.3
 sendgrid==0.5.3
 simplejson
 gaffer==0.5.2
-selenium
+selenium==2.42.1
