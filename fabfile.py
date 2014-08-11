@@ -36,6 +36,10 @@ def clean():
     run('rm -r /tmp/TaskWetu')
 
 
+def backUp():
+    run('rethinkdb-dump')
+
+
 def installDeps():
     run('apt-get install redis')
     run('apt-get install postgresql9.3')
