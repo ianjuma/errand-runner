@@ -48,7 +48,7 @@ $('#update-task').click( function() {
 });
 
 
-$(delete-task).click( function() {
+$('#delete-task').click( function() {
 
   NProgress.set(0.0);
   data = { "task_id": task_id };
