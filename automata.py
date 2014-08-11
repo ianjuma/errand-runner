@@ -6,13 +6,13 @@ secret = getpass.getpass('Enter Passphrase: ')
 github_username = 'ianjuma'
 
 clean = pexpect.spawn('fab clean')
-clean.expect('Passphrase for private key:')
+clean.expect('Passphrase for private key: ')
 clean.sendline(secret)
 
 deploy = pexpect.spawn('fab deploy:%s' % (version,))
-deploy.expect('Passphrase for private key:')
+deploy.expect('Passphrase for private key: ')
 deploy.sendline(secret)
-deploy.expect("Username for 'https://github.com':")
+deploy.expect("Username for 'https://github.com': ")
 deploy.sendline(github_username)
-deploy.expect("Password for 'https://ianjuma@github.com':")
+deploy.expect("Password for 'https://ianjuma@github.com': ")
 deploy.sendline(secret)
