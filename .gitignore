@@ -7,7 +7,6 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-automata.py
 env/
 bin/
 build/
