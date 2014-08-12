@@ -1,5 +1,5 @@
-jinja2
-flask
+jinja2==2.7.3
+Flask==0.10.1
 requests==2.2.1
 Flask-Cache==0.12
 Flask-Assets==0.8
@@ -16,3 +16,4 @@ sendgrid==0.5.3
 simplejson
 gaffer==0.5.2
 selenium==2.42.1
+python-social-auth==0.1.26
