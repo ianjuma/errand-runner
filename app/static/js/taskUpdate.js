@@ -51,7 +51,7 @@ $('#update-task').click( function() {
 $('#delete-task').click( function() {
 
   NProgress.set(0.0);
-  data = { "task_id": task_id };
+  data = { "task_id": task_id, "username": username };
 
   userData = JSON.stringify(data);
 
