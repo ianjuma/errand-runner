@@ -4,7 +4,7 @@ __version__ = '0.1.8'
 from flask import Flask
 from flask import session, g
 from flask import (url_for, redirect)
-from flask import abort, request
+from flask import abort
 from functools import wraps
 
 import os
@@ -38,6 +38,9 @@ ONLINE_LAST_MINUTES = 5
 
 app.config[ONLINE_LAST_MINUTES] = 720
 app.secret_key = 'I\xf9\x9cF\x1e\x04\xe6\xfaF\x8f\xe6)-\xa432'
+
+from datetime import timedelta
+app.permanent_session_lifetime = timedelta(minutes=5760)
 
 
 def dbSetup():
