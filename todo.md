@@ -12,6 +12,9 @@ rkhunter tuning + rootkits
 
 #### [ app ]
 
+billing info on app
+iframe - pesapal
+transaction history
 new relic
 log watching + control - logrotate
 celery - logging
