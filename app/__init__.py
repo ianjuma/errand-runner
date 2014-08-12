@@ -52,7 +52,6 @@ def dbSetup():
         connection.close()
 
 
-
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
