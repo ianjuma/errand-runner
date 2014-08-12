@@ -3,21 +3,13 @@
 
 # res/ rep cycle
 from app import app
-from app import r
-from app import g
 from app import logging
-from app import salt
 
 
 from flask import (render_template)
-from flask import redirect, make_response
-from flask import Response, jsonify
-from flask import abort, request
+from flask import make_response
+from flask import jsonify
 from flask import session
-
-import os
-import logging
-from random import randint
 
 
 # Basic Error handlers

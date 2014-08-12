@@ -10,22 +10,16 @@ from app import logging
 from app import salt
 #from app import cursor
 from app import RqlError
+from app import session
 
 from flask import (render_template, json)
-from flask import redirect, make_response
-from flask import Response, jsonify
+from flask import make_response
+from flask import jsonify
 from flask import abort, request
-from flask import session
-from datetime import timedelta
-from json import dumps
 
-import os
-import logging
 import hashlib
 from random import randint
 
-import time
-from datetime import datetime
 from mail import sendMail
 
 
