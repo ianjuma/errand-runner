@@ -11,19 +11,19 @@ from app import salt
 #from app import cursor
 from app import RqlError
 
-
 from flask import (render_template)
 from flask import redirect, make_response
 from flask import jsonify
 from flask import abort, request
 from flask import session
-from json import dumps
 
-import logging
 import hashlib
 from random import randint
 
 import requests
+
+secret_key = app.secret_key
+
 from mail import sendMail
 
 
