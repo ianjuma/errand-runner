@@ -103,6 +103,8 @@ def signIn():
     # manage sessions - add user to session
     # redis sessions -> flask
     # redis k/v store | dict
+    session[username] = username
+
     resp = make_response(jsonify({"OK": "Signed In"}), 200)
     resp.headers['Content-Type'] = "application/json"
     resp.cache_control.no_cache = True
@@ -233,6 +235,7 @@ def addNewsLetter():
 @app.route('/logout/<username>/', methods=['POST', 'PUT', 'GET'])
 def logout(username):
     # remove from session
+    session.pop(username, None)
     return redirect('/')
 
 

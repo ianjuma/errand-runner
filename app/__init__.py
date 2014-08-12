@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-__version__ = '0.1.0'
+__version__ = '0.1.8'
 
 from flask import Flask
 from flask import session, g
@@ -39,7 +39,7 @@ LINK_DB = 'LinkUs'
 import requests
 import simplejson
 
-# conn_string = "host='188.226.195.158' dbname='LinkUs' user='synod' password='j633.125**//'"
+# conn_string = "host='188.226.195.158' dbname='LinkUs' user='synod' password='db_pass'"
 # conn = psycopg2.connect(conn_string)
 # cursor = conn.cursor()
 
@@ -98,7 +98,7 @@ def teardown_request(exception):
         logging.info('teardown_request')
         g.rdb_conn.close()
     except AttributeError:
-        pass
+        logging.info('Database failure - check your connection')
 
 from userOps import *
 from taskOps import *
