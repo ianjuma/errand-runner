@@ -41,6 +41,8 @@ def profile(username):
         email = request.json.get('email')
         dob = request.json.get('dob')
         username = request.json.get('username')
+        firstname = request.json.get('firstname')
+        lastname = request.json.get('lastname')
         state = request.json.get('state')
         mobileNo = request.json.get('mobileNo')
 
@@ -52,7 +54,7 @@ def profile(username):
 
         try:
             user = r.table(
-                'UsersInfo').get(str(username)).update({"email": email, "smscode": smsdata,
+                'UsersInfo').get(str(username)).update({"email": email, "smscode": smsdata, "lname": lastname, "fname": firstname,
                                                         "state": state, "dob": dob, "mobileNo": mobileNo}).run(g.rdb_conn)
 
             resp = make_response(jsonify({"OK": "User Updated"}), 202)
@@ -77,6 +79,8 @@ def profile(username):
         password = str(user['password'])
         email = str(user['email'])
         mobileNo = str(user['mobileNo'])
+        firstname = str(user['fname'])
+        lastname = str(user['lname'])
 
     except RqlError:
         logging.warning('DB code verify failed on /profile/' + mobileNo)
@@ -86,7 +90,7 @@ def profile(username):
         return resp
 
     return render_template(
-        'PROFILE22.html', name=name, email=email, smscode=smscode,
+        'PROFILE22.html', name=name, lastname=lastname, firstname=firstname, email=email, smscode=smscode,
         state=state, username=username, mobileNo=mobileNo)
 
 

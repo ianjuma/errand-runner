@@ -193,8 +193,9 @@ def getRandID():
     try:
         # r.table('UsersInfo').get(mobileNo).update({"smscode": SMScode}).run(g.rdb_conn)
         r.table(
-            'UsersInfo').insert({"state": "", "username": username, "dob": "", "email": email, "password": hashed_password,
-                                 "smscode": SMScode, "mobileNo": ""}).run(g.rdb_conn)
+            'UsersInfo').insert({"state": "", "fname": "", "lname": "" ,"username": username, "dob": "", 
+            "email": email, "password": hashed_password, "smscode": SMScode, "mobileNo": ""}).run(g.rdb_conn)
+            
     except RqlError:
         payload = "LOG_INFO=" + simplejson.dumps({ 'Sign Up':'Sign Up Failed' })
         requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)

@@ -106,8 +106,8 @@ $('#updateUserInfo').click( function() {
   password = $('#password').val();
   state = $('#country').val();
 
-  data = { "username": username, "first_name": first_name, "state": state, "email": email,
-                "password": password, "mobileNo": mobileNo, "dob": "", "last_name": last_name };
+  data = { "username": username, "firstname": first_name, "lastname": last_name, "state": state, 
+              "email": email, "password": password, "mobileNo": mobileNo, "dob": "", "last_name": last_name };
 
   userData = JSON.stringify(data);
   NProgress.set(0.0);
