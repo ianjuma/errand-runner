@@ -62,7 +62,6 @@ $('#delete-task').click( function() {
 
     success: function(result) {
       console.log(result);
-      console.log(result.response);
 
       NProgress.set(1.0);
 
