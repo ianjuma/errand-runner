@@ -75,6 +75,9 @@ def signIn():
     username = request.json.get('username')
     email = request.json.get('email')
 
+    if session[username] is None:
+        return redirect('/')
+
     # join to another table
     try:
         user = r.table('UsersInfo').get(username).run(g.rdb_conn)
@@ -203,7 +206,8 @@ def getRandID():
         return resp
 
     # add to sessions then login
-
+    session[username] = username
+    
     resp = make_response(jsonify({"OK": "Signed Up"}), 202)
     resp.headers['Content-Type'] = "application/json"
     resp.cache_control.no_cache = True
@@ -248,6 +252,9 @@ def logout(username):
 @app.route('/confirm/<username>/<smscode>/', methods=['PUT', 'POST'])
 def confirmUser(username, smscode):
     # make request to get one task
+    if session[username] is None:
+        return redirect('/')
+
     try:
         user = r.table(
             'UsersInfo').get(username).pluck('smscode').run(g.rdb_conn)

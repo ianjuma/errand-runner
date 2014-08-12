@@ -9,8 +9,9 @@ from app import g
 from app import logging
 #from app import cursor
 from app import RqlError
+from app import session
 
-from flask import (render_template)
+from flask import (render_template, redirect)
 from flask import make_response
 from flask import jsonify
 from flask import abort, request
@@ -23,6 +24,9 @@ import requests
 
 @app.route('/tasks/<username>/', methods=['POST', 'GET'])
 def tasks(username):
+    if session[username] is None:
+        return redirect('/')
+
     # task = RegistrationForm(request.form)
     # get mobileNo
     # check if no exists
@@ -78,7 +82,9 @@ def getAdminTasks():
 
 @app.route('/allTasks/<username>/', methods=['POST', 'GET'])
 def getAllTasks(username):
-    username = username
+    if session[str(username)] is None:
+        return redirect('/')
+
     return render_template('VIEWtasks.html', username=username)
 
 
@@ -91,6 +97,9 @@ def getTasks():
         abort(400)
 
     username = request.json.get('username')
+
+    if session[username] is None:
+        return redirect('/')
 
     taskData = []
     try:
@@ -118,6 +127,9 @@ def getTasks():
 
 @app.route('/editTask/<username>/<task_id>/', methods=['POST', 'GET', 'PUT', 'DELETE'])
 def taskInfo(username, task_id):
+    if session[username] is None:
+        return redirect('/')
+
     try:
         user = r.table('Tasks').get(task_id).run(g.rdb_conn)
 
@@ -152,6 +164,10 @@ def editTask(task_id):
 
     if request.headers['Content-Type'] != 'application/json':
         abort(400)
+
+    username = request.json.get('username')
+    if session[username] is None:
+        return redirect('/')
 
     task_urgency = request.json.get('task_urgency')
     task_title = request.json.get('title')
@@ -207,7 +223,12 @@ def deleteTask():
     if request.headers['Content-Type'] != 'application/json':
         abort(400)
 
+    username = request.json.get('username')
+    if session[username] is None:
+        return redirect('/')
+
     task_id = request.json.get('task_id')
+
 
     try:
         # r.table('UsersInfo').get(mobileNo).update({"smscode": SMScode}).run(g.rdb_conn)
@@ -238,6 +259,9 @@ def addTask():
         abort(400)
 
     username = request.json.get('username')
+    if session[username] is None:
+        return redirect('/')
+
     task_desc = request.json.get('description')
     task_title = request.json.get('title')
     # then update userInfo

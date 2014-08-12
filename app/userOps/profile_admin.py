@@ -12,7 +12,7 @@ from app import salt
 from app import RqlError
 from app import session
 
-from flask import (render_template, json)
+from flask import (render_template, json, redirect)
 from flask import make_response
 from flask import jsonify
 from flask import abort, request
@@ -25,6 +25,8 @@ from mail import sendMail
 
 @app.route('/profile/<username>/', methods=['POST', 'GET'])
 def profile(username):
+    if session[username] is None:
+        return redirect('/')
 
     if request.method == 'POST':
 
@@ -90,6 +92,8 @@ def profile(username):
 
 @app.route('/payments/<username>/', methods=['POST', 'GET'])
 def payments(username):
+    if session[username] is None:
+        return redirect('/')
 
     if request.method == 'POST':
 
@@ -158,6 +162,9 @@ def removeUser():
     password = request.json.get('password')
     username = request.json.get('username')
 
+    if session[username] is None:
+        return redirect('/')
+
     # mobile no is the id - primary key
     try:
         r.table('UsersInfo').get(username).delete().run(g.rdb_conn)
@@ -178,10 +185,14 @@ def addUser():
     if request.headers['Content-Type'] != 'application/json':
         abort(400)
 
-    # get JSON engine params
+    username = request.json.get('username')
+
+    if session[username] is None:
+        return redirect('/')
+
+    # get JSON params
     fname = request.json.get('fname')
     lname = request.json.get('lname')
-    username = request.json.get('username')
     mobileNo = request.json.get('mobileNo')  # this <- id
     state = request.json.get('state')
     location = request.json.get('location')
@@ -218,6 +229,8 @@ def addUser():
 # credit API
 @app.route('/api/credit/<username>/', methods=['POST', 'GET'])
 def credit(username):
+    if session[username] is None:
+        return redirect('/')
 
     if request.method == 'GET':
 
