@@ -3,13 +3,18 @@
 
 # res/ rep cycle
 from app import app
-from app import logging
-
 
 from flask import (render_template)
 from flask import make_response
 from flask import jsonify
-from flask import session
+
+import simplejson
+import requests
+
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 
 # Basic Error handlers
@@ -18,20 +23,20 @@ def resource_not_found(e):
     return make_response(jsonify({"Error 404":
                                   "Not Found"}), 404)
 
-
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-
 @app.errorhandler(400)
 def bad_request(e):
+    payload = "LOG_INFO=" + simplejson.dumps({ 'Bad Request':'Bad req 400' })
+    requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
+
     return make_response(jsonify({"Error 400":
                                   "Bad request"}), 400)
 
 
 @app.errorhandler(500)
 def internal_error(e):
+    payload = "LOG_INFO=" + simplejson.dumps({ 'Request':'app.before' })
+    requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
+
     return make_response(jsonify({"Error 500":
                                   "Internal Server Error"}), 500)
 
