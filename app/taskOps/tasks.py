@@ -7,21 +7,18 @@ from app import app
 from app import r
 from app import g
 from app import logging
-from app import salt
 #from app import cursor
 from app import RqlError
 
 from flask import (render_template)
-from flask import redirect, make_response
+from flask import make_response
 from flask import jsonify
 from flask import abort, request
 
 from json import dumps
 
-import hashlib
 import simplejson
 import requests
-from random import randint
 
 
 @app.route('/tasks/<username>/', methods=['POST', 'GET'])

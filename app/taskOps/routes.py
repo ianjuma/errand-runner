@@ -68,6 +68,8 @@ def signIn():
     if request.headers['Content-Type'] != 'application/json':
         abort(400)
 
+    session.permanent = True
+
     password = request.json.get('password')
     username = request.json.get('username')
     email = request.json.get('email')
