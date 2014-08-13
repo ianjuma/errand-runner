@@ -22,7 +22,7 @@ def index():
 def resource_not_found(e):
     payload = "LOG_INFO=" + simplejson.dumps({ '404':'404 Render' })
     requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
-    return render_template('404.html')
+    return render_template('404.html'), 404
 
 
 @app.errorhandler(400)
@@ -39,7 +39,7 @@ def internal_error(e):
     payload = "LOG_INFO=" + simplejson.dumps({ '500':'server error' })
     requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
 
-    return render_template('500.html')
+    return render_template('500.html'), 500
 
 
 @app.errorhandler(408)
