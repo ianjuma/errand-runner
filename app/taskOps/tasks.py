@@ -82,7 +82,11 @@ def getAdminTasks():
 
 @app.route('/allTasks/<username>/', methods=['POST', 'GET'])
 def getAllTasks(username):
-    if session[str(username)] is None:
+    # wrong session - keyerror fail
+    #if session[str(username)] is None:
+    #    return redirect('/')
+
+    if username not in session:
         return redirect('/')
 
     return render_template('VIEWtasks.html', username=username)
