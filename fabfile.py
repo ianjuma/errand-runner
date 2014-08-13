@@ -53,7 +53,7 @@ def mvStatic():
 
 def prepare_deploy():
     run("apt-get update && apt-get -y dist-upgrade")
-    run('apt-get clean && apt-get autoremove -y')
+    run('apt-get clean && apt-get autoremove --purge --assume-yes')
 
 
 def restartNginx():
