@@ -37,7 +37,6 @@ def profile(username):
             abort(400)
 
         password = request.json.get('password')
-        smsdata = request.json.get('smsdata')
         email = request.json.get('email')
         dob = request.json.get('dob')
         username = request.json.get('username')
@@ -54,7 +53,7 @@ def profile(username):
 
         try:
             user = r.table(
-                'UsersInfo').get(str(username)).update({"email": email, "smscode": smsdata, "lname": lastname, "fname": firstname,
+                'UsersInfo').get(str(username)).update({"email": email, "lname": lastname, "fname": firstname,
                                                         "state": state, "dob": dob, "mobileNo": mobileNo}).run(g.rdb_conn)
 
             resp = make_response(jsonify({"OK": "User Updated"}), 202)
@@ -108,7 +107,6 @@ def payments(username):
             abort(400)
 
         password = request.json.get('password')
-        smsdata = request.json.get('smsdata')
         email = request.json.get('email')
         dob = request.json.get('dob')
         username = request.json.get('username')
@@ -123,8 +121,8 @@ def payments(username):
 
         try:
             user = r.table(
-                'UsersInfo').get(str(username)).update({"email": email, "smscode": smsdata,
-                                                        "state": state, "dob": dob, "mobileNo": mobileNo}).run(g.rdb_conn)
+                'UsersInfo').get(str(username)).update({"email": email, "state": state,
+                                "dob": dob, "mobileNo": mobileNo}).run(g.rdb_conn)
 
             resp = make_response(jsonify({"OK": "User Updated"}), 202)
             resp.headers['Content-Type'] = "application/json"

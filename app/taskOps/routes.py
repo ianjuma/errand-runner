@@ -73,10 +73,6 @@ def signIn():
 
     password = request.json.get('password')
     username = request.json.get('username')
-    email = request.json.get('email')
-
-    if session[username] is None:
-        return redirect('/')
 
     # join to another table
     try:

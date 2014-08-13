@@ -40,11 +40,15 @@ $('#loginData').click( function() {
           type: 'POST',
           url: '/api/signUp/',
           contentType: 'application/json',
-          success: function(result) {
+          datatype: "json",
+          cache: false,
+          timeout: 60000,
+          async: true,
+          success: function(result, textStatus, jqXHR) {
             console.log(result);
             window.location.href = "/profile/"+username;
           },
-          fail: function(result) {
+          fail: function(result, textStatus, jqXHR) {
             alert('Failed to send Data');
           },
 
@@ -53,8 +57,9 @@ $('#loginData').click( function() {
 });
 
 
-$('#signInData').click( function() {
-
+$('#signInData').click( function(event) {
+  event.preventDefault();
+  
   username = $('#mobileNo').val();
   passwd = $('#getPass').val();
 
@@ -62,17 +67,22 @@ $('#signInData').click( function() {
   data = { "username": username, "password": passwd };
   userData = JSON.stringify(data);
   console.log(userData);
+  // e.preventDefault()
 
   $.ajax({
     type: 'POST',
     url: '/api/signIn/',
+    datatype: "json",
     contentType: 'application/json',
+    cache: false,
+    timeout: 60000,
+    async: true,
 
-    success: function(result) {
+    success: function(result, textStatus, jqXHR) {
       console.log(result);
-      window.location.href = "/tasks/"+username;
+      window.location.href = "/tasks/" + username + '/';
     },
-    fail: function(result) {
+    fail: function(result, textStatus, jqXHR) {
       alert('Failed to send Data');
     },
 

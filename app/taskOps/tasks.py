@@ -231,7 +231,6 @@ def deleteTask():
 
 
     try:
-        # r.table('UsersInfo').get(mobileNo).update({"smscode": SMScode}).run(g.rdb_conn)
         r.table('Tasks').get(task_id).delete().run(g.rdb_conn)
     except RqlError:
         logging.warning('DB code verify failed on /api/deleteTask/')
@@ -274,7 +273,7 @@ def addTask():
     taskData = { "username": username, "task_title": task_title, "task_desc": task_desc, "locationData": locationData,
                 "task_category": task_category, "task_urgency": "started", "due_date": due_date, "contactPersons": contactPersons }
 
-    text_all = "LinkUs new task -> " + task_title + task_desc
+    # text_all = "LinkUs new task -> " + task_title + task_desc
 
     try:
         r.table('Tasks').insert(taskData).run(g.rdb_conn)
