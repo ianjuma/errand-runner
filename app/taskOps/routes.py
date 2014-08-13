@@ -249,7 +249,9 @@ def logout(username):
 @app.route('/confirm/<username>/<smscode>/', methods=['PUT', 'POST'])
 def confirmUser(username, smscode):
     # make request to get one task
-    if session[username] is None:
+    #if session[username] is None:
+    #    return redirect('/')
+    if username not in session:
         return redirect('/')
 
     try:

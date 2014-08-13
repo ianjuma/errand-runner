@@ -24,7 +24,10 @@ import requests
 
 @app.route('/tasks/<username>/', methods=['POST', 'GET'])
 def tasks(username):
-    if session[username] is None:
+    #if session[username] is None:
+    #    return redirect('/')
+
+    if username not in session:
         return redirect('/')
 
     # task = RegistrationForm(request.form)
@@ -102,7 +105,9 @@ def getTasks():
 
     username = request.json.get('username')
 
-    if session[username] is None:
+    #if session[username] is None:
+    #    return redirect('/')
+    if username not in session:
         return redirect('/')
 
     taskData = []
@@ -131,7 +136,10 @@ def getTasks():
 
 @app.route('/editTask/<username>/<task_id>/', methods=['POST', 'GET', 'PUT', 'DELETE'])
 def taskInfo(username, task_id):
-    if session[username] is None:
+    #if session[username] is None:
+    #    return redirect('/')
+
+    if username not in session:
         return redirect('/')
 
     try:
@@ -170,7 +178,10 @@ def editTask(task_id):
         abort(400)
 
     username = request.json.get('username')
-    if session[username] is None:
+    #if session[username] is None:
+    #    return redirect('/')
+
+    if username not in session:
         return redirect('/')
 
     task_urgency = request.json.get('task_urgency')
@@ -228,7 +239,10 @@ def deleteTask():
         abort(400)
 
     username = request.json.get('username')
-    if session[username] is None:
+    #if session[username] is None:
+    #    return redirect('/')
+
+    if username not in session:
         return redirect('/')
 
     task_id = request.json.get('task_id')
@@ -262,7 +276,9 @@ def addTask():
         abort(400)
 
     username = request.json.get('username')
-    if session[username] is None:
+    #if session[username] is None:
+    #    return redirect('/')
+    if username not in session:
         return redirect('/')
 
     task_desc = request.json.get('description')
