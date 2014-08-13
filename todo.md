@@ -16,6 +16,7 @@ billing info on app
 iframe - pesapal
 transaction history
 gevent + uwsgi - load balance
+nginx - serve 400, 500 + static
 new relic
 log watching + control - logrotate
 celery - logging
