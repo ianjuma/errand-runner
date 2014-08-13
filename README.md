@@ -22,3 +22,5 @@ http://taskwetu.herokuapp.com/
 - [ ] Migrate App instance to EU
 - [ ] Static Assets (CDN) - minimise + compress
 - [ ] setup nginx- server static assets
+- [ ] social oauth login
+- [ ] pesapal integration
