@@ -15,6 +15,7 @@ rkhunter tuning + rootkits
 billing info on app
 iframe - pesapal
 transaction history
+gevent + uwsgi - load balance
 new relic
 log watching + control - logrotate
 celery - logging
