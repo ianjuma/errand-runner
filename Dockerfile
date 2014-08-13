@@ -1,8 +1,6 @@
 #
 # RethinkDB Dockerfile
 #
-# https://github.com/dockerfile/rethinkdb
-#
 
 # Pull base image.
 FROM dockerfile/ubuntu
@@ -32,8 +30,6 @@ EXPOSE 29015
 
 
 
-
-# http://www.rethinkdb.com/
 # version 1.12.4
 FROM debian:jessie
 
@@ -47,15 +43,13 @@ EXPOSE 28015 29015 8080
 VOLUME ["/rethinkdb"]
 WORKDIR /rethinkdb
 ENTRYPOINT ["/usr/bin/rethinkdb"]
-CMD ["--help"]
 
 
-
-
-
-docker run -d -p 8080:8080 -p 28015:28015 -p 29015:29015 dockerfile/rethinkdb
-
-docker run -d -p 8080:8080 -p 28015:28015 -p 29015:29015 -v <data-dir>:/data dockerfile/rethinkdb rethinkdb --bind=all --canonical-address `curl -s ipecho.net/plain` --machine-name `hostname | sed 's/-/_/g'`
-
-
-docker run -d -p 8080:8080 -p 28015:28015 -p 29015:29015 -v <data-dir>:/data dockerfile/rethinkdb rethinkdb --bind all --canonical-address `curl -s ipecho.net/plain` --machine-name `hostname | sed 's/-/_/g'` --join <first-host-ip>:29015
+#docker run -d -p 8080:8080 -p 28015:28015 -p 29015:29015 dockerfile/rethinkdb
+#docker run -d -p 8080:8080 -p 28015:28015 -p 29015:29015 
+#       -v <data-dir>:/data dockerfile/rethinkdb rethinkdb --bind=all --canonical-address 
+#       `curl -s ipecho.net/plain` --machine-name `hostname | sed 's/-/_/g'`
+#docker run -d -p 8080:8080 -p 28015:28015 -p 29015:29015 
+#       -v <data-dir>:/data dockerfile/rethinkdb rethinkdb --bind all --canonical-address 
+#       `curl -s ipecho.net/plain` --machine-name `hostname | sed 's/-/_/g'` 
+#       --join <first-host-ip>:29015
