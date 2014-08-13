@@ -20,8 +20,10 @@ def index():
 # Basic Error handlers
 @app.errorhandler(404)
 def resource_not_found(e):
-    return make_response(jsonify({"Error 404":
-                                  "Not Found"}), 404)
+    payload = "LOG_INFO=" + simplejson.dumps({ '404':'404 Render' })
+    requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
+    return render_template('404.html')
+
 
 @app.errorhandler(400)
 def bad_request(e):
@@ -34,11 +36,10 @@ def bad_request(e):
 
 @app.errorhandler(500)
 def internal_error(e):
-    payload = "LOG_INFO=" + simplejson.dumps({ 'Request':'app.before' })
+    payload = "LOG_INFO=" + simplejson.dumps({ '500':'server error' })
     requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
 
-    return make_response(jsonify({"Error 500":
-                                  "Internal Server Error"}), 500)
+    return render_template('500.html')
 
 
 @app.errorhandler(408)
