@@ -25,7 +25,10 @@ from mail import sendMail
 
 @app.route('/profile/<username>/', methods=['POST', 'GET'])
 def profile(username):
-    if session[username] is None:
+    #if session[username] is None:
+    #    return redirect('/')
+    
+    if username not in session:
         return redirect('/')
 
     if request.method == 'POST':
@@ -95,7 +98,10 @@ def profile(username):
 
 @app.route('/payments/<username>/', methods=['POST', 'GET'])
 def payments(username):
-    if session[username] is None:
+    #if session[username] is None:
+    #    return redirect('/')
+
+    if username not in session:
         return redirect('/')
 
     if request.method == 'POST':
@@ -164,7 +170,9 @@ def removeUser():
     password = request.json.get('password')
     username = request.json.get('username')
 
-    if session[username] is None:
+    #if session[username] is None:
+    #    return redirect('/')
+    if username not in session:
         return redirect('/')
 
     # mobile no is the id - primary key
@@ -189,7 +197,9 @@ def addUser():
 
     username = request.json.get('username')
 
-    if session[username] is None:
+    #if session[username] is None:
+    #    return redirect('/')
+    if username not in session:
         return redirect('/')
 
     # get JSON params
@@ -231,7 +241,9 @@ def addUser():
 # credit API
 @app.route('/api/credit/<username>/', methods=['POST', 'GET'])
 def credit(username):
-    if session[username] is None:
+    #if session[username] is None:
+    #    return redirect('/')
+    if username not in session:
         return redirect('/')
 
     if request.method == 'GET':
