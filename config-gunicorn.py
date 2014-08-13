@@ -11,7 +11,7 @@ def numCPUs():
 bind = '127.0.0.1:8000'
 workers = 4
 worker_class = 'gevent'
-debug = True
+debug = False
 daemon = True
 pidfile = '/tmp/gunicorn.pid'
 logfile = '/tmp/gunicorn.log'
