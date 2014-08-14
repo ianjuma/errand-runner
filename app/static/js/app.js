@@ -67,25 +67,21 @@ $('#signInData').click( function(event) {
   data = { "username": username, "password": passwd };
   userData = JSON.stringify(data);
   console.log(userData);
-  // e.preventDefault()
 
   $.ajax({
+    data: userData,
     type: 'POST',
+    dataType: 'json',
+    contentType: 'application/json; charset=utf-8',
     url: '/api/signIn/',
-    datatype: "json",
-    contentType: 'application/json',
-    cache: false,
-    timeout: 60000,
-    async: true,
 
-    success: function(result, textStatus, jqXHR) {
+    success: function(result) {
       console.log(result);
       window.location.href = "/tasks/" + username + '/';
     },
-    fail: function(result, textStatus, jqXHR) {
+    error: function(result) {
+      console.log(result);
       alert('Failed to send Data');
-    },
-
-    data: userData
+    }
   });
 });
