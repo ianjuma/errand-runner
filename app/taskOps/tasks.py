@@ -22,7 +22,7 @@ import simplejson
 import requests
 
 
-@app.route('/tasks/<username>/', methods=['POST', 'GET'])
+@app.route('/createTask/<username>/', methods=['POST', 'GET'])
 def tasks(username):
     #if session[username] is None:
     #    return redirect('/')
@@ -83,7 +83,7 @@ def getAdminTasks():
     return render_template('adminViewTasks.html', task_size=task_size)
 
 
-@app.route('/allTasks/<username>/', methods=['POST', 'GET'])
+@app.route('/myTasks/<username>/', methods=['POST', 'GET'])
 def getAllTasks(username):
     # wrong session - keyerror fail
     #if session[str(username)] is None:

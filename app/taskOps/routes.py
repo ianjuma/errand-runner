@@ -252,6 +252,6 @@ def confirmUser(username, smscode):
         EMAIL VERFICATION FAILED
         """
 
-    url = "/tasks/" + username + "/"
+    url = "/createTask/" + username + "/"
 
     return redirect(url, code=302)
