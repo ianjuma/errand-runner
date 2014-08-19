@@ -113,30 +113,6 @@ def signIn():
     return resp
 
 
-@app.route('/login/', methods=['POST', 'GET'])
-def oauthCallback():
-    if not request.json:
-        abort(400)
-
-    if request.headers['Content-Type'] != 'application/json':
-        abort(400)
-
-    token_request_uri = "https://accounts.google.com/o/oauth2/auth"
-    response_type = "code"
-    client_id = "610994249103-mf473jelhkpmggal8cesm2i8si91ndsm.apps.googleusercontent.com"
-    redirect_uri = "http://taskwetu.heroku.com/oauth2callback/"
-    scope = "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email"
-
-    url = "{token_request_uri}?response_type={response_type}&client_id={client_id}&redirect_uri={redirect_uri}&scope={scope}".format(
-        token_request_uri = token_request_uri,
-        response_type = response_type,
-        client_id = client_id,
-        redirect_uri = redirect_uri,
-        scope = scope)
-
-    return redirect(url)
-
-
 @app.route('/api/signUp/', methods=['POST'])
 def getRandID():
     if not request.json:

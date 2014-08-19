@@ -1,161 +1,295 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>New Task</title>
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
-		<meta name="author" content="" />
-		<link rel="shortcut icon" href="{{url_for('static', filename='ico/favicon.ico') }}">
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="/static/images/favicon.png">
 
-		<link rel="stylesheet" href="{{url_for('static', filename='css/font-awesome.min.css') }}">
-		<link rel="stylesheet" href="{{url_for('static', filename='css/nprogress.css') }}">
+    <title>Profile</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:300,200,100' rel='stylesheet' type='text/css'>
 
-		<link rel="stylesheet" href="{{url_for('static', filename='css/datepicker.css') }}">
-		<link rel="stylesheet" href="{{url_for('static', filename='css/normalize.css') }}">
-		<link rel="stylesheet" href="{{url_for('static', filename='css/icons.css') }}">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.main.min.css" rel="stylesheet">
+    <link href="/static/js/fuelux/css/fuelux.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/pygments.css">
 
-		<link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css') }}">
-		<link rel="stylesheet" href="{{url_for('static', filename='css/menu.css') }}">
-		<link rel="stylesheet" href="{{url_for('static', filename='css/menu-style.css') }}">
-		<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css" />
+    <script src="/static/js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/menu-all.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/nprogress.css" />
+    <script src="/static/js/nprogress.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="/static/js/jquery.nanoscroller/nanoscroller.css" />
+    <link rel="stylesheet" type="text/css" href="/static/js/bootstrap.switch/bootstrap-switch.css" />
+    <!-- Custom styles for this template -->
+    <link href="/static/css/style-template.css" rel="stylesheet" />
+
+    <style>
+      .cl-mcont {
+        margin-left: 5em;
+        margin-right: 5em;
+      }
+
+      .space-lower-div {
+        margin-top: 20px;
+      }
+
+      .top-space-reduce {
+        margin-top: 0px;
+      }
+
+      .right-space {
+        margin-right: 4px;
+      }
+
+      .keep-right {
+        margin-left: 32em;
+      }
+
+      .push-right {
+        margin-left: 12em;
+      }
+
+      .push-right2 {
+        margin-left: 17em;
+      }
+
+      .space-input-right {
+        margin-left: 9.25em;
+      }
+
+      .left-right-space {
+        margin-right: 25px;
+        margin-left: 40px;
+      }
+
+      .space-button {
+        margin-left: 36em;
+      }
+
+      .space-button-less {
+        margin-left: 32em;
+      }
+
+      .space-button-less2 {
+        margin-left: 34.5em;
+      }
+
+      .space-button-less3 {
+        margin-left: 31.5em;
+      }
+
+      .space-button-lesser {
+        margin-left: 28.4em;
+      }
+
+      .menu-holder-custom {
+        padding-top: 1.85em;
+        padding-bottom: 1.85em;
+      }
+
+      .push-down {
+        margin-top: 0em;
+      }
+
+    </style>
+
+  </head>
+
+<body>
+
+<div class="page-head menu-holder-custom">
+    <img src="/static/ico/taskwetu_logo.png" alt="TaskWetu Logo">
+    <div class="container">
+      <nav id="bt-menu" class="bt-menu">
+        <a href="#" class="bt-menu-trigger"><span>Menu</span></a>
+        <ul>
+          <li><a href="/tasks/{{username}}/">New task</a></li>
+          <li><a href="/allTasks/{{username}}/">All Tasks</a></li>
+          <li><a href="/profile/{{username}}/">Profile</a></li>
+          <li><a href="/profile/{{username}}/">Payments</a></li>
+          <li><a href="/logout/{{username}}/">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+</div>
+
+<div class="push-down">
+<div id="cl-wrapper">
+
+  <div class="cl-mcont">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="tab-container">
+          <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#home">Profile</a></li>
+            <li><a data-toggle="tab" href="#settings">Contact Info</a></li>
+          </ul>
+          <div class="tab-content">
+            <div id="home" class="tab-pane active cont">
+              <table class="no-border no-strip information">
+                <tbody class="no-border-x no-border-y">
+                  <tr>
+                    <td style="width:20%;" class="category"><strong>CONTACT</strong></td>
+                    <td>
+                      <table class="no-border no-strip skills">
+                        <tbody class="no-border-x no-border-y">
+                          <tr><td style="width:20%;"><b>E-mail</b></td><td>{{email}}</td></tr>
+                          <tr><td style="width:20%;"><b>Mobile</b></td><td>{{mobileNo}}</td></tr>
+                          <tr><td style="width:20%;"><b>Country</b></td><td>{{state}}</td></tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+            
+            <div id="settings" class="tab-pane">
+              <form role="form" class="form-horizontal">
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="nick">Profile Picture</label>
+                    <div class="col-sm-9"> 
+                      <div class="avatar-upload">
+                        <img src="/static/images/av.jpg" class="profile-avatar img-thumbnail" />
+                        <input id="fileupload" type="file" name="files[]">
+                        <div id="progress" class="overlay"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="nick">First name</label>
+                    <div class="col-sm-9">
+                      <input type="text" required placeholder="First name" id="firstname" class="form-control">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="nick">Last Name</label>
+                    <div class="col-sm-9">
+                      <input type="text" required placeholder="Last name" id="lastname" class="form-control">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="nick">Mobile No</label>
+                    <div class="col-sm-9">
+                      <input type="text" required placeholder="Mobile No" id="mobileNo" class="form-control">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="name">Country</label>
+                    <div class="col-sm-9">
+                      <input type="text" required placeholder="Country" id="country" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="inputEmail3">Email</label>
+                    <div class="col-sm-9">
+                      <input type="email" required placeholder="Email" id="email" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group spacer2">
+                    <div class="col-sm-3"></div>
+                    <label class="col-sm-9" for="inputPassword3">Change Password</label>
+
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="inputPassword3">Password</label>
+                    <div class="col-sm-9">
+                      <input type="password" required placeholder="Password" id="password" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-9">
+                      <button class="btn btn-primary" id="updateUserInfo" >Update</button>
+                      <button class="btn btn-default">Reset</button>
+                    </div>
+                  </div>
+              </form>
+              <div class="md-overlay"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block-transparent">
+          <div class="header">
+            <h4>Billing History</h4>
+          </div>
+          <div id="addTo" class="list-group todo list-widget">
+            
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-sm-4 side-right">
+          <div class="block-transparent">
+          
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  </div>
+</div>
 
 
-		<script src="{{url_for('static', filename='js/jquery.min.js') }}"></script>
-		<script src="{{url_for('static', filename='js/modernizr.custom.js') }}"></script>
-		<script src="{{url_for('static', filename='js/jquery.noty.packaged.min.js') }}"></script>
-		<script src="{{url_for('static', filename='js/nprogress.js') }}"></script>
+<script src="/static/js/classie.js"></script>
+<script src="/static/js/borderMenu.js"></script>
+<script src="/static/js/jquery.select2/select2.min.js" type="text/javascript"></script>
+<script src="/static/js/bootstrap.slider/js/bootstrap-slider.js" type="text/javascript"></script>
+<script type="text/javascript" src="/static/js/fuelux/loader.min.js"></script>	
+<script src="/static/js/modernizr.js" type="text/javascript"></script>
+<script type="text/javascript" src="/static/js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
+<script type="text/javascript" src="/static/js/bootstrap.switch/bootstrap-switch.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.nestable/jquery.nestable.js"></script>
+<script type="text/javascript" src="/static/js/bootstrap.datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="/static/js/behaviour/general.js"></script>
+<script src="/static/js/underscore.js"></script>
+<script src="/static/js/jquery.ui/jquery-ui.js" type="text/javascript"></script>
+<script src="/static/js/task-ops.js"></script>
 
-	</head>
 
-	<body>
+<script type="text/javascript">
+  
+  var username = "{{username}}";
+  console.log(username);
+  getTaskData();
 
-		<div class="container">
-			<nav id="bt-menu" class="bt-menu">
-				<a href="#" class="bt-menu-trigger"><span>Menu</span></a>
-				<ul>
-					<li><a href="/tasks/{{username}}/">New task</a></li>
-					<li><a href="/allTasks/{{username}}/">All Tasks</a></li>
-					<li><a href="/profile/{{username}}/">Profile</a></li>
-					<li><a href="/payments/{{username}}/">Payments</a></li>
-					<li><a href="/logout/{{username}}/">Logout</a></li>
-				</ul>
-			</nav>
-		</div>
+  var email = "{{email}}";
+  var state = "{{state}}";
+  var mobileNo = "{{mobileNo}}";
+  var name = "{{name}}";
+  var lastname = "{{lastname}}";
+  var firstname = "{{firstname}}";
 
-		<div class="middle">
+  $('#email').val(email);
+  $('#country').val(state);
+  $('#mobileNo').val(mobileNo);
+  $('#firstname').val(firstname);
+  $('#lastname').val(lastname);
 
-			<ul class="nav nav-pills nav-stacked">
-			  <li class="active">
-			    <a href="#">
-			      <span id="badge-task-no" class="badge pull-right"> {{credit}} </span>
-			      You Have {{credit}} credit
-			    </a>
-			  </li>
-			</ul>
-
-			<div class="little">
-			<div class="ui four steps">
-			  <div class="ui active step">
-			    Shipping
-			  </div>
-			  <div class="ui disabled step">
-			    Billing
-			  </div>
-			  <div class="ui disabled step">
-			    Confirm Order
-			  </div>
-			  <div class="ui disabled step">
-			    Complete
-			  </div>
-			</div>
-			</div>
-
-			<form class="ui fluid form">
-			  <div class="field">
-			    <input type="text" placeholder="Street Address">
-			    <div class="ui pointing large label">
-			      Street Address
-			    </div>
-			  </div>
-			  <div class="ui simple divider"></div>
-			  <div class="field">
-			    <div class="ui pointing below large label">
-			      City/ Town
-			    </div>
-			    <input type="text" placeholder="City/ Town">
-			  </div>
-			  <div class="ui simple divider"></div>
-			  <div class="inline field">
-			    <input type="text" placeholder="Country">
-			    <div class="ui pointing left large label">
-			      Country
-			    </div>
-			  </div>
-
-			  <div class="inline field">
-			    <input type="text" placeholder="Address">
-			    <div class="ui pointing left large label">
-			      Address
-			    </div>
-			  </div>
-
-			  <div class="ui simple divider"></div>
-			  <div class="inline field">
-			    <div class="ui pointing right large label">
-			      Zip Code
-			    </div>
-			    <input type="password" placeholder="zipcode">
-			  </div>
-			</form>
-
-			<center>
-			<button id="add-task" type="button" class="btn btn-success buttons-top">Next
-				<span class="glyphicon glyphicon-arrow-right"></span>
-			</button>
-			</center>
-
-	</body>
-
-	<script src="{{url_for('static', filename='js/classie.js') }}"></script>
-	<script src="{{url_for('static', filename='js/borderMenu.js') }}"></script>
-	<script src="{{url_for('static', filename='js/payments.js') }}"></script>
-
-	<script>
-
-		var username = "{{username}}";
-		console.log(username);
-
-		$(document).on('page:fetch',   function() { NProgress.set(0.0); });
-		$(document).on('page:change',  function() { NProgress.set(1.0); });
-
-		$('#date-data').datepicker({
-			format: 'mm-dd-yyyy'
-		});
-
-		$("#").label_better({
-		    position: "left",
-		    animationTime: 500,
-		    easing: "ease-in-out",
-		    offset: 20,
-		    hidePlaceholderOnFocus: true
-		  });
-
-		$("#").label_better({
-		    position: "left",
-		    animationTime: 500,
-		    easing: "ease-in-out",
-		    offset: 20,
-		    hidePlaceholderOnFocus: true
-		  });
-
-	    $(function() {
-	        $('#task-desc').editable({inlineMode: false}, {buttons: ["bold", "italic", "underline"]});
-	        $("#task-desc").editable("option", "height", 130);
-	    });
-
-	</script>
-
+  $(document).ready(function(){
+    //initialize the javascript
+    App.init();
+    App.wizard();
+  });
+</script>
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+</body>
 </html>

@@ -10,7 +10,7 @@ pesapal.testing = False
 ### post a direct order
 
 post_params = {
-  'oauth_callback': 'http://188.226.195.158/post_payments/ianjuma/'
+  'oauth_callback': 'http://188.226.195.158/billing/'
 }
 request_data = {
   'Amount': '100',
