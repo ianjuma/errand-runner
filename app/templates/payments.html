@@ -33,13 +33,20 @@
     <link href="/static/css/style-template.css" rel="stylesheet" />
 
     <style>
-      .cl-mcont {
-        margin-left: 5em;
-        margin-right: 5em;
-      }
-
       .space-lower-div {
         margin-top: 20px;
+      }
+
+      #cl-wrapper {
+        padding-top: 0px;
+      }
+
+      .menu-holder-custom {
+        padding-top: 0.85em;
+        padding-bottom: 0.85em;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        padding-left: 5.7em;
       }
 
       .top-space-reduce {
@@ -58,12 +65,8 @@
         margin-left: 12em;
       }
 
-      .push-right2 {
-        margin-left: 17em;
-      }
-
       .space-input-right {
-        margin-left: 9.25em;
+        margin-left: 10.5em;
       }
 
       .left-right-space {
@@ -71,35 +74,10 @@
         margin-left: 40px;
       }
 
-      .space-button {
-        margin-left: 36em;
-      }
-
-      .space-button-less {
-        margin-left: 32em;
-      }
-
-      .space-button-less2 {
-        margin-left: 34.5em;
-      }
-
-      .space-button-less3 {
-        margin-left: 31.5em;
-      }
-
-      .space-button-lesser {
-        margin-left: 28.4em;
-      }
-
       .menu-holder-custom {
         padding-top: 1.85em;
         padding-bottom: 1.85em;
       }
-
-      .push-down {
-        margin-top: 0em;
-      }
-
     </style>
 
   </head>
@@ -128,7 +106,7 @@
   <div class="cl-mcont">
     <div class="row">
       <div class="col-md-12">
-        
+
           <div class="block-flat">
             <div class="header">
               <h3 class="header1">Billing Information</h3>
@@ -145,6 +123,29 @@
           </div>
           
         </div>
+
+        <div class="col-md-12">
+        <div class="block-flat">
+          <div class="header">
+              <h3 class="header1">Transaction History</h3>
+          </div>
+        <div class="table-responsive">
+            <table class="table no-border hover">
+            <thead class="no-border">
+              <tr>
+                <th style="width:20%;"><strong>Date</strong></th>
+                <th style="width:27%;"><strong>Task</strong></th>
+                <th style="width:33%;"><strong>Details</strong></th>
+                <th class=""><strong>Amount</strong></th>
+              </tr>
+            </thead>
+          <tbody id="taskBody" class="no-border-y">
+            
+          </tbody>
+          </table>
+        </div>
+       </div>
+       </div>
 
       <!-- 
       <div class="col-sm-8">
