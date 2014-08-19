@@ -127,100 +127,27 @@
 
   <div class="cl-mcont">
     <div class="row">
-      <div class="col-sm-8">
-        <div class="tab-container">
-          <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#home">Profile</a></li>
-            <li><a data-toggle="tab" href="#settings">Contact Info</a></li>
-          </ul>
-          <div class="tab-content">
-            <div id="home" class="tab-pane active cont">
-              <table class="no-border no-strip information">
-                <tbody class="no-border-x no-border-y">
-                  <tr>
-                    <td style="width:20%;" class="category"><strong>CONTACT</strong></td>
-                    <td>
-                      <table class="no-border no-strip skills">
-                        <tbody class="no-border-x no-border-y">
-                          <tr><td style="width:20%;"><b>E-mail</b></td><td>{{email}}</td></tr>
-                          <tr><td style="width:20%;"><b>Mobile</b></td><td>{{mobileNo}}</td></tr>
-                          <tr><td style="width:20%;"><b>Country</b></td><td>{{state}}</td></tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-
-                </tbody>
-              </table>
+      <div class="col-md-12">
+        
+          <div class="block-flat">
+            <div class="header">
+              <h3 class="header1">Billing Information</h3>
             </div>
-            
-            <div id="settings" class="tab-pane">
-              <form role="form" class="form-horizontal">
+            <div class="content">
+                <form class="form-horizontal group-border-dashed" action="#" novalidate="">
+                  
                   <div class="form-group">
-                    <label class="col-sm-3 control-label" for="nick">Profile Picture</label>
-                    <div class="col-sm-9"> 
-                      <div class="avatar-upload">
-                        <img src="/static/images/av.jpg" class="profile-avatar img-thumbnail" />
-                        <input id="fileupload" type="file" name="files[]">
-                        <div id="progress" class="overlay"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-sm-3 control-label" for="nick">First name</label>
-                    <div class="col-sm-9">
-                      <input type="text" required placeholder="First name" id="firstname" class="form-control">
-                    </div>
+                    
                   </div>
 
-                  <div class="form-group">
-                    <label class="col-sm-3 control-label" for="nick">Last Name</label>
-                    <div class="col-sm-9">
-                      <input type="text" required placeholder="Last name" id="lastname" class="form-control">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="col-sm-3 control-label" for="nick">Mobile No</label>
-                    <div class="col-sm-9">
-                      <input type="text" required placeholder="Mobile No" id="mobileNo" class="form-control">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="col-sm-3 control-label" for="name">Country</label>
-                    <div class="col-sm-9">
-                      <input type="text" required placeholder="Country" id="country" class="form-control">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-sm-3 control-label" for="inputEmail3">Email</label>
-                    <div class="col-sm-9">
-                      <input type="email" required placeholder="Email" id="email" class="form-control">
-                    </div>
-                  </div>
-                  <div class="form-group spacer2">
-                    <div class="col-sm-3"></div>
-                    <label class="col-sm-9" for="inputPassword3">Change Password</label>
-
-                  </div>
-                  <div class="form-group">
-                    <label class="col-sm-3 control-label" for="inputPassword3">Password</label>
-                    <div class="col-sm-9">
-                      <input type="password" required placeholder="Password" id="password" class="form-control">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-offset-3 col-sm-9">
-                      <button class="btn btn-primary" id="updateUserInfo" >Update</button>
-                      <button class="btn btn-default">Reset</button>
-                    </div>
-                  </div>
               </form>
-              <div class="md-overlay"></div>
             </div>
           </div>
+          
         </div>
+
+      <!-- 
+      <div class="col-sm-8">
 
         <div class="block-transparent">
           <div class="header">
@@ -232,6 +159,7 @@
         </div>
 
       </div>
+       -->
 
       <div class="col-sm-4 side-right">
           <div class="block-transparent">
