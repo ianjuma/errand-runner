@@ -104,6 +104,12 @@ def payments(username):
     if username not in session:
         return redirect('/')
 
+    try:
+        username = session[username]
+    except KeyError:
+        return redirect('/')
+
+
     if request.method == 'POST':
 
         if not request.json:
@@ -112,10 +118,8 @@ def payments(username):
         if request.headers['Content-Type'] != 'application/json':
             abort(400)
 
-        password = request.json.get('password')
         email = request.json.get('email')
         dob = request.json.get('dob')
-        username = request.json.get('username')
         state = request.json.get('state')
         mobileNo = request.json.get('mobileNo')
 
