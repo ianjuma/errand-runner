@@ -35,7 +35,7 @@ def adminSign():
         if not request.json:
             abort(400)
 
-        if request.headers['Content-Type'] != 'application/json':
+        if request.headers['Content-Type'] != 'application/json; charset=UTF-8':
             abort(400)
 
         username = request.json.get('username')
@@ -121,7 +121,7 @@ def getRandID():
     if not request.json:
         abort(400)
 
-    if request.headers['Content-Type'] != 'application/json':
+    if request.headers['Content-Type'] != 'application/json; charset=UTF-8':
         abort(400)
 
     # use the mobile number as the id number its a unique entity
@@ -195,7 +195,7 @@ def addNewsLetter():
     if not request.json:
         abort(400)
 
-    if request.headers['Content-Type'] != 'application/json':
+    if request.headers['Content-Type'] != 'application/json; charset=UTF-8':
         abort(400)
 
     email = request.json.get('email')

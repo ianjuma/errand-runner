@@ -43,7 +43,7 @@ def getAdminTasks():
         if not request.json:
             abort(400)
 
-        if request.headers['Content-Type'] != 'application/json':
+        if request.headers['Content-Type'] != 'application/json; charset=UTF-8':
             abort(400)
 
         username = request.json.get('username')
@@ -100,7 +100,7 @@ def getTasks():
     if not request.json:
         abort(400)
 
-    if request.headers['Content-Type'] != 'application/json':
+    if request.headers['Content-Type'] != 'application/json; charset=UTF-8':
         abort(400)
 
     username = request.json.get('username')
@@ -174,7 +174,7 @@ def editTask(task_id):
     if not request.json:
         abort(400)
 
-    if request.headers['Content-Type'] != 'application/json':
+    if request.headers['Content-Type'] != 'application/json; charset=UTF-8':
         abort(400)
 
     username = request.json.get('username')
@@ -235,7 +235,7 @@ def deleteTask():
     if not request.json:
         abort(400)
 
-    if request.headers['Content-Type'] != 'application/json':
+    if request.headers['Content-Type'] != 'application/json; charset=UTF-8':
         abort(400)
 
     username = request.json.get('username')
@@ -272,7 +272,7 @@ def addTask():
     if not request.json:
         abort(400)
 
-    if request.headers['Content-Type'] != 'application/json':
+    if request.headers['Content-Type'] != 'application/json; charset=UTF-8':
         abort(400)
 
     username = request.json.get('username')
