@@ -36,7 +36,7 @@ def profile(username):
         if not request.json:
             abort(400)
 
-        if request.headers['Content-Type'] != 'application/json':
+        if request.headers['Content-Type'] != 'application/json; charset=UTF-8':
             abort(400)
 
         password = request.json.get('password')
@@ -116,7 +116,7 @@ def payments(username):
         if not request.json:
             abort(400)
 
-        if request.headers['Content-Type'] != 'application/json':
+        if request.headers['Content-Type'] != 'application/json; charset=UTF-8':
             abort(400)
 
         email = request.json.get('email')
@@ -169,7 +169,7 @@ def removeUser():
     if not request.json:
         abort(400)
 
-    if request.headers['Content-Type'] != 'application/json':
+    if request.headers['Content-Type'] != 'application/json; charset=UTF-8':
         abort(400)
 
     password = request.json.get('password')
@@ -197,7 +197,7 @@ def addUser():
     if not request.json:
         abort(400)
 
-    if request.headers['Content-Type'] != 'application/json':
+    if request.headers['Content-Type'] != 'application/json; charset=UTF-8':
         abort(400)
 
     username = request.json.get('username')
@@ -256,7 +256,7 @@ def credit(username):
         if not request.json:
             abort(400)
 
-        if request.headers['Content-Type'] != 'application/json':
+        if request.headers['Content-Type'] != 'application/json; charset=UTF-8':
             abort(400)
 
         password = request.json.get('password')
@@ -285,7 +285,7 @@ def credit(username):
         if not request.json:
             abort(400)
 
-        if request.headers['Content-Type'] != 'application/json':
+        if request.headers['Content-Type'] != 'application/json; charset=UTF-8':
             abort(400)
 
         password = request.json.get('password')
@@ -316,7 +316,7 @@ def forgotPassword():
         if not request.json:
             abort(400)
 
-        if request.headers['Content-Type'] != 'application/json':
+        if request.headers['Content-Type'] != 'application/json; charset=UTF-8':
             abort(400)
 
         email = request.json.get('email')

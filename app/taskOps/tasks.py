@@ -22,7 +22,7 @@ import simplejson
 import requests
 
 
-@app.route('/tasks/<username>/', methods=['POST', 'GET'])
+@app.route('/createTask/<username>/', methods=['POST', 'GET'])
 def tasks(username):
     #if session[username] is None:
     #    return redirect('/')
@@ -43,7 +43,7 @@ def getAdminTasks():
         if not request.json:
             abort(400)
 
-        if request.headers['Content-Type'] != 'application/json':
+        if request.headers['Content-Type'] != 'application/json; charset=UTF-8':
             abort(400)
 
         username = request.json.get('username')
@@ -83,7 +83,7 @@ def getAdminTasks():
     return render_template('adminViewTasks.html', task_size=task_size)
 
 
-@app.route('/allTasks/<username>/', methods=['POST', 'GET'])
+@app.route('/myTasks/<username>/', methods=['POST', 'GET'])
 def getAllTasks(username):
     # wrong session - keyerror fail
     #if session[str(username)] is None:
@@ -100,7 +100,7 @@ def getTasks():
     if not request.json:
         abort(400)
 
-    if request.headers['Content-Type'] != 'application/json':
+    if request.headers['Content-Type'] != 'application/json; charset=UTF-8':
         abort(400)
 
     username = request.json.get('username')
@@ -174,7 +174,7 @@ def editTask(task_id):
     if not request.json:
         abort(400)
 
-    if request.headers['Content-Type'] != 'application/json':
+    if request.headers['Content-Type'] != 'application/json; charset=UTF-8':
         abort(400)
 
     username = request.json.get('username')
@@ -235,7 +235,7 @@ def deleteTask():
     if not request.json:
         abort(400)
 
-    if request.headers['Content-Type'] != 'application/json':
+    if request.headers['Content-Type'] != 'application/json; charset=UTF-8':
         abort(400)
 
     username = request.json.get('username')
@@ -272,7 +272,7 @@ def addTask():
     if not request.json:
         abort(400)
 
-    if request.headers['Content-Type'] != 'application/json':
+    if request.headers['Content-Type'] != 'application/json; charset=UTF-8':
         abort(400)
 
     username = request.json.get('username')

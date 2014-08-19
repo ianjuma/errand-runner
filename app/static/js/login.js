@@ -17,7 +17,7 @@ $(function () {
             type: "POST",
             url: "/admin/",
             data: jsonData,
-            contentType: "application/json",
+            contentType: "application/json; charset=UTF-8",
             dataType: "json",
 
             success: function() {

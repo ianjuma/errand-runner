@@ -22,7 +22,7 @@ $('#update-task').click( function() {
   $.ajax({
     type: 'POST',
     url: '/api/editTask/'+ task_id + '/',
-    contentType: 'application/json',
+    contentType: 'application/json; charset=UTF-8',
 
     success: function(result) {
       console.log(result);
@@ -58,7 +58,7 @@ $('#delete-task').click( function() {
   $.ajax({
     type: 'POST',
     url: '/api/deleteTask/',
-    contentType: 'application/json',
+    contentType: 'application/json; charset=UTF-8',
 
     success: function(result) {
       console.log(result);
@@ -133,7 +133,7 @@ $('#add-task').click( function() {
   $.ajax({
     type: 'PUT',
     url: '/api/editTask/'+task_id + '/',
-    contentType: 'application/json',
+    contentType: 'application/json; charset=UTF-8',
 
     success: function(result) {
       console.log(result);
