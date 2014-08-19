@@ -39,7 +39,7 @@ $('#loginData').click( function() {
         $.ajax({
           type: 'POST',
           url: '/api/signUp/',
-          contentType: 'application/json',
+          contentType: 'application/json; charset=UTF-8',
           datatype: "json",
           cache: false,
           timeout: 60000,

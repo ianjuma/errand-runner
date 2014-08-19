@@ -40,7 +40,7 @@ function  getTaskData() {
   $.ajax({
     type: 'POST',
     url: '/api/getTasks/',
-    contentType: 'application/json',
+    contentType: 'application/json; charset=UTF-8',
 
     success: function(result) {
 

@@ -29,7 +29,7 @@ $('#save-data').click( function() {
   $.ajax({
     type: 'POST',
     url: '/api/addTask/',
-    contentType: 'application/json',
+    contentType: 'application/json; charset=UTF-8',
 
     success: function(result) {
       console.log(result);
@@ -60,7 +60,7 @@ $('#delete-data').click( function() {
   $.ajax({
     type: 'POST',
     url: '/api/removeUser/',
-    contentType: 'application/json',
+    contentType: 'application/json; charset=UTF-8',
 
     success: function(result) {
       NProgress.set(1.0);
@@ -123,7 +123,7 @@ $('#save-user').click( function() {
   $.ajax({
     type: 'POST',
     url: '/profile/'+username+'/',
-    contentType: 'application/json',
+    contentType: 'application/json; charset=UTF-8',
 
     success: function(result) {
       NProgress.set(1.0);

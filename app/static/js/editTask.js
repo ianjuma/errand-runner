@@ -23,7 +23,7 @@ $('#save-data').click( function() {
   $.ajax({
     type: 'POST',
     url: '/api/addTask/',
-    contentType: 'application/json',
+    contentType: 'application/json; charset=UTF-8',
 
     success: function(result) {
       console.log(result);
@@ -103,7 +103,7 @@ $('#add-task').click( function() {
   $.ajax({
     type: 'POST',
     url: '/api/addTask/',
-    contentType: 'application/json',
+    contentType: 'application/json; charset=UTF-8',
 
     success: function(result) {
       console.log(result);

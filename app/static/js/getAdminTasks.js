@@ -24,7 +24,7 @@ function  getTaskData() {
   $.ajax({
     type: 'POST',
     url: '/adminTasks/',
-    contentType: 'application/json',
+    contentType: 'application/json; charset=UTF-8',
 
     success: function(result) {
       // console.log(result);
