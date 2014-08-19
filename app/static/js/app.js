@@ -72,7 +72,7 @@ $('#signInData').click( function(event) {
     data: userData,
     type: 'POST',
     dataType: 'json',
-    contentType: 'application/json',
+    contentType: 'application/json; charset=UTF-8',
     url: '/api/signIn/',
 
     success: function(result) {
@@ -81,7 +81,7 @@ $('#signInData').click( function(event) {
     },
     error: function(result) {
       console.log(result);
-      alert('The username or password provided is incorrect');
+      // alert('The username or password provided is incorrect');
     }
   });
 });
