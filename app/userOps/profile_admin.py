@@ -96,8 +96,8 @@ def profile(username):
         state=state, username=username, mobileNo=mobileNo)
 
 
-@app.route('/payments/', methods=['POST', 'GET'])
-def payments():
+@app.route('/post_payments/<username>/', methods=['POST', 'GET'])
+def payments(username):
     #if session[username] is None:
     #    return redirect('/')
 
