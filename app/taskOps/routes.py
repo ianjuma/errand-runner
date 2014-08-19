@@ -66,7 +66,10 @@ def signIn():
     if not request.json:
         abort(400)
 
-    if request.headers['Content-Type'] != 'application/json':
+    print request.json
+    print request.headers['Content-Type']
+
+    if request.headers['Content-Type'] != 'application/json; charset=UTF-8':
         abort(400)
 
     session.permanent = True
