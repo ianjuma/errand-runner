@@ -67,6 +67,7 @@ $('#signInData').click( function(event) {
   data = { "username": username, "password": passwd };
   userData = JSON.stringify(data);
   console.log(userData);
+  
 
   $.ajax({
     data: userData,
