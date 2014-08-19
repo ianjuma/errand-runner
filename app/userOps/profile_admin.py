@@ -96,16 +96,16 @@ def profile(username):
         state=state, username=username, mobileNo=mobileNo)
 
 
-@app.route('/payments/<username>/', methods=['POST', 'GET'])
-def payments(username):
+@app.route('/payments/', methods=['POST', 'GET'])
+def payments():
     #if session[username] is None:
     #    return redirect('/')
 
-    if username not in session:
-        return redirect('/')
+    #if username not in session:
+    #    return redirect('/')
 
     try:
-        username = session[username]
+        username = session['username']
     except KeyError:
         return redirect('/')
 
