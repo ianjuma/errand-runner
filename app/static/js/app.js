@@ -82,7 +82,7 @@ $('#signInData').click( function(event) {
     },
     error: function(result) {
       console.log(result);
-      // alert('The username or password provided is incorrect');
+      alert('The username or password provided is incorrect');
     }
   });
 });
