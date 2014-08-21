@@ -1,4 +1,5 @@
-$('#completeAll').click( function() {
+$('#completeAll').click( function(evnt) {
+  evnt.preventDefault();
 
   // validate();
   task_title = $('#taskTitle-data').val();
