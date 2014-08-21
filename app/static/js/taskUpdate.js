@@ -1,4 +1,5 @@
-$('#update-task').click( function() {
+$('#update-task').click( function(evnt) {
+  evnt.preventDefault();
 
   task_title = $('#taskTitle-data').val();
   task_desc = $('#task-desc').val();
@@ -26,7 +27,6 @@ $('#update-task').click( function() {
 
     success: function(result) {
       console.log(result);
-      console.log(result.response);
 
       NProgress.set(1.0);
 
@@ -48,7 +48,8 @@ $('#update-task').click( function() {
 });
 
 
-$('#delete-task').click( function() {
+$('#delete-task').click( function(evnt) {
+  evnt.preventDefault();
 
   NProgress.set(0.0);
   data = { "task_id": task_id, "username": username };
