@@ -71,7 +71,7 @@ function updateTotal (total) {
 
 	html = '<div class="list-group tickets top-space">' +
         '<li href="#" class="list-group-item">Total<span class="badge badge-success">$ ' + total + '</span></li>' +
-    '</div>'
+    '</div>';
 
 	$('#alert-price').append(html);
 }
@@ -108,7 +108,7 @@ function renderTotal (total) {
 
 	html = '<div class="list-group tickets top-space">' +
         '<li href="#" class="list-group-item">Total<span class="badge badge-success">$ ' + total + '</span></li>' +
-    '</div>'
+    '</div>';
 
 	$('#alert-price').append(html);
 }
