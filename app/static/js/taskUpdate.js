@@ -85,7 +85,9 @@ $('#delete-task').click( function(evnt) {
 });
 
 
-$('#add-task').click( function() {
+$('#add-task').click( function(evnt) {
+  evnt.preventDefault();
+  
   task_title = $('#taskTitle-data').val();
   task_desc = $('#task-desc').val();
   task_urgency = $('#urgent-data').val();

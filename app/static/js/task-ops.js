@@ -99,7 +99,9 @@ function validate() {
 }
 
 
-$('#updateUserInfo').click( function() {
+$('#updateUserInfo').click( function(evnt) {
+  evnt.preventDefault();
+
   first_name = $('#firstname').val();
   last_name = $('#lastname').val();
   email = $('#email').val();
