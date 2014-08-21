@@ -7,7 +7,7 @@ function renderTask (result) {
 
     $('#taskBody').append(
     '<tr>' +
-      '<td><input type="checkbox" />' + task['task_title'] + '</td>' +
+      '<td>' + task['task_title'] + '</td>' +
       '<td> <a href="' + url + '"> view details </a> </td>' + 
       '<td class="text-right color-success">w47w07q07wr7wq</td>' +
       '<td>' + task['task_urgency'] + '</td>' +
