@@ -78,7 +78,7 @@ $('#signInData').click( function(event) {
 
     success: function(result) {
       console.log(result);
-      window.location.href = "/createTask/" + username + '/';
+      window.location.href = "/myTasks/" + username + '/';
     },
     error: function(result) {
       console.log(result);
