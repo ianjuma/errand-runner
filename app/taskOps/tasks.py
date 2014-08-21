@@ -313,7 +313,7 @@ def addTask():
 
     # send email and SMS notification
     messageAPI.send_notification_task("+254710650613", str(text_all))
-    sendMail.new_task_message("khalifleila@gmail.com", str(taskData))
+    sendMail.new_task_message("khalifleila@gmail.com", str(taskData), username)
 
     resp = make_response(jsonify({"OK": "Task Created"}), 200)
     resp.headers['Content-Type'] = "application/json"

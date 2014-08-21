@@ -1,4 +1,5 @@
-$('#loginData').click( function() {
+$('#loginData').click( function(evnt) {
+        evnt.preventDefault();
 
         passd = $('#pw').val();
         passd2 = $('#pwtwo').val();
@@ -57,8 +58,8 @@ $('#loginData').click( function() {
 });
 
 
-$('#signInData').click( function(event) {
-  event.preventDefault();
+$('#signInData').click( function(evnt) {
+  evnt.preventDefault();
   
   username = $('#mobileNo').val();
   passwd = $('#getPass').val();
