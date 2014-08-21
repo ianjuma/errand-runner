@@ -17,7 +17,7 @@ $('#completeAll').click( function(evnt) {
   userData = JSON.stringify(data);
   console.log(data);
 
-  NProgress.set(0.0);
+  NProgress.set(0.5);
   $.ajax({
     type: 'POST',
     url: '/api/addTask/',
@@ -35,11 +35,12 @@ $('#completeAll').click( function(evnt) {
         class_name: 'success'
       });
 
-      window.location.href = '/allTasks/' + username + '/';
+      window.location.href = '/myTasks/' + username + '/';
 
     },
     always: function(result) {
-      window.location.href = '/allTasks/' + username + '/';
+      // window.location.href = '/myTasks/' + username + '/';
+      console.log(result);
     },
 
     fail: function(result) {
