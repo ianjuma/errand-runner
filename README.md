@@ -15,12 +15,23 @@ http://taskwetu.herokuapp.com/
 - [x] MVC structure
 - [x] Heroku Procfile, deployment
 - [x] Tests
-- [x] design UI
-- [ ] elastic search + postgres river
+- [x] design UI/UX
+- [ ] sessions with redis
 - [x] sendgrid API (add credit card)
 - [x] postgres on heroku (add credit card) / run postgres on external server
-- [ ] Migrate App instance to EU
+- [x] Migrate App instance to EU
+
+
+### Development
 - [ ] Static Assets (CDN) - minimise + compress
 - [ ] setup nginx- server static assets
 - [ ] social oauth login
 - [ ] pesapal integration
+- [ ] clean UI
+- [ ] fix email API - message
+
+
+### UI clean
+- [ ] createTask
+- [ ] fix base template
+- [ ] notifications - login/createTask/myTasks/profile

@@ -7,7 +7,7 @@ function renderTask (result) {
 
     $('#taskBody').append(
     '<tr>' +
-      '<td><input type="checkbox" />' + task['task_title'] + '</td>' +
+      '<td>' + task['task_title'] + '</td>' +
       '<td> <a href="' + url + '"> view details </a> </td>' + 
       '<td class="text-right color-success">w47w07q07wr7wq</td>' +
       '<td>' + task['task_urgency'] + '</td>' +
@@ -21,10 +21,12 @@ function renderTask (result) {
 
 
 function renderInfo() {
+      url = '/' + 'myTasks/' + username + '/';
       html = '<div class="alert alert-success">' +
           '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>' +
-          '<i class="fa fa-check sign"></i><strong>You Have no tasks. Create a task</strong>' +
+          '<i class="fa fa-check sign"></i><strong>You Have no tasks.<a href='+url+'> Create a task</a></strong>' +
       '</div>';
+      console.log(url);
 
       $('#info').append(html);
 }

@@ -21,6 +21,9 @@ from json import dumps
 import simplejson
 import requests
 
+from mail import sendMail
+from mail import messageAPI
+
 
 @app.route('/createTask/<username>/', methods=['POST', 'GET'])
 def tasks(username):
@@ -285,15 +288,15 @@ def addTask():
     task_title = request.json.get('title')
     # then update userInfo
     task_category = request.json.get('category')
-    task_urgency = request.json.get('urgency')
+    task_urgency = request.json.get('urgency') # checkbox
     due_date = request.json.get('due_date')
     locationData = request.json.get('locationData')
     contactPersons = request.json.get('contactPersons')
 
     taskData = { "username": username, "task_title": task_title, "task_desc": task_desc, "locationData": locationData,
-                "task_category": task_category, "task_urgency": "started", "due_date": due_date, "contactPersons": contactPersons }
+                "task_category": task_category, "task_urgency": "pending", "due_date": due_date, "contactPersons": contactPersons }
 
-    # text_all = "LinkUs new task -> " + task_title + task_desc
+    text_all = "LinkUs new task %s " %(task_title)
 
     try:
         r.table('Tasks').insert(taskData).run(g.rdb_conn)
@@ -309,8 +312,8 @@ def addTask():
         return resp
 
     # send email and SMS notification
-    # sendText("+254710650613", str(text_all))
-    # send_message("khalifleila@gmail.com", str(taskData))
+    messageAPI.send_notification_task("+254710650613", str(text_all))
+    sendMail.new_task_message("khalifleila@gmail.com", str(taskData), username)
 
     resp = make_response(jsonify({"OK": "Task Created"}), 200)
     resp.headers['Content-Type'] = "application/json"

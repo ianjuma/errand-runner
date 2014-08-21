@@ -3,8 +3,8 @@ from AfricasTalkingGateway import AfricasTalkingGateway, AfricasTalkingGatewayEx
 import logging
 logging.basicConfig(filename='SMS.log', level=logging.DEBUG)
 
-username = "app27418636@heroku.com"
-apikey = ""
+username = "IanJuma"
+apikey = "840a1b44b95cb68ab856cab41237700266dc22e5a795e341c067a02cbc3cb937"
 # Please ensure you include the country code (+254 for Kenya in this case)
 
 
@@ -43,3 +43,18 @@ def sendText(to, code):
 
     except AfricasTalkingGatewayException, e:
         logging.warning('Database setup completed %s' % str(e))
+
+
+def send_notification_task(to, taskData):
+    gateway = AfricasTalkingGateway(username, apikey)
+    message = "New Task Has been created %s " % (taskData)
+    recipients = gateway.sendMessage(to, message)
+
+    try:
+        for recipient in recipients:
+            logging.info('number=%s;status=%s;messageId=%s;cost=%s'
+                         % (recipient['number'], recipient['status'],
+                            recipient['messageId'], recipient['cost']))
+
+    except AfricasTalkingGatewayException, e:
+        logging.warning('SMS failed to send %s' % str(e))

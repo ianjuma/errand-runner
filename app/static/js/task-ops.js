@@ -1,4 +1,5 @@
-$('#completeAll').click( function() {
+$('#completeAll').click( function(evnt) {
+  evnt.preventDefault();
 
   // validate();
   task_title = $('#taskTitle-data').val();
@@ -16,7 +17,7 @@ $('#completeAll').click( function() {
   userData = JSON.stringify(data);
   console.log(data);
 
-  NProgress.set(0.0);
+  NProgress.set(0.5);
   $.ajax({
     type: 'POST',
     url: '/api/addTask/',
@@ -34,11 +35,12 @@ $('#completeAll').click( function() {
         class_name: 'success'
       });
 
-      window.location.href = '/allTasks/' + username + '/';
+      window.location.href = '/myTasks/' + username + '/';
 
     },
     always: function(result) {
-      window.location.href = '/allTasks/' + username + '/';
+      // window.location.href = '/myTasks/' + username + '/';
+      console.log(result);
     },
 
     fail: function(result) {
@@ -98,7 +100,9 @@ function validate() {
 }
 
 
-$('#updateUserInfo').click( function() {
+$('#updateUserInfo').click( function(evnt) {
+  evnt.preventDefault();
+
   first_name = $('#firstname').val();
   last_name = $('#lastname').val();
   email = $('#email').val();
