@@ -7,29 +7,30 @@ pesapal.consumer_secret = 'X6mK+tUOne8tHbIZvETFjDvuDz0='
 pesapal.testing = False
 
 
-### post a direct order
+def postOrder(request_data):
+    """
+        build url to redirect user to confirm payment
+    """
+    post_params = {
+        'oauth_callback': 'http://188.226.195.158/billing/'
+    }
 
-post_params = {
-  'oauth_callback': 'http://188.226.195.158/billing/'
-}
-request_data = {
-  'Amount': '100',
-  'Description': 'E-book purchase',
-  'Type': 'MERCHANT',
-  'Reference': '12erwe',
-  'PhoneNumber': '0701435178'
-}
-# build url to redirect user to confirm payment
-url = pesapal.postDirectOrder(post_params, request_data)
+    url = pesapal.postDirectOrder(post_params, request_data)
 
 
-### get order status
+def queryPayment(post_params):
+    """ 
+        Get order status
+    """
+    url = pesapal.queryPaymentStatus(post_params)
 
-post_params = {
-  'pesapal_merchant_reference': '000',
-  'pesapal_transaction_tracking_id': '000'
-}
-url = pesapal.queryPaymentStatus(post_params)
+
+def queryPamentDetails(post_params):
+    """
+        Get detailed order status
+    """
+
+
 response = urllib2.urlopen(url)
 print response.read()
 
@@ -44,7 +45,6 @@ response = urllib2.urlopen(url)
 print response.read()
 
 
-### get detailed order status
 
 post_params = {
   'pesapal_merchant_reference': '000',
