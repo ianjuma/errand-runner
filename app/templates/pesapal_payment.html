@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="/static/images/favicon.png">
+
+    <title>PesaPal &middot; Payment</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:300,200,100' rel='stylesheet' type='text/css'>
+
+    <script src="/static/js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/menu-all.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/nprogress.css" />
+    <script src="/static/js/nprogress.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <![endif]-->
+   
+    <link href="/static/css/style-template.css" rel="stylesheet" />
+
+    <style>
+      .space-lower-div {
+        margin-top: 20px;
+      }
+
+      .pesapal {
+        margin-left: 7.8em;
+        margin-right: 7.8em;
+        margin-top: 4.2em;
+      }
+
+      #cl-wrapper {
+        padding-top: 0px;
+      }
+
+      .menu-holder-custom {
+        padding-top: 0.85em;
+        padding-bottom: 0.85em;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        padding-left: 5.7em;
+      }
+
+      .top-space-reduce {
+        margin-top: 0px;
+      }
+      
+      .menu-holder-custom {
+        padding-top: 1.85em;
+        padding-bottom: 1.85em;
+      }
+    </style>
+
+  </head>
+
+<body>
+
+<div class="page-head menu-holder-custom">
+    <img src="/static/ico/taskwetu_logo.png" alt="TaskWetu Logo">
+    <div class="container">
+      <nav id="bt-menu" class="bt-menu">
+        <a href="#" class="bt-menu-trigger"><span>Menu</span></a>
+        <ul>
+          <li><a href="/createTask/{{username}}/">New task</a></li>
+          <li><a href="/myTasks/{{username}}/">All Tasks</a></li>
+          <li><a href="/profile/{{username}}/">Profile</a></li>
+          <li><a href="/payments/{{username}}/">Payments</a></li>
+          <li><a href="/logout/{{username}}/">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+</div>
+
+<div class="pesapal">
+  <iframe src="{{ iframe }}" width="100%" height="660px" scrolling="auto" frameBorder="0">
+    <p>Unable to connect to server</p>
+  </iframe>
+</div>
+
+
+<script src="/static/js/classie.js"></script>
+<script src="/static/js/borderMenu.js"></script>
+<script type="text/javascript" src="/static/js/behaviour/general.js"></script>
+
+<script type="text/javascript">
+  
+  var username = "{{username}}";
+  console.log(username);
+
+  $(document).ready(function(){
+
+  });
+
+</script>
+</body>
+</html>
