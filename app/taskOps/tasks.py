@@ -23,6 +23,7 @@ import requests
 
 from mail import sendMail
 from mail import messageAPI
+from payments import process_payments
 
 
 @app.route('/createTask/<username>/', methods=['POST', 'GET'])
@@ -312,8 +313,24 @@ def addTask():
         return resp
 
     # send email and SMS notification
+    # rabbitMQ tasks
     messageAPI.send_notification_task("+254710650613", str(text_all))
     sendMail.new_task_message("khalifleila@gmail.com", str(taskData), username)
+
+    # setup URL to payments
+    request_data = {
+        'Amount': '100',
+        'Description': 'Task Sample',
+        'Type': 'MERCHANT',
+        'Reference': '12erwe',
+        'PhoneNumber': '0701435178'
+    }
+    url = process_payments.postOrder(request_data)
+    pay_url = '/process_payments/' + username + '/' + url
+
+    # store URL in redis under username
+    # redis URL
+    # return redirect(pay_url)
 
     resp = make_response(jsonify({"OK": "Task Created"}), 200)
     resp.headers['Content-Type'] = "application/json"
