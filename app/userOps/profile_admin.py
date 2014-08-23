@@ -210,7 +210,7 @@ def removeUser():
 
 
     session.pop(username, None)
-    
+
     try:
         r.table('UsersInfo').get(username).delete().run(g.rdb_conn)
     except RqlError:
@@ -240,13 +240,11 @@ def addUser():
     # get JSON params
     fname = request.json.get('fname')
     lname = request.json.get('lname')
-    mobileNo = request.json.get('mobileNo')  # this <- id
+    mobileNo = request.json.get('mobileNo')
     state = request.json.get('state')
     location = request.json.get('location')
     email = request.json.get('email')
 
-    # no id just work with mobileNo - easier
-    # we'll send a text message enter code!
 
     if mobileNo.startswith('0'):
         mobileNo = mobileNo[1:]
