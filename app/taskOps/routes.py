@@ -308,8 +308,8 @@ def process_payment(url):
 
 
     # fetch url from redis - attach iframe to window
-    #url = request.get.args('url')
-    # move sessions + url routes - restful
+    # url = request.get.args('url')
+    
 
     # demo url
     """
