@@ -4,7 +4,7 @@ import pesapal
 
 pesapal.consumer_key = 'CkTmeBHciLM07WG0ltwGu8fklRSKdEqd'
 pesapal.consumer_secret = 'X6mK+tUOne8tHbIZvETFjDvuDz0='
-pesapal.testing = True
+pesapal.testing = False
 
 # sample request data - dummy
 request_data = {
@@ -21,7 +21,7 @@ def postOrder(request_data):
         build url to redirect user to confirm payment
     """
     post_params = {
-        'oauth_callback': 'http://127.0.0.1/post_payment/'
+        'oauth_callback': 'http://taskwetu.com/post_payment/'
     }
 
     url = pesapal.postDirectOrder(post_params, request_data)

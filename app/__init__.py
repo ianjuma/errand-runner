@@ -17,6 +17,9 @@ app.debug = True
 import rethinkdb as r
 from rethinkdb import *
 
+import redis
+red = redis.StrictRedis(host='localhost', port=6379, db=0)
+
 logging.basicConfig(filename='TaskWangu.log', level=logging.DEBUG)
 salt = 'd40037e1ff7841838235533d910bbf24'
 

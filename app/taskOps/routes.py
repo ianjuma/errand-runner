@@ -8,7 +8,7 @@ from app import r
 from app import g
 from app import logging
 from app import salt
-#from app import cursor
+from app import red
 from app import RqlError
 
 from flask import (render_template)
@@ -274,7 +274,7 @@ def confirmUser(smscode):
 
 
 
-@app.route('/post_payment', methods=['GET'])
+@app.route('/post_payment', methods=['GET', 'POST'])
 def post_payment_pesapal():
     #if username not in session:
     #    return redirect('/')
@@ -296,8 +296,8 @@ def post_payment_pesapal():
     return resp
 
 
-@app.route('/process_payments/<url>', methods=['GET'])
-def process_payment(url):
+@app.route('/process_payments/', methods=['GET'])
+def process_payment():
     #if username not in session:
     #    return redirect('/')
 
@@ -312,6 +312,7 @@ def process_payment(url):
 
     # fetch url from redis - attach iframe to window
     # url = request.get.args('url')
+    url = red.hget(username, 'url')
 
     # demo url
     """

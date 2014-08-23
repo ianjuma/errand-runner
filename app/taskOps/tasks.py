@@ -7,7 +7,7 @@ from app import app
 from app import r
 from app import g
 from app import logging
-#from app import cursor
+from app import red
 from app import RqlError
 from app import session
 
@@ -357,14 +357,16 @@ def addTask():
         'PhoneNumber': '0701435178'
     }
     url = process_payments.postOrder(request_data)
-    pay_url = '/process_payments/' + username + '/' + url
-    print pay_url
+    # pay_url = '/process_payments/'
 
     # store URL in redis under username
-    # redis URL
-    # return redirect(pay_url)
+    # set with expire
+    red.hset(username, 'url', url)
+    red.expire(username, 300)
+
+    # resp = make_response(redirect(pay_url, code=302))
 
     resp = make_response(jsonify({"OK": "Task Created"}), 200)
     resp.headers['Content-Type'] = "application/json"
     resp.cache_control.no_cache = True
-    return resp
+    return resp    
