@@ -31,7 +31,7 @@ $(function () {
                 window.setTimeout(urlChange, 1150);
 
                 function urlChange() {
-                  document.location = "/adminTasks/";
+                  document.location = "/adminTasks/" + username + '/';
                 }
 
             },

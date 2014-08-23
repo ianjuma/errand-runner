@@ -31,14 +31,11 @@ def tasks(username):
     if username not in session:
         return redirect('/')
 
-    # task = RegistrationForm(request.form)
-    # get mobileNo
-    # check if no exists
     return render_template('CREATEtask.html', username=username)
 
 
-@app.route('/adminTasks/', methods=['POST', 'GET'])
-def getAdminTasks():
+@app.route('/adminTasks/<username>/', methods=['GET'])
+def getAdminTasks(username):
     if request.method == 'POST':
 
         if not request.json:
@@ -47,8 +44,11 @@ def getAdminTasks():
         if request.headers['Content-Type'] != 'application/json; charset=UTF-8':
             abort(400)
 
-        username = request.json.get('username')
-        mobileNo = request.json.get('mobileNo')
+        
+        # add to sessions then login
+        if username not in session:
+            return redirect('/')
+
 
         taskData = []
         try:
@@ -135,7 +135,7 @@ def getTasks():
     return resp
 
 
-@app.route('/editTask/<username>/<task_id>/', methods=['POST', 'GET', 'PUT', 'DELETE'])
+@app.route('/editTask/<username>/<task_id>/', methods=['GET'])
 def taskInfo(username, task_id):
     #if session[username] is None:
     #    return redirect('/')

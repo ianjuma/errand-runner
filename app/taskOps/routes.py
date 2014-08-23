@@ -38,6 +38,7 @@ def adminSign():
         username = request.json.get('username')
         password = request.json.get('password')
 
+
         try:
             user = r.table('Admin').get(username).run(g.rdb_conn)
         except Exception, e:
@@ -49,6 +50,8 @@ def adminSign():
             resp.headers['Content-Type'] = "application/json"
             resp.cache_control.no_cache = True
             return resp
+
+        session[username] = username
 
         resp = make_response(jsonify({"OK": "Signed In"}), 200)
         resp.headers['Content-Type'] = "application/json"
