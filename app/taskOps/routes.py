@@ -221,15 +221,16 @@ def addNewsLetter():
 
 @app.route('/logout/', methods=['GET'])
 def logout():
-    # remove from session
-    #print request.cookies
+    # remove from session and clear cookie
     if 'username' not in request.cookies:
         redirect('/')
 
     username = request.cookies.get('username')
     session.pop(username, None)
 
-    return redirect('/')
+    resp = make_response( redirect('/') )
+    resp.set_cookie('username', '', expires=0)
+    return resp
 
 
 @app.route('/confirm/<smscode>/', methods=['PUT', 'POST'])
