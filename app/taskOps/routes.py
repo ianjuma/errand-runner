@@ -20,7 +20,6 @@ from flask import session
 import hashlib
 from random import randint
 
-import requests
 import simplejson
 
 secret_key = app.secret_key
@@ -172,8 +171,8 @@ def getRandID():
             "email": email, "password": hashed_password, "smscode": SMScode, "mobileNo": ""}).run(g.rdb_conn)
             
     except RqlError:
-        payload = "LOG_INFO=" + simplejson.dumps({ 'Sign Up':'Sign Up Failed' })
-        requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
+        # payload = "LOG_INFO=" + simplejson.dumps({ 'Sign Up':'Sign Up Failed' })
+        # requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
 
         logging.warning('DB code verify failed on /api/signUp/')
         resp = make_response(jsonify({"Error": "503 DB error"}), 503)
@@ -237,8 +236,8 @@ def confirmUser(username, smscode):
         user = r.table(
             'UsersInfo').get(username).pluck('smscode').run(g.rdb_conn)
     except RqlError:
-        payload = "LOG_INFO=" + simplejson.dumps({ 'Confirmation Error':'Email Confirm Failed' })
-        requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
+        # payload = "LOG_INFO=" + simplejson.dumps({ 'Confirmation Error':'Email Confirm Failed' })
+        # requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
 
         logging.warning('DB op failed on /confirmUser/')
         resp = make_response(jsonify({"Error": "503 DB error"}), 503)
@@ -282,6 +281,7 @@ def process_payment(username, url):
     # fetch url from redis - attach iframe to window
     #url = request.get.args('url')
     # move sessions + url routes - restful
+
 
     """
     url = 
