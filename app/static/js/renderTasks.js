@@ -27,7 +27,7 @@ function renderTasks(result) {
       '<td>'+ task['task_title'] +'</td>' +
       '<td>'+ task['task_urgency'] +'</td>' +
       '<td>'+ task['task_desc'] +'</td>' +
-      '<td><a href=/editTask/' + username + '/' + task['task_id'] + '>' + '#' + task['task_id'] + '</a></td>' +
+      '<td><a href=/task/editTask/' + task['task_id'] + '>' + '#' + task['task_id'] + '</a></td>' +
     '</tr>');
   });
 }

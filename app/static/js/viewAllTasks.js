@@ -3,7 +3,7 @@ function renderTask (result) {
   _.map(result, function (task) {
     console.log(task);
 
-    url = '/editTask/' + username + '/' + task['task_id'] + '/';
+    url = '/task/editTask/' + task['task_id'] + '/';
 
     $('#taskBody').append(
     '<tr>' +
@@ -19,9 +19,8 @@ function renderTask (result) {
   });
 }
 
-
 function renderInfo() {
-      url = '/' + 'myTasks/' + username + '/';
+      url = '/task/myTasks/';
       html = '<div class="alert alert-success">' +
           '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>' +
           '<i class="fa fa-check sign"></i><strong>You Have no tasks.<a href='+url+'> Create a task</a></strong>' +

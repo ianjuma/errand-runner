@@ -18,28 +18,30 @@ from flask import abort, request
 
 from json import dumps
 
-import simplejson
-import requests
-
 from mail import sendMail
 from mail import messageAPI
+from payments import process_payments
 
 
-@app.route('/createTask/<username>/', methods=['POST', 'GET'])
-def tasks(username):
+@app.route('/task/createTask/', methods=['POST', 'GET'])
+def tasks():
     #if session[username] is None:
     #    return redirect('/')
 
-    if username not in session:
-        return redirect('/')
+    #if username not in session:
+    #    return redirect('/')
 
-    # task = RegistrationForm(request.form)
-    # get mobileNo
-    # check if no exists
+    if 'username' not in request.cookies:
+        redirect('/')
+
+    if request.cookies.get('username') == '' or request.cookies.get('username') is None:
+        redirect('/')
+
+    username = request.cookies.get('username')
     return render_template('CREATEtask.html', username=username)
 
 
-@app.route('/adminTasks/', methods=['POST', 'GET'])
+@app.route('/adminTasks/', methods=['GET'])
 def getAdminTasks():
     if request.method == 'POST':
 
@@ -49,8 +51,19 @@ def getAdminTasks():
         if request.headers['Content-Type'] != 'application/json; charset=UTF-8':
             abort(400)
 
-        username = request.json.get('username')
-        mobileNo = request.json.get('mobileNo')
+        
+        # add to sessions then login
+        #if username not in session:
+        #    return redirect('/')
+
+        #print request.cookies
+        if 'username' not in request.cookies:
+            redirect('/')
+
+        username = request.cookies.get('username')
+        if request.cookies.get('username') == '' or request.cookies.get('username') is None:
+            redirect('/')
+
 
         taskData = []
         try:
@@ -86,14 +99,22 @@ def getAdminTasks():
     return render_template('adminViewTasks.html', task_size=task_size)
 
 
-@app.route('/myTasks/<username>/', methods=['POST', 'GET'])
-def getAllTasks(username):
+@app.route('/task/myTasks/', methods=['POST', 'GET'])
+def getAllTasks():
     # wrong session - keyerror fail
     #if session[str(username)] is None:
     #    return redirect('/')
 
-    if username not in session:
-        return redirect('/')
+    #if username not in session:
+    #    return redirect('/')
+
+    if 'username' not in request.cookies:
+        redirect('/')
+
+    if request.cookies.get('username') == '' or request.cookies.get('username') is None:
+        redirect('/')
+
+    username = request.cookies.get('username')
 
     return render_template('VIEWtasks.html', username=username)
 
@@ -120,8 +141,8 @@ def getTasks():
             taskData.append(data)
 
     except RqlError:
-        payload = "LOG_INFO=" + simplejson.dumps({ 'Request':'app.before' })
-        requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
+        #payload = "LOG_INFO=" + simplejson.dumps({ 'Request':'app.before' })
+        #requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
 
         logging.warning('DB code verify failed on /api/getTasks/')
         resp = make_response(jsonify({"Error": "503 DB error"}), 503)
@@ -137,13 +158,21 @@ def getTasks():
     return resp
 
 
-@app.route('/editTask/<username>/<task_id>/', methods=['POST', 'GET', 'PUT', 'DELETE'])
-def taskInfo(username, task_id):
+@app.route('/task/editTask/<task_id>/', methods=['GET'])
+def taskInfo(task_id):
     #if session[username] is None:
     #    return redirect('/')
 
-    if username not in session:
-        return redirect('/')
+    #if username not in session:
+    #    return redirect('/')
+
+    if 'username' not in request.cookies:
+        redirect('/')
+
+    if request.cookies.get('username') == '' or request.cookies.get('username') is None:
+        redirect('/')
+
+    username = request.cookies.get('username')
 
     try:
         user = r.table('Tasks').get(task_id).run(g.rdb_conn)
@@ -158,8 +187,8 @@ def taskInfo(username, task_id):
 
 
     except RqlError:
-        payload = "LOG_INFO=" + simplejson.dumps({ '/editTask/<username>/<task_id>/':'DB operation failed on /editTask/<task_id>/' })
-        requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
+        #payload = "LOG_INFO=" + simplejson.dumps({ '/editTask/<username>/<task_id>/':'DB operation failed on /editTask/<task_id>/' })
+        #requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
 
         logging.warning('DB operation failed on /editTask/<task_id>/')
         resp = make_response(jsonify({"Error": "503 DB error"}), 503)
@@ -256,8 +285,8 @@ def deleteTask():
     except RqlError:
         logging.warning('DB code verify failed on /api/deleteTask/')
 
-        payload = "LOG_INFO=" + simplejson.dumps({ '/editTask/<username>/<task_id>/':'DB operation failed on /editTask/<task_id>/' })
-        requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
+        #payload = "LOG_INFO=" + simplejson.dumps({ '/editTask/<username>/<task_id>/':'DB operation failed on /editTask/<task_id>/' })
+        #requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
         
         resp = make_response(jsonify({"Error": "503 DB error"}), 503)
         resp.headers['Content-Type'] = "application/json"
@@ -303,8 +332,8 @@ def addTask():
     except RqlError:
         logging.warning('DB code verify failed on /api/addTask/')
 
-        payload = "LOG_INFO=" + simplejson.dumps({ '/api/addTask/':'DB operation failed on /addTask/' })
-        requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
+        #payload = "LOG_INFO=" + simplejson.dumps({ '/api/addTask/':'DB operation failed on /addTask/' })
+        #requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
 
         resp = make_response(jsonify({"Error": "503 DB error"}), 503)
         resp.headers['Content-Type'] = "application/json"
@@ -312,8 +341,28 @@ def addTask():
         return resp
 
     # send email and SMS notification
-    messageAPI.send_notification_task("+254710650613", str(text_all))
-    sendMail.new_task_message("khalifleila@gmail.com", str(taskData), username)
+    # rabbitMQ tasks
+    try:
+        messageAPI.send_notification_task("+254710650613", str(text_all))
+        sendMail.new_task_message("khalifleila@gmail.com", str(taskData), username)
+    except Exception:
+        logging.warning('Send SMS failed on /api/addTask/ notification failed')
+
+    # setup URL to payments
+    request_data = {
+        'Amount': '100',
+        'Description': 'Task Sample',
+        'Type': 'MERCHANT',
+        'Reference': '12erwe',
+        'PhoneNumber': '0701435178'
+    }
+    url = process_payments.postOrder(request_data)
+    pay_url = '/process_payments/' + username + '/' + url
+    print pay_url
+
+    # store URL in redis under username
+    # redis URL
+    # return redirect(pay_url)
 
     resp = make_response(jsonify({"OK": "Task Created"}), 200)
     resp.headers['Content-Type'] = "application/json"

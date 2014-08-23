@@ -23,13 +23,23 @@ from random import randint
 from mail import sendMail
 
 
-@app.route('/profile/<username>/', methods=['POST', 'GET'])
-def profile(username):
+@app.route('/profile/', methods=['POST', 'GET'])
+def profile():
     #if session[username] is None:
     #    return redirect('/')
     
-    if username not in session:
-        return redirect('/')
+    #if username not in session:
+    #    return redirect('/')
+
+
+    if 'username' not in request.cookies:
+        redirect('/')
+
+    if request.cookies.get('username') == '' or request.cookies.get('username') is None:
+        redirect('/')
+
+    username = request.cookies.get('username')
+
 
     if request.method == 'POST':
 
@@ -96,13 +106,21 @@ def profile(username):
         state=state, username=username, mobileNo=mobileNo)
 
 
-@app.route('/payments/<username>/', methods=['POST', 'GET'])
-def payments(username):
+@app.route('/payments/', methods=['POST', 'GET'])
+def payments():
     #if session[username] is None:
     #    return redirect('/')
 
-    if username not in session:
-        return redirect('/')
+    #if username not in session:
+    #    return redirect('/')
+
+    if 'username' not in request.cookies:
+        redirect('/')
+
+    if request.cookies.get('username') == '' or request.cookies.get('username') is None:
+        redirect('/')
+
+    username = request.cookies.get('username')
 
     # session is a list object
     #try:
@@ -180,13 +198,43 @@ def removeUser():
     if username not in session:
         return redirect('/')
 
-    # mobile no is the id - primary key
+
+    try:
+        user = r.table('UsersInfo').get(username).run(g.rdb_conn)
+    except Exception, e:
+        logging.warning('DB signIn failed on /api/signIn/ -> user not found')
+        raise e
+
+    if user is None:
+        resp = make_response(jsonify({"Not Found": "User Not Found"}), 404)
+        resp.headers['Content-Type'] = "application/json"
+        resp.cache_control.no_cache = True
+        return resp
+
+    hashed_password = hashlib.sha512(str(password) + salt).hexdigest()
+
+    try:
+        user = r.table('UsersInfo').get(username).run(g.rdb_conn)
+
+        if str(user['password']) != str(hashed_password):
+            # add user to session then log in
+            resp = make_response(
+                jsonify({"Password": "Incorrect Password"}), 404)
+            resp.headers['Content-Type'] = "application/json"
+            resp.cache_control.no_cache = True
+            return resp
+    except RqlError:
+        logging.warning('Wrong password user failed on /api/signIn/')
+
+
+    session.pop(username, None)
+
     try:
         r.table('UsersInfo').get(username).delete().run(g.rdb_conn)
     except RqlError:
         logging.warning('DB remove user failed on /api/removeUser')
 
-    resp = make_response(jsonify({'OK': 'Content Removed'}), 202)
+    resp = make_response(jsonify({'OK': 'User Deleted'}), 202)
     resp.headers['Content-Type'] = "application/json"
     resp.cache_control.no_cache = True
     return resp
@@ -210,13 +258,11 @@ def addUser():
     # get JSON params
     fname = request.json.get('fname')
     lname = request.json.get('lname')
-    mobileNo = request.json.get('mobileNo')  # this <- id
+    mobileNo = request.json.get('mobileNo')
     state = request.json.get('state')
     location = request.json.get('location')
     email = request.json.get('email')
 
-    # no id just work with mobileNo - easier
-    # we'll send a text message enter code!
 
     if mobileNo.startswith('0'):
         mobileNo = mobileNo[1:]

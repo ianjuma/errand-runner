@@ -6,7 +6,7 @@ Taskwetu
 http://taskwetu.herokuapp.com/
 
 
-### TODO
+### Project
 - [x] Add Separate conf file
 - [x] postgres DB scripts
 - [x] Integrate SMS (AfricaIT)
@@ -16,22 +16,24 @@ http://taskwetu.herokuapp.com/
 - [x] Heroku Procfile, deployment
 - [x] Tests
 - [x] design UI/UX
-- [ ] sessions with redis
 - [x] sendgrid API (add credit card)
 - [x] postgres on heroku (add credit card) / run postgres on external server
 - [x] Migrate App instance to EU
 
 
 ### Development
-- [ ] Static Assets (CDN) - minimise + compress
+- [ ] Static Assets (CDN) - minimise + compress, gzip
 - [ ] setup nginx- server static assets
-- [ ] social oauth login
+- [-] social oauth login
 - [ ] pesapal integration
-- [ ] clean UI
-- [ ] fix email API - message
+- [ ] fix email API - message(bg tasks)
+- [ ] Validation forms
+- [ ] URL routes - remove name/RESTfull - /task/addTask|edit|myTasks|profile 
+- [ ] sessions with redis
+- [ ] responsiveness
 
 
 ### UI clean
-- [ ] createTask
+- [ ] createTask - process
 - [ ] fix base template
-- [ ] notifications - login/createTask/myTasks/profile
+- [ ] notifications - login/createTask/myTasks/profile/ timer

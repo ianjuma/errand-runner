@@ -20,9 +20,6 @@ from flask import session
 import hashlib
 from random import randint
 
-import requests
-import simplejson
-
 secret_key = app.secret_key
 
 from mail import sendMail
@@ -41,6 +38,7 @@ def adminSign():
         username = request.json.get('username')
         password = request.json.get('password')
 
+
         try:
             user = r.table('Admin').get(username).run(g.rdb_conn)
         except Exception, e:
@@ -52,6 +50,8 @@ def adminSign():
             resp.headers['Content-Type'] = "application/json"
             resp.cache_control.no_cache = True
             return resp
+
+        session[username] = username
 
         resp = make_response(jsonify({"OK": "Signed In"}), 200)
         resp.headers['Content-Type'] = "application/json"
@@ -65,9 +65,6 @@ def adminSign():
 def signIn():
     if not request.json:
         abort(400)
-
-    print request.json
-    print request.headers['Content-Type']
 
     if request.headers['Content-Type'] != 'application/json; charset=UTF-8':
         abort(400)
@@ -110,8 +107,11 @@ def signIn():
     # redis k/v store | dict
     session[username] = username
 
+
     resp = make_response(jsonify({"OK": "Signed In"}), 200)
     resp.headers['Content-Type'] = "application/json"
+    resp.set_cookie('username',value=username)
+
     resp.cache_control.no_cache = True
     return resp
 
@@ -172,8 +172,8 @@ def getRandID():
             "email": email, "password": hashed_password, "smscode": SMScode, "mobileNo": ""}).run(g.rdb_conn)
             
     except RqlError:
-        payload = "LOG_INFO=" + simplejson.dumps({ 'Sign Up':'Sign Up Failed' })
-        requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
+        # payload = "LOG_INFO=" + simplejson.dumps({ 'Sign Up':'Sign Up Failed' })
+        # requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
 
         logging.warning('DB code verify failed on /api/signUp/')
         resp = make_response(jsonify({"Error": "503 DB error"}), 503)
@@ -182,9 +182,10 @@ def getRandID():
         return resp
 
     # add to sessions then login
-    session[username] = username
-    
+    # session[username] = username
+
     resp = make_response(jsonify({"OK": "Signed Up"}), 202)
+    resp.set_cookie('username',value=username)
     resp.headers['Content-Type'] = "application/json"
     resp.cache_control.no_cache = True
     return resp
@@ -218,27 +219,42 @@ def addNewsLetter():
     return resp
 
 
-@app.route('/logout/<username>/', methods=['POST', 'PUT', 'GET'])
-def logout(username):
-    # remove from session
+@app.route('/logout/', methods=['GET'])
+def logout():
+    # remove from session and clear cookie
+    if 'username' not in request.cookies:
+        redirect('/')
+
+    username = request.cookies.get('username')
     session.pop(username, None)
-    return redirect('/')
+
+    resp = make_response( redirect('/') )
+    resp.set_cookie('username', '', expires=0)
+    return resp
 
 
-@app.route('/confirm/<username>/<smscode>/', methods=['PUT', 'POST'])
-def confirmUser(username, smscode):
+@app.route('/confirm/<smscode>/', methods=['PUT', 'POST'])
+def confirmUser(smscode):
     # make request to get one task
     #if session[username] is None:
     #    return redirect('/')
-    if username not in session:
-        return redirect('/')
+
+    #if username not in session:
+    #    return redirect('/')
+
+
+    if 'username' not in request.cookies:
+        redirect('/')
+
+    username = request.cookies.get('username')
+
 
     try:
         user = r.table(
             'UsersInfo').get(username).pluck('smscode').run(g.rdb_conn)
     except RqlError:
-        payload = "LOG_INFO=" + simplejson.dumps({ 'Confirmation Error':'Email Confirm Failed' })
-        requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
+        # payload = "LOG_INFO=" + simplejson.dumps({ 'Confirmation Error':'Email Confirm Failed' })
+        # requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
 
         logging.warning('DB op failed on /confirmUser/')
         resp = make_response(jsonify({"Error": "503 DB error"}), 503)
@@ -252,6 +268,61 @@ def confirmUser(username, smscode):
         EMAIL VERFICATION FAILED
         """
 
-    url = "/createTask/" + username + "/"
+    url = "/task/createTask/"
 
     return redirect(url, code=302)
+
+
+
+@app.route('/post_payment', methods=['GET'])
+def post_payment_pesapal():
+    #if username not in session:
+    #    return redirect('/')
+
+    #print request.cookies
+    if 'username' not in request.cookies:
+        redirect('/')
+
+    username = request.cookies.get('username')
+
+    pesapal_merchant_ref = request.args.get('pesapal_merchant_reference')
+    pesapal_merchant_id  = request.args.get('pesapal_transaction_tracking_id')
+
+    # store merchant info in db
+
+    resp = make_response(jsonify({"OK": "Post Payment"}), 200)
+    resp.headers['Content-Type'] = "application/json"
+    resp.cache_control.no_cache = True
+    return resp
+
+
+@app.route('/process_payments/<url>', methods=['GET'])
+def process_payment(url):
+    #if username not in session:
+    #    return redirect('/')
+
+    if 'username' not in request.cookies:
+        redirect('/')
+
+    if request.cookies.get('username') == '' or request.cookies.get('username') is None:
+        redirect('/')
+
+    username = request.cookies.get('username')
+
+
+    # fetch url from redis - attach iframe to window
+    # url = request.get.args('url')
+
+    # demo url
+    """
+    url = 
+    https://www.pesapal.com/api/PostPesapalDirectOrderV4?oauth_version=1.0&pesapal_request_data=%26lt%3BPesapalDirec
+    tOrderInfo%20Amount%3D%22100%22%20Currency%3D%22%22%20Description%3D%22E-book%20purchase%22%20Email%3D%22%22%20Fi
+    rstName%3D%22%22%20LastName%3D%22%22%20PhoneNumber%3D%220700111000%22%20Reference%3D%2212erwe%22%20Type%3D%22MERC
+    HANT%22%20xmlns%3D%22http%3A%2F%2Fwww.pesapal.com%22%20xmlns%3Axsd%3D%22http%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchem
+    a%22%20xmlns%3Axsi%3D%22http%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema-instance%22%20%2F%26gt%3B&oauth_nonce=67229332
+    &oauth_timestamp=1408726389&oauth_signature=Ev48aafXBrCtmu%2BiJ%2F5uUDC21C8%3D&oauth_consumer_key=CkTmeBHciLM07WG
+    0ltwGu8fklRSKdEqd&oauth_signature_method=HMAC-SHA1&oauth_callback=http%3A%2F%2F188.226.195.158%2Fbilling%2F
+    """
+
+    return render_template('pesapal_payment.html', username=username, iframe=url)

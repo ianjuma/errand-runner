@@ -31,6 +31,12 @@
     <![endif]-->
     <link href="/static/js/jquery.icheck/skins/square/blue.css" rel="stylesheet">
 
+    <script type="text/javascript">
+      window.analytics=window.analytics||[],window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(t){if(!document.getElementById("analytics-js")){var a=document.createElement("script");a.type="text/javascript",a.id="analytics-js",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.io/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)}},window.analytics.SNIPPET_VERSION="2.0.9",
+      window.analytics.load("b8ujn9mafc");
+      window.analytics.page();
+    </script>
+
     <!-- menu -->
     <script src="/static/js/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/css/font-awesome.min.css" />
@@ -79,7 +85,7 @@
 
       .my-next-group2 {
         margin-top: 0em;
-        margin-left: 62.5em;
+        margin-left: 57.5em;
       }
 
       .push-right {
@@ -140,11 +146,11 @@
       <nav id="bt-menu" class="bt-menu">
         <a href="#" class="bt-menu-trigger"><span>Menu</span></a>
         <ul>
-          <li><a href="/createTask/{{username}}/">New task</a></li>
-          <li><a href="/myTasks/{{username}}/">All Tasks</a></li>
-          <li><a href="/profile/{{username}}/">Profile</a></li>
-          <li><a href="/payments/{{username}}/">Payments</a></li>
-          <li><a href="/logout/{{username}}/">Logout</a></li>
+          <li><a href="/task/createTask/">New task</a></li>
+          <li><a href="/task/myTasks/">All Tasks</a></li>
+          <li><a href="/profile/">Profile</a></li>
+          <li><a href="/payments/">Payments</a></li>
+          <li><a href="/logout/">Logout</a></li>
         </ul>
       </nav>
     </div>
@@ -420,30 +426,6 @@
                     </div>
                 </div>
 
-                <!--
-                <div class="col-sm-6 col-md-6 col-lg-6 space-lower-div">
-                  <div class="block-flat">
-                    <div class="content">
-                        <div class="form-group">
-                          <label class="col-sm-3 control-label">Choose Payment Method</label>
-                          <div class="col-sm-6">
-                          <select class="select2">
-                             <optgroup label="MPESA">
-                               <option value="pesapal">Mpesa</option>
-                               <option value="pesapal">Pesapal</option>
-                             </optgroup>
-                             <optgroup label="Electornic Cards">
-                               <option value="pesapal">MasterCard</option>
-                               <option value="pesapal">VISA</option>
-                             </optgroup>
-                            </select>
-                          </div>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-                -->
-
               <div class="col-sm-6 col-md-6 col-lg-6 space-lower-div">
                   <div class="content">
                     <div class="block-flat">
@@ -527,6 +509,12 @@
   $("#rate_slider").slider().on("slide",function(e){
     $("#rate").html(e.value + "%");
   });
+
+  analytics.identify('{{ username }}', {
+      name: '{{ username }}',
+      email: '{{ username }}'
+  });
+  
 </script>
 
 <script type="text/javascript">
@@ -547,5 +535,18 @@
   <!-- Bootstrap core JavaScript
   ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
+
+
+<!-- mouseflow -->
+<script type="text/javascript">
+ var _mfq = _mfq || [];
+ (function() {
+     var mf = document.createElement("script"); mf.type = "text/javascript"; mf.async = true;
+     mf.src = "//cdn.mouseflow.com/projects/f0e15079-003b-46b1-9ea2-e07213ae68e2.js";
+     document.getElementsByTagName("head")[0].appendChild(mf);
+ })();
+</script>
+
+
 </body>
 </html>

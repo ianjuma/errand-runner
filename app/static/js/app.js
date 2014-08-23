@@ -47,7 +47,7 @@ $('#loginData').click( function(evnt) {
           async: true,
           success: function(result, textStatus, jqXHR) {
             console.log(result);
-            window.location.href = "/profile/" + username;
+            window.location.href = "/profile/";
           },
           fail: function(result, textStatus, jqXHR) {
             alert('Failed to send Data');
@@ -79,7 +79,7 @@ $('#signInData').click( function(evnt) {
 
     success: function(result) {
       console.log(result);
-      window.location.href = "/myTasks/" + username + '/';
+      window.location.href = "/task/myTasks/";
     },
     error: function(result) {
       console.log(result);
