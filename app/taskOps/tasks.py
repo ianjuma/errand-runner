@@ -34,8 +34,10 @@ def tasks():
     if 'username' not in request.cookies:
         redirect('/')
 
-    username = request.cookies.get('username')
+    if request.cookies.get('username') == '' or request.cookies.get('username') is None:
+        redirect('/')
 
+    username = request.cookies.get('username')
     return render_template('CREATEtask.html', username=username)
 
 
@@ -59,6 +61,8 @@ def getAdminTasks():
             redirect('/')
 
         username = request.cookies.get('username')
+        if request.cookies.get('username') == '' or request.cookies.get('username') is None:
+            redirect('/')
 
 
         taskData = []
@@ -105,6 +109,9 @@ def getAllTasks():
     #    return redirect('/')
 
     if 'username' not in request.cookies:
+        redirect('/')
+
+    if request.cookies.get('username') == '' or request.cookies.get('username') is None:
         redirect('/')
 
     username = request.cookies.get('username')
@@ -160,6 +167,9 @@ def taskInfo(task_id):
     #    return redirect('/')
 
     if 'username' not in request.cookies:
+        redirect('/')
+
+    if request.cookies.get('username') == '' or request.cookies.get('username') is None:
         redirect('/')
 
     username = request.cookies.get('username')

@@ -304,12 +304,14 @@ def process_payment(url):
     if 'username' not in request.cookies:
         redirect('/')
 
+    if request.cookies.get('username') == '' or request.cookies.get('username') is None:
+        redirect('/')
+
     username = request.cookies.get('username')
 
 
     # fetch url from redis - attach iframe to window
     # url = request.get.args('url')
-    
 
     # demo url
     """
@@ -324,8 +326,3 @@ def process_payment(url):
     """
 
     return render_template('pesapal_payment.html', username=username, iframe=url)
-
-
-@app.route('/dumb', methods=['GET'])
-def dummy_view():
-    return render_template('dumbView.html')
