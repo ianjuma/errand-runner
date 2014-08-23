@@ -20,8 +20,6 @@ from flask import session
 import hashlib
 from random import randint
 
-import simplejson
-
 secret_key = app.secret_key
 
 from mail import sendMail

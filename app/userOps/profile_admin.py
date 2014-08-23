@@ -180,13 +180,43 @@ def removeUser():
     if username not in session:
         return redirect('/')
 
-    # mobile no is the id - primary key
+
+    try:
+        user = r.table('UsersInfo').get(username).run(g.rdb_conn)
+    except Exception, e:
+        logging.warning('DB signIn failed on /api/signIn/ -> user not found')
+        raise e
+
+    if user is None:
+        resp = make_response(jsonify({"Not Found": "User Not Found"}), 404)
+        resp.headers['Content-Type'] = "application/json"
+        resp.cache_control.no_cache = True
+        return resp
+
+    hashed_password = hashlib.sha512(str(password) + salt).hexdigest()
+
+    try:
+        user = r.table('UsersInfo').get(username).run(g.rdb_conn)
+
+        if str(user['password']) != str(hashed_password):
+            # add user to session then log in
+            resp = make_response(
+                jsonify({"Password": "Incorrect Password"}), 404)
+            resp.headers['Content-Type'] = "application/json"
+            resp.cache_control.no_cache = True
+            return resp
+    except RqlError:
+        logging.warning('Wrong password user failed on /api/signIn/')
+
+
+    session.pop(username, None)
+    
     try:
         r.table('UsersInfo').get(username).delete().run(g.rdb_conn)
     except RqlError:
         logging.warning('DB remove user failed on /api/removeUser')
 
-    resp = make_response(jsonify({'OK': 'Content Removed'}), 202)
+    resp = make_response(jsonify({'OK': 'User Deleted'}), 202)
     resp.headers['Content-Type'] = "application/json"
     resp.cache_control.no_cache = True
     return resp
