@@ -27,11 +27,10 @@ http://taskwetu.herokuapp.com/
 - [ ] setup nginx- server static assets
 - [ ] social oauth login
 - [ ] pesapal integration
-- [ ] clean UI
-- [ ] fix email API - message
+- [ ] fix email API - message(bg tasks)
 
 
 ### UI clean
-- [ ] createTask
+- [ ] createTask - process
 - [ ] fix base template
-- [ ] notifications - login/createTask/myTasks/profile
+- [ ] notifications - login/createTask/myTasks/profile/ timer
