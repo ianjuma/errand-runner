@@ -35,6 +35,9 @@ def profile():
     if 'username' not in request.cookies:
         redirect('/')
 
+    if request.cookies.get('username') == '' or request.cookies.get('username') is None:
+        redirect('/')
+
     username = request.cookies.get('username')
 
 
@@ -112,6 +115,9 @@ def payments():
     #    return redirect('/')
 
     if 'username' not in request.cookies:
+        redirect('/')
+
+    if request.cookies.get('username') == '' or request.cookies.get('username') is None:
         redirect('/')
 
     username = request.cookies.get('username')
