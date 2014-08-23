@@ -35,7 +35,7 @@ $('#completeAll').click( function(evnt) {
         class_name: 'success'
       });
 
-      window.location.href = '/myTasks/' + username + '/';
+      window.location.href = '/task/myTasks/';
 
     },
     always: function(result) {
@@ -119,7 +119,7 @@ $('#updateUserInfo').click( function(evnt) {
   console.log('Data sent');
   $.ajax({
     type: 'POST',
-    url: '/profile/'+ username + '/',
+    url: '/profile/',
     contentType: 'application/json; charset=UTF-8',
 
     success: function(result) {

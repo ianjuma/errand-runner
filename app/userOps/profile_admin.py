@@ -23,13 +23,20 @@ from random import randint
 from mail import sendMail
 
 
-@app.route('/profile/<username>/', methods=['POST', 'GET'])
-def profile(username):
+@app.route('/profile/', methods=['POST', 'GET'])
+def profile():
     #if session[username] is None:
     #    return redirect('/')
     
-    if username not in session:
-        return redirect('/')
+    #if username not in session:
+    #    return redirect('/')
+
+
+    if 'username' not in request.cookies:
+        redirect('/')
+
+    username = request.cookies.get('username')
+
 
     if request.method == 'POST':
 
@@ -96,13 +103,18 @@ def profile(username):
         state=state, username=username, mobileNo=mobileNo)
 
 
-@app.route('/payments/<username>/', methods=['POST', 'GET'])
-def payments(username):
+@app.route('/payments/', methods=['POST', 'GET'])
+def payments():
     #if session[username] is None:
     #    return redirect('/')
 
-    if username not in session:
-        return redirect('/')
+    #if username not in session:
+    #    return redirect('/')
+
+    if 'username' not in request.cookies:
+        redirect('/')
+
+    username = request.cookies.get('username')
 
     # session is a list object
     #try:

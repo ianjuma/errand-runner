@@ -23,19 +23,24 @@ from mail import messageAPI
 from payments import process_payments
 
 
-@app.route('/createTask/<username>/', methods=['POST', 'GET'])
-def tasks(username):
+@app.route('/task/createTask/', methods=['POST', 'GET'])
+def tasks():
     #if session[username] is None:
     #    return redirect('/')
 
-    if username not in session:
-        return redirect('/')
+    #if username not in session:
+    #    return redirect('/')
+
+    if 'username' not in request.cookies:
+        redirect('/')
+
+    username = request.cookies.get('username')
 
     return render_template('CREATEtask.html', username=username)
 
 
-@app.route('/adminTasks/<username>/', methods=['GET'])
-def getAdminTasks(username):
+@app.route('/adminTasks/', methods=['GET'])
+def getAdminTasks():
     if request.method == 'POST':
 
         if not request.json:
@@ -46,8 +51,14 @@ def getAdminTasks(username):
 
         
         # add to sessions then login
-        if username not in session:
-            return redirect('/')
+        #if username not in session:
+        #    return redirect('/')
+
+        #print request.cookies
+        if 'username' not in request.cookies:
+            redirect('/')
+
+        username = request.cookies.get('username')
 
 
         taskData = []
@@ -84,14 +95,19 @@ def getAdminTasks(username):
     return render_template('adminViewTasks.html', task_size=task_size)
 
 
-@app.route('/myTasks/<username>/', methods=['POST', 'GET'])
-def getAllTasks(username):
+@app.route('/task/myTasks/', methods=['POST', 'GET'])
+def getAllTasks():
     # wrong session - keyerror fail
     #if session[str(username)] is None:
     #    return redirect('/')
 
-    if username not in session:
-        return redirect('/')
+    #if username not in session:
+    #    return redirect('/')
+
+    if 'username' not in request.cookies:
+        redirect('/')
+
+    username = request.cookies.get('username')
 
     return render_template('VIEWtasks.html', username=username)
 
@@ -135,13 +151,18 @@ def getTasks():
     return resp
 
 
-@app.route('/editTask/<username>/<task_id>/', methods=['GET'])
-def taskInfo(username, task_id):
+@app.route('/task/editTask/<task_id>/', methods=['GET'])
+def taskInfo(task_id):
     #if session[username] is None:
     #    return redirect('/')
 
-    if username not in session:
-        return redirect('/')
+    #if username not in session:
+    #    return redirect('/')
+
+    if 'username' not in request.cookies:
+        redirect('/')
+
+    username = request.cookies.get('username')
 
     try:
         user = r.table('Tasks').get(task_id).run(g.rdb_conn)

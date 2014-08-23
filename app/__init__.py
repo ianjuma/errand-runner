@@ -2,7 +2,7 @@
 __version__ = '0.1.8'
 
 from flask import Flask
-from flask import session, g
+from flask import session, g, request
 from flask import (url_for, redirect)
 from flask import abort
 from functools import wraps
@@ -67,14 +67,20 @@ def login_required(f):
 @app.before_request
 def before_request():
     try:
+
+        if 'username' not in request.cookies:
+            redirect('/')
+
         logging.info('before_request')
         g.rdb_conn = r.connect(host=RDB_HOST, port=RDB_PORT, db=LINK_DB)
     except RqlDriverError:
+        """
         log_data = "LOG_INFO=" + simplejson.dumps(
         {
            'Request':'app.before failed database',
         })
         requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", log_data)
+        """
 
         abort(503, "No database connection could be established")
 

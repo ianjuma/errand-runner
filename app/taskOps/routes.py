@@ -107,8 +107,11 @@ def signIn():
     # redis k/v store | dict
     session[username] = username
 
+
     resp = make_response(jsonify({"OK": "Signed In"}), 200)
     resp.headers['Content-Type'] = "application/json"
+    resp.set_cookie('username',value=username)
+
     resp.cache_control.no_cache = True
     return resp
 
@@ -179,9 +182,10 @@ def getRandID():
         return resp
 
     # add to sessions then login
-    session[username] = username
-    
+    # session[username] = username
+
     resp = make_response(jsonify({"OK": "Signed Up"}), 202)
+    resp.set_cookie('username',value=username)
     resp.headers['Content-Type'] = "application/json"
     resp.cache_control.no_cache = True
     return resp
@@ -215,20 +219,34 @@ def addNewsLetter():
     return resp
 
 
-@app.route('/logout/<username>/', methods=['POST', 'PUT', 'GET'])
-def logout(username):
+@app.route('/logout/', methods=['GET'])
+def logout():
     # remove from session
+    #print request.cookies
+    if 'username' not in request.cookies:
+        redirect('/')
+
+    username = request.cookies.get('username')
     session.pop(username, None)
+
     return redirect('/')
 
 
-@app.route('/confirm/<username>/<smscode>/', methods=['PUT', 'POST'])
-def confirmUser(username, smscode):
+@app.route('/confirm/<smscode>/', methods=['PUT', 'POST'])
+def confirmUser(smscode):
     # make request to get one task
     #if session[username] is None:
     #    return redirect('/')
-    if username not in session:
-        return redirect('/')
+
+    #if username not in session:
+    #    return redirect('/')
+
+
+    if 'username' not in request.cookies:
+        redirect('/')
+
+    username = request.cookies.get('username')
+
 
     try:
         user = r.table(
@@ -249,7 +267,7 @@ def confirmUser(username, smscode):
         EMAIL VERFICATION FAILED
         """
 
-    url = "/createTask/" + username + "/"
+    url = "/task/createTask/"
 
     return redirect(url, code=302)
 
@@ -259,6 +277,12 @@ def confirmUser(username, smscode):
 def post_payment_pesapal():
     #if username not in session:
     #    return redirect('/')
+
+    #print request.cookies
+    if 'username' not in request.cookies:
+        redirect('/')
+
+    username = request.cookies.get('username')
 
     pesapal_merchant_ref = request.args.get('pesapal_merchant_reference')
     pesapal_merchant_id  = request.args.get('pesapal_transaction_tracking_id')
@@ -271,16 +295,22 @@ def post_payment_pesapal():
     return resp
 
 
-@app.route('/process_payments/<username>/<url>', methods=['GET'])
-def process_payment(username, url):
-    if username not in session:
-        return redirect('/')
+@app.route('/process_payments/<url>', methods=['GET'])
+def process_payment(url):
+    #if username not in session:
+    #    return redirect('/')
+
+    if 'username' not in request.cookies:
+        redirect('/')
+
+    username = request.cookies.get('username')
+
 
     # fetch url from redis - attach iframe to window
     #url = request.get.args('url')
     # move sessions + url routes - restful
 
-
+    # demo url
     """
     url = 
     https://www.pesapal.com/api/PostPesapalDirectOrderV4?oauth_version=1.0&pesapal_request_data=%26lt%3BPesapalDirec
