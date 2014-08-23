@@ -293,3 +293,8 @@ def process_payment(username, url):
     """
 
     return render_template('pesapal_payment.html', username=username, iframe=url)
+
+
+@app.route('/dumb', methods=['GET'])
+def dummy_view():
+    return render_template('dumbView.html')
