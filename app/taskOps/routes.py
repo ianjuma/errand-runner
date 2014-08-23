@@ -66,9 +66,6 @@ def signIn():
     if not request.json:
         abort(400)
 
-    print request.json
-    print request.headers['Content-Type']
-
     if request.headers['Content-Type'] != 'application/json; charset=UTF-8':
         abort(400)
 
