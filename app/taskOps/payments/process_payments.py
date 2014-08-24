@@ -21,7 +21,7 @@ def postOrder(request_data):
         build url to redirect user to confirm payment
     """
     post_params = {
-        'oauth_callback': 'http://taskwetu.com/post_payment/'
+        'oauth_callback': 'http://127.0.0.1/post_payment/'
     }
 
     url = pesapal.postDirectOrder(post_params, request_data)

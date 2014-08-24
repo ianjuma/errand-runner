@@ -274,7 +274,7 @@ def confirmUser(smscode):
 
 
 
-@app.route('/post_payment', methods=['GET', 'POST'])
+@app.route('/post_payment/', methods=['GET', 'POST'])
 def post_payment_pesapal():
     #if username not in session:
     #    return redirect('/')
@@ -285,14 +285,24 @@ def post_payment_pesapal():
 
     username = request.cookies.get('username')
 
+    # store merchant info in db
+    # basic post_payment page TO LOAD
+
+    # optional get payment status - info sent to pesapla ipn notification
+    # per user info - render post payment page
+
+    resp = make_response(jsonify({"OK": "Post Payment"}), 200)
+    return resp
+
+
+@app.route('/pesapal_ipn_notification/', methods=['POST'])
+def ipn_notify():
+    url = request.get.args('url')
     pesapal_merchant_ref = request.args.get('pesapal_merchant_reference')
     pesapal_merchant_id  = request.args.get('pesapal_transaction_tracking_id')
 
-    # store merchant info in db
-
-    resp = make_response(jsonify({"OK": "Post Payment"}), 200)
-    resp.headers['Content-Type'] = "application/json"
-    resp.cache_control.no_cache = True
+    # store in db per user info in payments
+    resp = make_response(jsonify({"OK": "Notification Received"}), 200)
     return resp
 
 
@@ -311,7 +321,6 @@ def process_payment():
 
 
     # fetch url from redis - attach iframe to window
-    # url = request.get.args('url')
     url = red.hget(username, 'url')
 
     # demo url
