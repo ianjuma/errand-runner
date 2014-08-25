@@ -102,7 +102,7 @@ def profile():
         return resp
 
     return render_template(
-        'PROFILE22.html', name=name, lastname=lastname, firstname=firstname, email=email, smscode=smscode,
+        'Profile.html', name=name, lastname=lastname, firstname=firstname, email=email, smscode=smscode,
         state=state, username=username, mobileNo=mobileNo)
 
 
