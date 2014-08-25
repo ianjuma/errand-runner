@@ -138,14 +138,13 @@
               <form role="form" class="form-horizontal">
                   <div class="form-group">
                     <label class="col-sm-3 control-label" for="nick">Profile Picture</label>
-                    <div class="col-sm-9"> 
+                    <div class="col-sm-9">
                       <div class="avatar-upload">
-                        <img src="/static/images/av.jpg" class="profile-avatar img-thumbnail" />
-                        <input id="fileupload" type="file" name="files[]">
-                        <div id="progress" class="overlay"></div>
+                        <img src="{{ profile_image }}" class="profile-avatar img-thumbnail" />
                       </div>
                     </div>
                   </div>
+
                   <div class="form-group">
                     <label class="col-sm-3 control-label" for="nick">First name</label>
                     <div class="col-sm-9">

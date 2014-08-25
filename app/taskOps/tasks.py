@@ -322,8 +322,9 @@ def addTask():
     locationData = request.json.get('locationData')
     contactPersons = request.json.get('contactPersons')
 
+    # unpaid status - pending - started - finished
     taskData = { "username": username, "task_title": task_title, "task_desc": task_desc, "locationData": locationData,
-                "task_category": task_category, "task_urgency": "pending", "due_date": due_date, "contactPersons": contactPersons }
+                "task_category": task_category, "task_urgency": "UNPAID", "due_date": due_date, "contactPersons": contactPersons }
 
     text_all = "LinkUs new task %s " %(task_title)
 

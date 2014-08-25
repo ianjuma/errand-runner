@@ -284,6 +284,9 @@ def post_payment_pesapal():
         redirect('/')
 
     username = request.cookies.get('username')
+    # with ref set in rand generator
+    pesapal_merchant_ref = request.args.get('pesapal_merchant_reference')
+    pesapal_merchant_id  = request.args.get('pesapal_transaction_tracking_id')
 
     # store merchant info in db
     # basic post_payment page TO LOAD
@@ -292,17 +295,22 @@ def post_payment_pesapal():
     # per user info - render post payment page
 
     resp = make_response(jsonify({"OK": "Post Payment"}), 200)
+    resp.cache_control.no_cache = True
     return resp
 
 
 @app.route('/pesapal_ipn_notification/', methods=['POST'])
 def ipn_notify():
-    url = request.get.args('url')
+    #url = request.get.args('url')
+    # compare with merchant ref
     pesapal_merchant_ref = request.args.get('pesapal_merchant_reference')
     pesapal_merchant_id  = request.args.get('pesapal_transaction_tracking_id')
 
     # store in db per user info in payments
+
+
     resp = make_response(jsonify({"OK": "Notification Received"}), 200)
+    resp.cache_control.no_cache = True
     return resp
 
 

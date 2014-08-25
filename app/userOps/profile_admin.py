@@ -21,6 +21,7 @@ import hashlib
 from random import randint
 
 from mail import sendMail
+import urllib
 
 
 @app.route('/profile/', methods=['POST', 'GET'])
@@ -88,7 +89,7 @@ def profile():
         name = str(user['username'])
         state = str(user['state'])
         smscode = str(user['smscode'])
-        password = str(user['password'])
+        #password = str(user['password'])
         email = str(user['email'])
         mobileNo = str(user['mobileNo'])
         firstname = str(user['fname'])
@@ -101,9 +102,15 @@ def profile():
         resp.cache_control.no_cache = True
         return resp
 
+
+    default_url = "http://www.gravatar.com/avatar"
+    size = 80
+    profile_url = "http://www.gravatar.com/avatar/" + hashlib.md5(email.lower()).hexdigest() + "?"
+    profile_url += urllib.urlencode({'d':default_url, 's':str(size)})
+
     return render_template(
         'Profile.html', name=name, lastname=lastname, firstname=firstname, email=email, smscode=smscode,
-        state=state, username=username, mobileNo=mobileNo)
+        state=state, username=username, mobileNo=mobileNo, profile_image=profile_url)
 
 
 @app.route('/payments/', methods=['POST', 'GET'])
