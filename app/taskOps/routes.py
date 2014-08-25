@@ -308,7 +308,6 @@ def ipn_notify():
 
     # store in db per user info in payments
 
-
     resp = make_response(jsonify({"OK": "Notification Received"}), 200)
     resp.cache_control.no_cache = True
     return resp
@@ -327,20 +326,6 @@ def process_payment():
 
     username = request.cookies.get('username')
 
-
     # fetch url from redis - attach iframe to window
     url = red.hget(username, 'url')
-
-    # demo url
-    """
-    url = 
-    https://www.pesapal.com/api/PostPesapalDirectOrderV4?oauth_version=1.0&pesapal_request_data=%26lt%3BPesapalDirec
-    tOrderInfo%20Amount%3D%22100%22%20Currency%3D%22%22%20Description%3D%22E-book%20purchase%22%20Email%3D%22%22%20Fi
-    rstName%3D%22%22%20LastName%3D%22%22%20PhoneNumber%3D%220700111000%22%20Reference%3D%2212erwe%22%20Type%3D%22MERC
-    HANT%22%20xmlns%3D%22http%3A%2F%2Fwww.pesapal.com%22%20xmlns%3Axsd%3D%22http%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchem
-    a%22%20xmlns%3Axsi%3D%22http%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema-instance%22%20%2F%26gt%3B&oauth_nonce=67229332
-    &oauth_timestamp=1408726389&oauth_signature=Ev48aafXBrCtmu%2BiJ%2F5uUDC21C8%3D&oauth_consumer_key=CkTmeBHciLM07WG
-    0ltwGu8fklRSKdEqd&oauth_signature_method=HMAC-SHA1&oauth_callback=http%3A%2F%2F188.226.195.158%2Fbilling%2F
-    """
-
     return render_template('pesapal_payment.html', username=username, iframe=url)
