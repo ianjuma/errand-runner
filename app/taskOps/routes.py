@@ -143,14 +143,17 @@ def getRandID():
             resp.cache_control.no_cache = True
             return resp
 
-        """
         user = r.table('UsersInfo').filter({"email": email}).limit(1).run(g.rdb_conn)
-        if user is not None:
-            resp = make_response(jsonify({"Error": "User Exists"}), 400)
+        userData =[]
+
+        for data in user:
+            userData.append(data)
+
+        if userData != []:
+            resp = make_response(jsonify({"Error": "User Email Exists"}), 400)
             resp.headers['Content-Type'] = "application/json"
             resp.cache_control.no_cache = True
             return resp
-        """
 
     except RqlError:
         logging.warning('DB code verify failed on /api/signUp/')
@@ -160,7 +163,16 @@ def getRandID():
         return resp
 
     SMScode = randint(10000, 99999)
-    sendMail.sendMail(email, SMScode, username)
+
+    # @task sendMail
+    try:
+        sendMail.sendMail(email, SMScode, username)
+    except URLError:
+        logging.warning('sendMail verify failed on /api/signUp/')
+        abort(500)
+    except Exception, e:
+        logging.warning('SendMail error on /api/signUp/ %s' %(e) )
+
 
     # verify user send email with code
     # sendText(mobileNo, SMScode)
@@ -171,7 +183,6 @@ def getRandID():
         r.table(
             'UsersInfo').insert({"state": "", "fname": "", "lname": "" ,"username": username, "dob": "", 
             "email": email, "password": hashed_password, "smscode": SMScode, "mobileNo": ""}).run(g.rdb_conn)
-            
     except RqlError:
         # payload = "LOG_INFO=" + simplejson.dumps({ 'Sign Up':'Sign Up Failed' })
         # requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
@@ -200,6 +211,9 @@ def addNewsLetter():
     if request.headers['Content-Type'] != 'application/json; charset=UTF-8':
         abort(400)
 
+    if 'username' not in request.cookies:
+        return redirect('/')
+
     email = request.json.get('email')
     # mobile no is the id - primary key
 
@@ -224,7 +238,7 @@ def addNewsLetter():
 def logout():
     # remove from session and clear cookie
     if 'username' not in request.cookies:
-        redirect('/')
+        return redirect('/')
 
     username = request.cookies.get('username')
     session.pop(username, None)
@@ -245,7 +259,7 @@ def confirmUser(smscode):
 
 
     if 'username' not in request.cookies:
-        redirect('/')
+        return redirect('/')
 
     username = request.cookies.get('username')
 
@@ -281,7 +295,7 @@ def post_payment_pesapal():
     #    return redirect('/')
 
     if 'username' not in request.cookies:
-        redirect('/')
+        return redirect('/')
 
     username = request.cookies.get('username')
     # with ref set in rand generator
@@ -337,10 +351,10 @@ def process_payment():
     #    return redirect('/')
 
     if 'username' not in request.cookies:
-        redirect('/')
+        return redirect('/')
 
     if request.cookies.get('username') == '' or request.cookies.get('username') is None:
-        redirect('/')
+        return redirect('/')
 
     username = request.cookies.get('username')
 

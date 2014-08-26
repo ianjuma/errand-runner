@@ -32,10 +32,10 @@ def tasks():
     #    return redirect('/')
 
     if 'username' not in request.cookies:
-        redirect('/')
+        return redirect('/')
 
     if request.cookies.get('username') == '' or request.cookies.get('username') is None:
-        redirect('/')
+        return redirect('/')
 
     username = request.cookies.get('username')
     return render_template('CREATEtask.html', username=username)
@@ -58,11 +58,11 @@ def getAdminTasks():
 
         #print request.cookies
         if 'username' not in request.cookies:
-            redirect('/')
+            return redirect('/')
 
         username = request.cookies.get('username')
         if request.cookies.get('username') == '' or request.cookies.get('username') is None:
-            redirect('/')
+            return redirect('/')
 
 
         taskData = []
@@ -109,10 +109,10 @@ def getAllTasks():
     #    return redirect('/')
 
     if 'username' not in request.cookies:
-        redirect('/')
+        return redirect('/')
 
     if request.cookies.get('username') == '' or request.cookies.get('username') is None:
-        redirect('/')
+        return redirect('/')
 
     username = request.cookies.get('username')
 
@@ -167,10 +167,10 @@ def taskInfo(task_id):
     #    return redirect('/')
 
     if 'username' not in request.cookies:
-        redirect('/')
+        return redirect('/')
 
     if request.cookies.get('username') == '' or request.cookies.get('username') is None:
-        redirect('/')
+        return redirect('/')
 
     username = request.cookies.get('username')
 
@@ -343,14 +343,12 @@ def addTask():
 
     # send email and SMS notification
     # rabbitMQ tasks
-    """
     try:
         messageAPI.send_notification_task("+254710650613", str(text_all))
         sendMail.new_task_message("khalifleila@gmail.com", str(taskData), username)
     except Exception:
         logging.warning('Send SMS failed on /api/addTask/ notification failed')
 
-    """
 
     #user_info = r.table('UsersInfo').get(username).pluck('email').run(g.rdb_conn)
     #email = user_info['email']

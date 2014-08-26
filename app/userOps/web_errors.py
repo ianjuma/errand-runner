@@ -4,12 +4,15 @@
 # res/ rep cycle
 from app import app
 
-from flask import (render_template)
+from flask import (render_template, request, redirect)
 from flask import make_response
 from flask import jsonify
 
 @app.route('/')
 def index():
+    if 'username' in request.cookies:
+      return redirect('/task/myTasks/')
+
     return render_template('index.html')
 
 

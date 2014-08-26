@@ -8,7 +8,6 @@ from app import r
 from app import g
 from app import logging
 from app import salt
-#from app import cursor
 from app import RqlError
 from app import session
 
@@ -34,10 +33,10 @@ def profile():
 
 
     if 'username' not in request.cookies:
-        redirect('/')
+        return redirect('/')
 
     if request.cookies.get('username') == '' or request.cookies.get('username') is None:
-        redirect('/')
+        return redirect('/')
 
     username = request.cookies.get('username')
 
@@ -122,10 +121,10 @@ def payments():
     #    return redirect('/')
 
     if 'username' not in request.cookies:
-        redirect('/')
+        return redirect('/')
 
     if request.cookies.get('username') == '' or request.cookies.get('username') is None:
-        redirect('/')
+        return redirect('/')
 
     username = request.cookies.get('username')
 
