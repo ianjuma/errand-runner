@@ -349,7 +349,8 @@ def addTask():
     except Exception:
         logging.warning('Send SMS failed on /api/addTask/ notification failed')
 
-    email = r.table('UsersInfo').get(username).pluck('email').run(g.rdb_conn)
+    user_info = r.table('UsersInfo').get(username).pluck('email').run(g.rdb_conn)
+    email = user_info['email']
 
     # setup URL to payments - user specific data
     merchant_ref = '12erwe'
