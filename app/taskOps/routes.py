@@ -194,7 +194,7 @@ def getRandID():
         return resp
 
     # add to sessions then login
-    # session[username] = username
+    session[username] = username
 
     resp = make_response(jsonify({"OK": "Signed Up"}), 202)
     resp.set_cookie('username',value=username)

@@ -61,7 +61,7 @@ def dbSetup():
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        if username not in session:
+        if 'username' not in request.cookies:
             return redirect(url_for('index'))
         return f(*args, **kwargs)
     return decorated_function
@@ -70,7 +70,6 @@ def login_required(f):
 @app.before_request
 def before_request():
     try:
-
         if 'username' not in request.cookies:
             redirect('/')
 

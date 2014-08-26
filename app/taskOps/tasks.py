@@ -11,9 +11,10 @@ from app import red
 from app import RqlError
 from app import session
 
-from flask import (render_template, redirect)
+from flask import (render_template, redirect, url_for)
 from flask import make_response
 from flask import jsonify
+from random import randint
 from flask import abort, request
 
 from json import dumps
@@ -23,16 +24,27 @@ from mail import messageAPI
 from payments import process_payments
 
 
+from functools import wraps
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'username' not in request.cookies:
+            return redirect(url_for('index'))
+        return f(*args, **kwargs)
+    return decorated_function
+
+
+@login_required
 @app.route('/task/createTask/', methods=['POST', 'GET'])
 def tasks():
-    #if session[username] is None:
-    #    return redirect('/')
 
     #if username not in session:
     #    return redirect('/')
 
     if 'username' not in request.cookies:
         return redirect('/')
+
+    # use redis sessions with ttl
 
     if request.cookies.get('username') == '' or request.cookies.get('username') is None:
         return redirect('/')
@@ -119,6 +131,7 @@ def getAllTasks():
     return render_template('VIEWtasks.html', username=username)
 
 
+@login_required
 @app.route('/api/getTasks/', methods=['POST', 'GET'])
 def getTasks():
     if not request.json:
@@ -350,20 +363,27 @@ def addTask():
         logging.warning('Send SMS failed on /api/addTask/ notification failed')
 
 
-    #user_info = r.table('UsersInfo').get(username).pluck('email').run(g.rdb_conn)
-    #email = user_info['email']
+    user_info = r.table('UsersInfo').get(username).pluck('email').run(g.rdb_conn)
+    mobileNo = r.table('UsersInfo').get(username).pluck('mobileNo').run(g.rdb_conn)
+    email = user_info['email']
 
     #print email
     # setup URL to payments - user specific data
-    merchant_ref = '12erwe'
+
+    merchant_ref = "Ta" + str(randint(10000, 99999)) + "W"
+    #merchant_ref = '12erwe'
     request_data = {
         'Amount': '2000',
         'Description': task_title,
         'Type': 'MERCHANT',
         'Reference': merchant_ref,
-        'PhoneNumber': '0721339381',
+        'PhoneNumber': mobileNo,
+        'Email': email
     }
+
+    print request_data
     url = process_payments.postOrder(request_data)
+    print url
 
     # store URL in redis under username
     # set with expire
