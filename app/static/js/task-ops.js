@@ -35,11 +35,9 @@ $('#completeAll').click( function(evnt) {
         class_name: 'success'
       });
 
-      window.location.href = '/task/myTasks/';
-
+      window.location.href = '/process_payments/';
     },
     always: function(result) {
-      // window.location.href = '/myTasks/' + username + '/';
       console.log(result);
     },
 

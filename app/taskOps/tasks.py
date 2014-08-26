@@ -7,7 +7,7 @@ from app import app
 from app import r
 from app import g
 from app import logging
-#from app import cursor
+from app import red
 from app import RqlError
 from app import session
 
@@ -197,7 +197,7 @@ def taskInfo(task_id):
         return resp
 
     return render_template(
-        'EDITTASK.html', task_category=task_category, task_urgency=task_urgency, locationData=location, contactPersons=contactPersons,
+        'EditTask.html', task_category=task_category, task_urgency=task_urgency, locationData=location, contactPersons=contactPersons,
         task_desc=task_desc, task_title=task_title, due_date=due_date, username=username, task_id=task_id)
 
 
@@ -322,8 +322,9 @@ def addTask():
     locationData = request.json.get('locationData')
     contactPersons = request.json.get('contactPersons')
 
+    # unpaid status - pending - started - finished
     taskData = { "username": username, "task_title": task_title, "task_desc": task_desc, "locationData": locationData,
-                "task_category": task_category, "task_urgency": "pending", "due_date": due_date, "contactPersons": contactPersons }
+                "task_category": task_category, "task_urgency": "UNPAID", "due_date": due_date, "contactPersons": contactPersons }
 
     text_all = "LinkUs new task %s " %(task_title)
 
@@ -348,23 +349,25 @@ def addTask():
     except Exception:
         logging.warning('Send SMS failed on /api/addTask/ notification failed')
 
-    # setup URL to payments
+    # setup URL to payments - user specific data
+    merchant_ref = '12erwe'
     request_data = {
-        'Amount': '100',
-        'Description': 'Task Sample',
+        'Amount': '2000',
+        'Description': task_title,
         'Type': 'MERCHANT',
-        'Reference': '12erwe',
-        'PhoneNumber': '0701435178'
+        'Reference': merchant_ref,
+        'PhoneNumber': ''
     }
     url = process_payments.postOrder(request_data)
-    pay_url = '/process_payments/' + username + '/' + url
-    print pay_url
 
     # store URL in redis under username
-    # redis URL
-    # return redirect(pay_url)
+    # set with expire
+    red.hset(username, 'url', url)
+    red.expire(username, 300)
+
+    # resp = make_response(redirect(pay_url, code=302))
 
     resp = make_response(jsonify({"OK": "Task Created"}), 200)
     resp.headers['Content-Type'] = "application/json"
     resp.cache_control.no_cache = True
-    return resp
+    return resp    
