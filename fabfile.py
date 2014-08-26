@@ -29,7 +29,7 @@ def setup_server(version):
             if result.failed:
                 local('GUNICORN failed')
 
-            prepare_deploy()
+            #prepare_deploy()
 
 
 def clean():
