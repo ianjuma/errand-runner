@@ -501,26 +501,15 @@
 <script src="/static/js/fillTable.js"></script>
 <script src="/static/js/task-ops.js"></script>
 
-
 <script type="text/javascript">
-  $("#credit_slider").slider().on("slide",function(e){
-    $("#credits").html("$" + e.value);
-  });
-  $("#rate_slider").slider().on("slide",function(e){
-    $("#rate").html(e.value + "%");
-  });
+
+  var username = "{{username}}";
+  console.log(username);
 
   analytics.identify('{{ username }}', {
       name: '{{ username }}',
       email: '{{ username }}'
   });
-  
-</script>
-
-<script type="text/javascript">
-
-  var username = "{{username}}";
-  console.log(username);
 
   $(document).ready(function(){
     //initialize the javascript
@@ -535,7 +524,6 @@
   <!-- Bootstrap core JavaScript
   ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
-
 
 <!-- mouseflow -->
 <script type="text/javascript">
