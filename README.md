@@ -24,7 +24,7 @@ http://taskwetu.herokuapp.com/
 ### Development
 - [ ] Static Assets (CDN) - minimise + compress, gzip
 - [ ] setup nginx- server static assets
-- [-] social oauth login
+- [ ] social oauth login
 - [ ] pesapal integration
 - [ ] fix email API - message(bg tasks)
 - [ ] Validation forms
