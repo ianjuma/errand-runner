@@ -349,6 +349,8 @@ def addTask():
     except Exception:
         logging.warning('Send SMS failed on /api/addTask/ notification failed')
 
+    email = r.table('UsersInfo').get(username).pluck('email').run(g.rdb_conn)
+
     # setup URL to payments - user specific data
     merchant_ref = '12erwe'
     request_data = {
@@ -357,6 +359,7 @@ def addTask():
         'Type': 'MERCHANT',
         'Reference': merchant_ref,
         'PhoneNumber': '0721339381',
+        'Email': email
     }
     url = process_payments.postOrder(request_data)
 
