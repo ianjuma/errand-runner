@@ -197,7 +197,7 @@ def taskInfo(task_id):
         return resp
 
     return render_template(
-        'EDITTASK.html', task_category=task_category, task_urgency=task_urgency, locationData=location, contactPersons=contactPersons,
+        'EditTask.html', task_category=task_category, task_urgency=task_urgency, locationData=location, contactPersons=contactPersons,
         task_desc=task_desc, task_title=task_title, due_date=due_date, username=username, task_id=task_id)
 
 
@@ -349,16 +349,16 @@ def addTask():
     except Exception:
         logging.warning('Send SMS failed on /api/addTask/ notification failed')
 
-    # setup URL to payments
+    # setup URL to payments - user specific data
+    merchant_ref = '12erwe'
     request_data = {
-        'Amount': '100',
-        'Description': 'Task Sample',
+        'Amount': '2000',
+        'Description': task_title,
         'Type': 'MERCHANT',
-        'Reference': '12erwe',
-        'PhoneNumber': '0701435178'
+        'Reference': merchant_ref,
+        'PhoneNumber': ''
     }
     url = process_payments.postOrder(request_data)
-    # pay_url = '/process_payments/'
 
     # store URL in redis under username
     # set with expire

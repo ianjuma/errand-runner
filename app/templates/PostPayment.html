@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="/static/favicon.png">
+
+    <title>Post &middot; Payment</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:300,200,100' rel='stylesheet' type='text/css'>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.main.min.css" rel="stylesheet">   
+    <link href="/static/js/fuelux/css/fuelux.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="/static/fonts/font-awesome-4/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/pygments.css">
+    <!-- Custom styles for this template -->
+    <link href="/static/css/style-template.css" rel="stylesheet" />
+
+    <!-- menu -->
+    <script src="/static/js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/menu-all.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/nprogress.css" />
+
+    <script src="/static/js/nprogress.js"></script>
+
+    <style type="text/css">
+
+      .space-lower-div {
+        margin-top: 20px;
+      }
+
+      #cl-wrapper {
+        padding-top: 0px;
+      }
+
+      .menu-holder-custom {
+        padding-top: 0.85em;
+        padding-bottom: 0.85em;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        padding-left: 5.7em;
+      }
+
+      .top-space-reduce {
+        margin-top: 0px;
+      }
+
+
+      .menu-holder-custom {
+        padding-top: 1.85em;
+        padding-bottom: 1.85em;
+      }
+
+    </style>
+
+  </head>
+
+<body>
+
+  <div class="page-head menu-holder-custom">
+    <img src="/static/ico/taskwetu_logo.png" alt="TaskWetu Logo">
+    <div class="container">
+      <nav id="bt-menu" class="bt-menu">
+        <a href="#" class="bt-menu-trigger"><span>Menu</span></a>
+        <ul>
+          <li><a href="/task/createTask/">New task</a></li>
+          <li><a href="/task/myTasks/">All Tasks</a></li>
+          <li><a href="/profile/">Profile</a></li>
+          <li><a href="/payments/">Payments</a></li>
+          <li><a href="/logout/">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+</div>
+
+<div id="cl-wrapper">
+  <div class="container-fluid" id="pcont">
+    
+    <div class="cl-mcont left-right-space">    
+    <div class="row wizard-row">
+      <div class="col-md-12 fuelux">
+      <div class="step-content">
+      <div class="row">
+        <div class="col-md-12">       
+          </div>
+
+          </div>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+  </div> 
+</div>
+
+
+<script async type="text/javascript" src="/static/js/fuelux/loader.min.js"></script>
+<script async type="text/javascript" src="/static/js/behaviour/general.js"></script>
+
+<script type="text/javascript">
+
+  var username = "{{ username }}";
+  var data = "{{ status }}";
+  console.log(username);
+
+</script>
+
+<script async src="/static/js/borderMenu.js"></script>
+<script async src="/static/js/classie.js"></script>
+
+</body>
+</html>

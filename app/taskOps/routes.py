@@ -23,6 +23,7 @@ from random import randint
 secret_key = app.secret_key
 
 from mail import sendMail
+from payments import process_payments
 
 
 @app.route('/admin/', methods=['POST', 'GET'])
@@ -279,7 +280,6 @@ def post_payment_pesapal():
     #if username not in session:
     #    return redirect('/')
 
-    #print request.cookies
     if 'username' not in request.cookies:
         redirect('/')
 
@@ -287,16 +287,34 @@ def post_payment_pesapal():
     # with ref set in rand generator
     pesapal_merchant_ref = request.args.get('pesapal_merchant_reference')
     pesapal_merchant_id  = request.args.get('pesapal_transaction_tracking_id')
+    print pesapal_merchant_id, pesapal_merchant_ref
 
     # store merchant info in db
     # basic post_payment page TO LOAD
+    pesapal_data = { "pesapal_transaction_tracking_id": pesapal_merchant_id, 
+        "pesapal_merchant_reference": pesapal_merchant_ref, "username": username }
+
+    try:
+        r.table('Payments').insert(pesapal_data).run(g.rdb_conn)
+    except Exception:
+        logging.warning('DB code verify failed on /post_payment/')
+
+        resp = make_response(jsonify({"Error": "503 DB error"}), 503)
+        resp.headers['Content-Type'] = "application/json"
+        resp.cache_control.no_cache = True
+        return resp
 
     # optional get payment status - info sent to pesapla ipn notification
-    # per user info - render post payment page
+    # per user info - render post payment page - by merchant ref
+    """
+    post_params = {
+      'pesapal_merchant_reference': '000',
+      'pesapal_transaction_tracking_id': '000'
+    }
+    """
 
-    resp = make_response(jsonify({"OK": "Post Payment"}), 200)
-    resp.cache_control.no_cache = True
-    return resp
+    status = process_payments.queryPaymentByRef(pesapal_data)
+    return render_template('PostPayment.html', status=status, username=username)
 
 
 @app.route('/pesapal_ipn_notification/', methods=['POST'])
