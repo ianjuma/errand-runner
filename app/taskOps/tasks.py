@@ -343,15 +343,19 @@ def addTask():
 
     # send email and SMS notification
     # rabbitMQ tasks
+    """
     try:
         messageAPI.send_notification_task("+254710650613", str(text_all))
         sendMail.new_task_message("khalifleila@gmail.com", str(taskData), username)
     except Exception:
         logging.warning('Send SMS failed on /api/addTask/ notification failed')
 
-    user_info = r.table('UsersInfo').get(username).pluck('email').run(g.rdb_conn)
-    email = user_info['email']
+    """
 
+    #user_info = r.table('UsersInfo').get(username).pluck('email').run(g.rdb_conn)
+    #email = user_info['email']
+
+    #print email
     # setup URL to payments - user specific data
     merchant_ref = '12erwe'
     request_data = {
@@ -360,7 +364,6 @@ def addTask():
         'Type': 'MERCHANT',
         'Reference': merchant_ref,
         'PhoneNumber': '0721339381',
-        'Email': email
     }
     url = process_payments.postOrder(request_data)
 
@@ -374,4 +377,4 @@ def addTask():
     resp = make_response(jsonify({"OK": "Task Created"}), 200)
     resp.headers['Content-Type'] = "application/json"
     resp.cache_control.no_cache = True
-    return resp    
+    return resp
