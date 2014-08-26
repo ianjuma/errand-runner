@@ -356,7 +356,7 @@ def addTask():
         'Description': task_title,
         'Type': 'MERCHANT',
         'Reference': merchant_ref,
-        'PhoneNumber': ''
+        'PhoneNumber': '0721339381',
     }
     url = process_payments.postOrder(request_data)
 
