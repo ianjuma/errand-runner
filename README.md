@@ -24,16 +24,14 @@ http://taskwetu.herokuapp.com/
 ### Development
 - [ ] Static Assets (CDN) - minimise + compress, gzip
 - [ ] setup nginx- server static assets
-- [-] social oauth login
-- [ ] pesapal integration
-- [ ] fix email API - message(bg tasks)
-- [ ] Validation forms
-- [ ] URL routes - remove name/RESTfull - /task/addTask|edit|myTasks|profile 
+- [x] pesapal integration
+- [x] fix email API - message(bg tasks)
+- [x] Validation forms
+- [x] URL routes - remove name/RESTfull - /task/addTask|edit|myTasks|profile 
 - [ ] sessions with redis
-- [ ] responsiveness
 
 
 ### UI clean
 - [ ] createTask - process
-- [ ] fix base template
-- [ ] notifications - login/createTask/myTasks/profile/ timer
+- [x] fix base template
+- [x] notifications - login/createTask/myTasks/profile/ timer
