@@ -4,7 +4,7 @@ import pesapal
 
 pesapal.consumer_key = 'CkTmeBHciLM07WG0ltwGu8fklRSKdEqd'
 pesapal.consumer_secret = 'X6mK+tUOne8tHbIZvETFjDvuDz0='
-pesapal.testing = True
+pesapal.testing = False
 
 # sample request data - dummy
 request_data = {
