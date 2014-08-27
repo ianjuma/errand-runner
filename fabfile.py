@@ -42,7 +42,7 @@ def backUp():
 
 def installDeps():
     run('apt-get install redis')
-    run('apt-get install postgresql9.3')
+    run('apt-get install rabbitmq-server')
     run('apt-get install rethinkdb')
 
 
