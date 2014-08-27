@@ -364,13 +364,14 @@ def addTask():
         logging.warning('Send SMS failed on /api/addTask/ notification failed')
 
 
-    user_info = r.table('UsersInfo').get(username).pluck('email').run(g.rdb_conn)
-    mobileNo = r.table('UsersInfo').get(username).pluck('mobileNo').run(g.rdb_conn)
-    email = user_info['email']
+    try:
+        user_info = r.table('UsersInfo').get(username).pluck('email').run(g.rdb_conn)
+        mobileNo = r.table('UsersInfo').get(username).pluck('mobileNo').run(g.rdb_conn)
+        email = user_info['email']
+    except Exception:
+        logging.warning('Fetch of userInfo failed on /api/addTask/')
 
-    #print email
     # setup URL to payments - user specific data
-
     merchant_ref = "Ta" + str(randint(10000, 99999)) + "W"
     #merchant_ref = '12erwe'
     # amount ?
@@ -383,9 +384,7 @@ def addTask():
         'Email': email
     }
 
-    print request_data
     url = process_payments.postOrder(request_data)
-    print url
 
     # store URL in redis under username
     # set with expire
