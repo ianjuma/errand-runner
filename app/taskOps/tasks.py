@@ -334,6 +334,7 @@ def addTask():
     due_date = request.json.get('due_date')
     locationData = request.json.get('locationData')
     contactPersons = request.json.get('contactPersons')
+    task_price = request.json.get('taskPrice')
 
     # unpaid status - pending - started - finished
     taskData = { "username": username, "task_title": task_title, "task_desc": task_desc, "locationData": locationData,
@@ -372,8 +373,9 @@ def addTask():
 
     merchant_ref = "Ta" + str(randint(10000, 99999)) + "W"
     #merchant_ref = '12erwe'
+    # amount ?
     request_data = {
-        'Amount': '2000',
+        'Amount': task_price,
         'Description': task_title,
         'Type': 'MERCHANT',
         'Reference': merchant_ref,
