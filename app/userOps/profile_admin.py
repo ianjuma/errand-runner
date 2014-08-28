@@ -205,7 +205,6 @@ def removeUser():
     if username not in session:
         return redirect('/')
 
-
     try:
         user = r.table('UsersInfo').get(username).run(g.rdb_conn)
     except Exception, e:

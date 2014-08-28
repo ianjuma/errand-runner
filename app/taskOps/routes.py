@@ -284,10 +284,7 @@ def confirmUser(smscode):
         EMAIL VERFICATION FAILED
         """
 
-    url = "/task/createTask/"
-
-    return redirect(url, code=302)
-
+    return redirect("/task/createTask/", code=302)
 
 
 @app.route('/post_payment/', methods=['GET', 'POST'])
