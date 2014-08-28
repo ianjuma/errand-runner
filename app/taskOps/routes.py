@@ -181,7 +181,7 @@ def getRandID():
     try:
         # r.table('UsersInfo').get(mobileNo).update({"smscode": SMScode}).run(g.rdb_conn)
         r.table(
-            'UsersInfo').insert({"state": "", "fname": "", "lname": "" ,"username": username, "dob": "", 
+            'UsersInfo').insert({"state": "", "fname": "", "lname": "" ,"username": username, "dob": "",
             "email": email, "password": hashed_password, "smscode": SMScode, "mobileNo": ""}).run(g.rdb_conn)
     except RqlError:
         # payload = "LOG_INFO=" + simplejson.dumps({ 'Sign Up':'Sign Up Failed' })
@@ -302,7 +302,7 @@ def post_payment_pesapal():
 
     # store merchant info in db
     # basic post_payment page TO LOAD
-    pesapal_data = { "pesapal_transaction_tracking_id": pesapal_merchant_id, 
+    pesapal_data = { "pesapal_transaction_tracking_id": pesapal_merchant_id,
         "pesapal_merchant_reference": pesapal_merchant_ref, "username": username }
 
     try:
@@ -358,3 +358,9 @@ def process_payment():
     # fetch url from redis - attach iframe to window
     url = red.hget(username, 'url')
     return render_template('pesapal_payment.html', username=username, iframe=url)
+
+
+
+@app.route('/dummyTask/', methods=['GET'])
+def dummy():
+    return render_template('dummyCreate.html')
