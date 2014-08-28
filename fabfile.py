@@ -15,6 +15,7 @@ def setSupervisordLog():
 
 
 def supervisor():
+    run('kill -9 `pgrep gunicorn`')
     run('supervisord -c /etc/supervisord.conf')
 
 
