@@ -365,8 +365,12 @@ def addTask():
 
     try:
         user_info = r.table('UsersInfo').get(username).pluck('email').run(g.rdb_conn)
-        mobileNo = r.table('UsersInfo').get(username).pluck('mobileNo').run(g.rdb_conn)
+        usermobileNo = r.table('UsersInfo').get(username).pluck('mobileNo').run(g.rdb_conn)
         email = user_info['email']
+        mobileNo = ""
+        if usermobileNo is not None:
+            mobileNo = usermobileNo['mobileNo']
+
     except Exception:
         logging.warning('Fetch of userInfo failed on /api/addTask/')
 
@@ -380,9 +384,21 @@ def addTask():
         'Description': str(task_title),
         'Type': 'MERCHANT',
         'Reference': str(merchant_ref),
+        'PhoneNumber': str(mobileNo),
+        'Email': str(email)
+    }
+    print request_data
+    
+    """
+    request_data = {
+        'Amount': str(task_price),
+        'Description': str(task_title),
+        'Type': 'MERCHANT',
+        'Reference': str(merchant_ref),
         'PhoneNumber': str(mobileNo['mobileNo']),
         'Email': str(email)
     }
+    """
 
     url = process_payments.postOrder(request_data)
 
