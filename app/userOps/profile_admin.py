@@ -173,6 +173,7 @@ def payments():
             resp.cache_control.no_cache = True
             return resp
 
+    """
     try:
         user = r.table('Payments').get(str(username)).run(g.rdb_conn)
         username = str(user['username'])
@@ -184,9 +185,10 @@ def payments():
         resp.headers['Content-Type'] = "application/json"
         resp.cache_control.no_cache = True
         return resp
+    """
 
     return render_template(
-        'payments.html', username=username, credit=credit)
+        'payments.html', username=username)
 
 
 @app.route('/api/removeUser/', methods=['POST'])
