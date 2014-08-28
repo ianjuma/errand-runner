@@ -387,18 +387,6 @@ def addTask():
         'PhoneNumber': str(mobileNo),
         'Email': str(email)
     }
-    print request_data
-    
-    """
-    request_data = {
-        'Amount': str(task_price),
-        'Description': str(task_title),
-        'Type': 'MERCHANT',
-        'Reference': str(merchant_ref),
-        'PhoneNumber': str(mobileNo['mobileNo']),
-        'Email': str(email)
-    }
-    """
 
     url = process_payments.postOrder(request_data)
 
