@@ -384,8 +384,6 @@ def addTask():
         'Email': str(email)
     }
 
-    print request_data
-
     url = process_payments.postOrder(request_data)
 
     # store URL in redis under username

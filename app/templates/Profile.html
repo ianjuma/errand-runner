@@ -294,10 +294,17 @@
   $('#firstname').val(firstname);
   $('#lastname').val(lastname);
 
-  $(document).ready(function(){
+  $(document).ready(function() {
     //initialize the javascript
     App.init();
     App.wizard();
+
+    $.gritter.add({
+        title: 'Success',
+        text: 'Please Update Your Profile',
+        class_name: 'information'
+    });
+
   });
 </script>
   <!-- Bootstrap core JavaScript
