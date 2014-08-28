@@ -299,7 +299,6 @@ def post_payment_pesapal():
     # with ref set in rand generator
     pesapal_merchant_ref = request.args.get('pesapal_merchant_reference')
     pesapal_merchant_id  = request.args.get('pesapal_transaction_tracking_id')
-    print pesapal_merchant_id, pesapal_merchant_ref
 
     # store merchant info in db
     # basic post_payment page TO LOAD

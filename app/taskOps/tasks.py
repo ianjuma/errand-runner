@@ -363,7 +363,6 @@ def addTask():
     except Exception:
         logging.warning('Send SMS failed on /api/addTask/ notification failed')
 
-
     try:
         user_info = r.table('UsersInfo').get(username).pluck('email').run(g.rdb_conn)
         mobileNo = r.table('UsersInfo').get(username).pluck('mobileNo').run(g.rdb_conn)
@@ -375,14 +374,17 @@ def addTask():
     merchant_ref = "Ta" + str(randint(10000, 99999)) + "W"
     #merchant_ref = '12erwe'
     # amount ?
+    task_price = 2000
     request_data = {
-        'Amount': task_price,
-        'Description': task_title,
+        'Amount': str(task_price),
+        'Description': str(task_title),
         'Type': 'MERCHANT',
-        'Reference': merchant_ref,
-        'PhoneNumber': mobileNo,
-        'Email': email
+        'Reference': str(merchant_ref),
+        'PhoneNumber': str(mobileNo['mobileNo']),
+        'Email': str(email)
     }
+
+    print request_data
 
     url = process_payments.postOrder(request_data)
 
