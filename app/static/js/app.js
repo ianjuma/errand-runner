@@ -57,8 +57,8 @@ $('#loginData').click( function(evnt) {
             console.log(result);
             window.location.href = "/profile/";
           },
-          fail: function(result, textStatus, jqXHR) {
-            alert('Failed to send Data');
+          error: function(result, textStatus, jqXHR) {
+            alert('SignUp failed, that account exists, lost your password?');
           },
 
           data: userData
