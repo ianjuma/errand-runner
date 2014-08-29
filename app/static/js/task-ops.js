@@ -1,7 +1,49 @@
 $('#completeAll').click( function(evnt) {
   evnt.preventDefault();
 
-  // validate();
+  if ($('#taskCat').val() == "") {
+    alert('Your task needs a category');
+    return 0;
+  }
+
+  if (typeof($('#taskCat').val()) != "string") {
+    alert('Your task category should be in text form');
+    return 0;
+  }
+
+  if ($('#taskTitle-data').val() == "") {
+    alert('Your task needs a title');
+    return 0;
+  }
+
+  if (typeof($('#taskTitle-data').val()) != "string") {
+    alert('Your task needs in text form');
+    return 0;
+  }
+
+
+  if ($('#task-desc').val() == "") {
+    alert('Your Task needs a description');
+    return 0;
+  }
+
+  if (typeof($('#task-desc').val()) != "string") {
+    alert('Your description needs to be in text form');
+    return 0;
+  }
+
+
+  if ($('#locationData').val() == "") {
+    alert('Your Task needs a due date');
+    return 0;
+  }
+
+  if (typeof($('#contactPersons').val()) != "string") {
+    alert('Your date needs to be in text form');
+    return 0;
+  }
+
+  //validate();
   task_title = $('#taskTitle-data').val();
   task_desc = $('#task-desc').val();
   task_urgency = $('#urgent-data').val();
@@ -60,9 +102,19 @@ function validate() {
   task_urgency = $('#urgent-data').val();
   date_data = $('#reservation').val();
   location = $('#locationData').val();
-  task_category = $('#category-data').val();
+  task_category = $('#taskCat').val();
   contact_p = $('#contactPersons').val();
 
+
+  if ($('#taskCat').val() == "") {
+    alert('Your task needs a category');
+    return 0;
+  }
+
+  if (typeof($('#taskCat').val()) != "string") {
+    alert('Your task category should be in text form');
+    return 0;
+  }
 
   if ($('#taskTitle-data').val() == "") {
     alert('Your task needs a title');
@@ -87,7 +139,7 @@ function validate() {
 
 
   if ($('#locationData').val() == "") {
-    alert('Your Task needs a date');
+    alert('Your Task needs a due date');
     return 0;
   }
 
