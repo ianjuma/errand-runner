@@ -1,6 +1,47 @@
 $('#update-task').click( function(evnt) {
   evnt.preventDefault();
 
+  if ($('#taskTitle-data').val() == "") {
+    alert('Your task needs a title');
+    return 0;
+  }
+
+  if (typeof($('#taskTitle-data').val()) != "string") {
+    alert('Your task needs in text form');
+    return 0;
+  }
+
+
+  if ($('#task-desc').val() == "") {
+    alert('Your Task needs a description');
+    return 0;
+  }
+
+  if (typeof($('#task-desc').val()) != "string") {
+    alert('Your description needs to be in text form');
+    return 0;
+  }
+
+  if ($('#reservation').val() == "") {
+    alert('Your task needs due date');
+    return 0;
+  }
+
+  if ($('#locationData').val() == "") {
+    alert('Your task needs location information');
+    return 0;
+  }
+
+  if (typeof($('#locationData').val()) != "string") {
+    alert('please enter location of task');
+    return 0;
+  }
+
+  if ($('#contactPersons').val() == "") {
+    alert('Your task needs contact information');
+    return 0;
+  }
+
   task_title = $('#taskTitle-data').val();
   task_desc = $('#task-desc').val();
   task_urgency = $('#urgent-data').val();

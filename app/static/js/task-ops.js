@@ -153,6 +153,37 @@ function validate() {
 $('#updateUserInfo').click( function(evnt) {
   evnt.preventDefault();
 
+  if ($('#firstname').val() == "") {
+    alert('Please enter your first name');
+    return 0;
+  }
+
+  if (typeof($('#firstname').val()) != "string") {
+    alert('please enter a valid name');
+    return 0;
+  }
+
+  if ($('#lastname').val() == "") {
+    alert('Enter your last name');
+    return 0;
+  }
+
+  if (typeof($('#lastname').val()) != "string") {
+    alert('Please enter a valid last name');
+    return 0;
+  }
+
+
+  if ($('#mobileNo').val() == "") {
+    alert('Please enter your mobile number');
+    return 0;
+  }
+
+  if ($('#country').val() == "") {
+    alert('Please enter your country');
+    return 0;
+  }
+
   first_name = $('#firstname').val();
   last_name = $('#lastname').val();
   email = $('#email').val();
