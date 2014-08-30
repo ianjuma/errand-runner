@@ -23,6 +23,11 @@ from mail import sendMail
 import urllib
 
 
+@app.route('/google46573ef775eff8e0.html')
+def google_index():
+    return render_template('google46573ef775eff8e0.html')
+
+
 @app.route('/profile/', methods=['POST', 'GET'])
 def profile():
     #if session[username] is None:
