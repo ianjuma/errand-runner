@@ -15,6 +15,10 @@ def index():
 
     return render_template('index.html')
 
+@app.route('/robots.txt')
+def robots():
+    return render_template('robots.txt')
+
 
 # Basic Error handlers
 @app.errorhandler(404)
