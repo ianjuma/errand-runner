@@ -39,7 +39,7 @@ app.permanent_session_lifetime = timedelta(minutes=5760)
 
 
 from celery import Celery
-from AfricasTalkingGateway import AfricasTalkingGateway, AfricasTalkingGatewayException
+from crons.AfricasTalkingGateway import AfricasTalkingGateway, AfricasTalkingGatewayException
 
 username = "IanJuma"
 apikey = "840a1b44b95cb68ab856cab41237700266dc22e5a795e341c067a02cbc3cb937"
