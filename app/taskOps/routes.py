@@ -358,9 +358,3 @@ def process_payment():
     # fetch url from redis - attach iframe to window
     url = red.hget(username, 'url')
     return render_template('pesapal_payment.html', username=username, iframe=url)
-
-
-
-@app.route('/dummyTask/', methods=['GET'])
-def dummy():
-    return render_template('dummyCreate.html')
