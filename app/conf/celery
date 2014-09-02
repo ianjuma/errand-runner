@@ -19,7 +19,7 @@ Entry Point --> flask app
       |           |                          |  Celery  <-----+
       |         +-v----------+  .-- Events --<  Worker  |     |
       |         |            | /             *----------*     | Consume
-      |         |  MongoDB   <=                               | & Run Tasks
+      |         |  Rethink   <=                               | & Run Tasks
       |         |            | \             *----------*     |
       |         +------------+  `-- Events --<  Celery  |     |
       |                                      |  Worker  <-----'
