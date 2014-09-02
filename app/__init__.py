@@ -2,7 +2,7 @@
 __version__ = '0.1.8'
 
 from flask import Flask
-from flask import session, g, request
+from flask import g, session, request
 from flask import (url_for, redirect)
 from flask import abort
 from functools import wraps
@@ -36,6 +36,125 @@ app.secret_key = 'I\xf9\x9cF\x1e\x04\xe6\xfaF\x8f\xe6)-\xa432'
 
 from datetime import timedelta
 app.permanent_session_lifetime = timedelta(minutes=5760)
+
+
+from celery import Celery
+from AfricasTalkingGateway import AfricasTalkingGateway, AfricasTalkingGatewayException
+
+username = "IanJuma"
+apikey = "840a1b44b95cb68ab856cab41237700266dc22e5a795e341c067a02cbc3cb937"
+
+import sendgrid
+from sendgrid import Mail, SendGridClient
+from sendgrid import SendGridError, SendGridClientError, SendGridServerError
+
+celery = Celery('tasks', backend='amqp', broker='amqp://')
+
+sg = sendgrid.SendGridClient('app27418636@heroku.com', 'w4do409h', raise_errors=True)
+
+@celery.task(ignore_result=True)
+def sendMail(to, mail, username):
+    logging.basicConfig(filename='SendMail.log', level=logging.DEBUG)
+    try:
+        to_send = "http://taskwetu.heroku.com/confirm/" + str(username) + "/" + str(mail) + "/"
+
+        message = sendgrid.Mail()
+        message.add_to(to)
+        message.set_subject('Taskwetu Sign-Up Confirmation')
+        message.set_html("<p>" + to_send + "</p>")
+        message.set_text( str(to_send) )
+        message.set_from('LinkUs <taskkwetu@gmail.com>')
+
+        # status, msg = sg.send(message)
+        sg.send(message)
+
+    except SendGridClientError as e:
+        logging.warning('Mail failed Client Error %s' % str(e))
+    except SendGridServerError as e:
+        logging.warning('Mail failed Server Error %s' % str(e))
+
+
+@celery.task(ignore_result=True)
+def new_task_message(to, mail, username):
+    logging.basicConfig(filename='SendMail.log', level=logging.DEBUG)
+    try:
+        to_send = "New Task has been created by user %s" %(username)
+        logo = '<img src="http://188.226.195.158/static/ico/taskwetu_logo.png"/>'
+
+        html = "<h3> %s </h3><br><p> %s </p>" %(logo, to_send)
+
+        message = sendgrid.Mail()
+        message.add_to(to)
+        message.set_subject('New Task Created')
+        message.set_html(html)
+        message.set_text( str(to_send) )
+        message.set_from('TaskWetu <taskkwetu@gmail.com>')
+
+        # status, msg = sg.send(message)
+        sg.send(message)
+
+    except SendGridClientError as e:
+        logging.warning('Mail failed Client Error %s' % str(e))
+    except SendGridServerError as e:
+        logging.warning('Mail failed Server Error %s' % str(e))
+
+
+@celery.task(ignore_result=True)
+def passwordReset(to, newpassword):
+    try:
+        to_send = "http://taskwetu.heroku.com/"
+
+        message = sendgrid.Mail()
+        message.add_to(to)
+        message.set_subject('Taskwetu Password Reset')
+        message.set_html("<p>" + to_send + "</p>" +  "<p>" + newpassword + "</p>")
+        message.set_text( str(to_send) )
+        message.set_from('taskwetu <taskkwetu@gmail.com>')
+
+        sg.send(message)
+
+    except SendGridClientError as e:
+        logging.warning('Mail failed Client Error %s' % str(e))
+    except SendGridServerError as e:
+        logging.warning('Mail failed Server Error %s' % str(e))
+
+
+
+@celery.task(ignore_result=True)
+def sendText(to, code):
+    logging.basicConfig(filename='SMS.log', level=logging.DEBUG)
+
+    gateway = AfricasTalkingGateway(username, apikey)
+    message = "Welcome to LinkUs, an errand running platform. Your User Code is %s " % (code)
+
+    recipients = gateway.sendMessage(to, message)
+
+    try:
+        for recipient in recipients:
+            logging.info('number=%s;status=%s;messageId=%s;cost=%s'
+                         % (recipient['number'], recipient['status'],
+                            recipient['messageId'], recipient['cost']))
+
+    except AfricasTalkingGatewayException, e:
+        logging.warning('Database setup completed %s' % str(e))
+
+
+@celery.task(ignore_result=True)
+def send_notification_task(to, taskData):
+    logging.basicConfig(filename='SMS.log', level=logging.DEBUG)
+
+    gateway = AfricasTalkingGateway(username, apikey)
+    message = "New Task Has been created %s " % (taskData)
+    recipients = gateway.sendMessage(to, message)
+
+    try:
+        for recipient in recipients:
+            logging.info('number=%s;status=%s;messageId=%s;cost=%s'
+                         % (recipient['number'], recipient['status'],
+                            recipient['messageId'], recipient['cost']))
+
+    except AfricasTalkingGatewayException, e:
+        logging.warning('SMS failed to send %s' % str(e))
 
 
 def dbSetup():
