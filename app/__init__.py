@@ -119,7 +119,6 @@ def passwordReset(to, newpassword):
         logging.warning('Mail failed Server Error %s' % str(e))
 
 
-
 @celery.task(ignore_result=True)
 def sendText(to, code):
     logging.basicConfig(filename='SMS.log', level=logging.DEBUG)
