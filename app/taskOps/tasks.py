@@ -19,8 +19,10 @@ from flask import abort, request
 
 from json import dumps
 
-from mail import sendMail
-from mail import messageAPI
+from app import new_task_message
+from app import send_notification_task
+
+
 from payments import process_payments
 
 
@@ -358,8 +360,8 @@ def addTask():
     # send email and SMS notification
     # rabbitMQ tasks
     try:
-        messageAPI.send_notification_task("+254710650613", str(text_all))
-        sendMail.new_task_message("khalifleila@gmail.com", str(taskData), username)
+        send_notification_task("+254710650613", str(text_all))
+        new_task_message("khalifleila@gmail.com", str(taskData), username)
     except Exception:
         logging.warning('Send SMS failed on /api/addTask/ notification failed')
 

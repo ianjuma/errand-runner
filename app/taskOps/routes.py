@@ -22,7 +22,7 @@ from random import randint
 
 secret_key = app.secret_key
 
-from mail import sendMail
+from app import sendMail
 from payments import process_payments
 
 
@@ -166,7 +166,7 @@ def getRandID():
 
     # @task sendMail
     try:
-        sendMail.sendMail(email, SMScode, username)
+        sendMail(email, SMScode, username)
     except URLError:
         logging.warning('sendMail verify failed on /api/signUp/')
         abort(500)

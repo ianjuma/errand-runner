@@ -19,7 +19,7 @@ from flask import abort, request
 import hashlib
 from random import randint
 
-from mail import sendMail
+from app import passwordReset
 import urllib
 
 
@@ -402,7 +402,7 @@ def forgotPassword():
             r.table('UsersInfo').get(
                 username).update({"password": hashed_password}).run(g.rdb_conn)
 
-            sendMail.passwordReset(email, new_password)
+            passwordReset(email, new_password)
 
         except RqlError:
             logging.warning('DB pass reset failed on /reset/')
