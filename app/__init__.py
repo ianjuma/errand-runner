@@ -9,12 +9,10 @@ from functools import wraps
 
 import os
 import logging
-
 import settings
 
-
 app = Flask('app')
-app.debug = True
+app.config.from_pyfile('settings.py', silent=True)
 
 import rethinkdb as r
 from rethinkdb import *
@@ -34,7 +32,7 @@ LINK_DB = 'LinkUs'
 ONLINE_LAST_MINUTES = 5
 
 app.config[ONLINE_LAST_MINUTES] = 720
-app.secret_key = 'I\xf9\x9cF\x1e\x04\xe6\xfaF\x8f\xe6)-\xa432'
+app.secret_key = settings.SECRET_KEY
 
 from datetime import timedelta
 app.permanent_session_lifetime = timedelta(minutes=5760)
@@ -47,7 +45,9 @@ import sendgrid
 from sendgrid import Mail, SendGridClient
 from sendgrid import SendGridError, SendGridClientError, SendGridServerError
 
-celery = Celery('tasks', backend='amqp', broker=settings.redis_broker)
+celery = Celery('tasks', broker=settings.redis_broker)
+
+# sendgrid client
 sg = sendgrid.SendGridClient(settings.sg_user, settings.sg_key, raise_errors=True)
 
 @celery.task(ignore_result=True)
