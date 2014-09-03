@@ -48,8 +48,7 @@ import sendgrid
 from sendgrid import Mail, SendGridClient
 from sendgrid import SendGridError, SendGridClientError, SendGridServerError
 
-celery = Celery('tasks', backend='amqp', broker='amqp://')
-
+celery = Celery('tasks', backend='amqp', broker='redis://localhost:6379/0')
 sg = sendgrid.SendGridClient('app27418636@heroku.com', 'w4do409h', raise_errors=True)
 
 @celery.task(ignore_result=True)
