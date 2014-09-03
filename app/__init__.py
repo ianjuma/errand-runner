@@ -10,6 +10,8 @@ from functools import wraps
 import os
 import logging
 
+import settings
+
 
 app = Flask('app')
 app.debug = True
@@ -41,15 +43,12 @@ app.permanent_session_lifetime = timedelta(minutes=5760)
 from celery import Celery
 from crons.AfricasTalkingGateway import AfricasTalkingGateway, AfricasTalkingGatewayException
 
-username = "IanJuma"
-apikey = "840a1b44b95cb68ab856cab41237700266dc22e5a795e341c067a02cbc3cb937"
-
 import sendgrid
 from sendgrid import Mail, SendGridClient
 from sendgrid import SendGridError, SendGridClientError, SendGridServerError
 
-celery = Celery('tasks', backend='amqp', broker='redis://localhost:6379/0')
-sg = sendgrid.SendGridClient('app27418636@heroku.com', 'w4do409h', raise_errors=True)
+celery = Celery('tasks', backend='amqp', broker=settings.redis_broker)
+sg = sendgrid.SendGridClient(settings.sg_user, settings.sg_key, raise_errors=True)
 
 @celery.task(ignore_result=True)
 def sendMail(to, mail, username):
@@ -122,7 +121,7 @@ def passwordReset(to, newpassword):
 def sendText(to, code):
     logging.basicConfig(filename='SMS.log', level=logging.DEBUG)
 
-    gateway = AfricasTalkingGateway(username, apikey)
+    gateway = AfricasTalkingGateway(settings.username, settings.apikey)
     message = "Welcome to LinkUs, an errand running platform. Your User Code is %s " % (code)
 
     recipients = gateway.sendMessage(to, message)
@@ -141,7 +140,7 @@ def sendText(to, code):
 def send_notification_task(to, taskData):
     logging.basicConfig(filename='SMS.log', level=logging.DEBUG)
 
-    gateway = AfricasTalkingGateway(username, apikey)
+    gateway = AfricasTalkingGateway(settings.username, settings.apikey)
     message = "New Task Has been created %s " % (taskData)
     recipients = gateway.sendMessage(to, message)
 
