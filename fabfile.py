@@ -14,6 +14,10 @@ def setSupervisordLog():
     run('mkdir /var/log/supervisord/')
 
 
+def startCelery():
+    run('celery -A app.celery worker --loglevel=INFO --concurrency=10')
+
+
 def supervisor():
     run('kill -9 `pgrep gunicorn`')
     run('supervisord -c /etc/supervisord.conf')
