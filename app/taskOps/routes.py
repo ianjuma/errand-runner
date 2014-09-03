@@ -184,9 +184,6 @@ def getRandID():
             'UsersInfo').insert({"state": "", "fname": "", "lname": "" ,"username": username, "dob": "",
             "email": email, "password": hashed_password, "smscode": SMScode, "mobileNo": ""}).run(g.rdb_conn)
     except RqlError:
-        # payload = "LOG_INFO=" + simplejson.dumps({ 'Sign Up':'Sign Up Failed' })
-        # requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
-
         logging.warning('DB code verify failed on /api/signUp/')
         resp = make_response(jsonify({"Error": "503 DB error"}), 503)
         resp.headers['Content-Type'] = "application/json"
@@ -252,27 +249,17 @@ def logout():
 @app.route('/confirm/<smscode>/', methods=['PUT', 'POST'])
 def confirmUser(smscode):
     # make request to get one task
-    #if session[username] is None:
-    #    return redirect('/')
-
-    #if username not in session:
-    #    return redirect('/')
-
-
     if 'username' not in request.cookies:
         return redirect('/')
 
     username = request.cookies.get('username')
 
-
     try:
         user = r.table(
             'UsersInfo').get(username).pluck('smscode').run(g.rdb_conn)
     except RqlError:
-        # payload = "LOG_INFO=" + simplejson.dumps({ 'Confirmation Error':'Email Confirm Failed' })
-        # requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
-
         logging.warning('DB op failed on /confirmUser/')
+
         resp = make_response(jsonify({"Error": "503 DB error"}), 503)
         resp.headers['Content-Type'] = "application/json"
         resp.cache_control.no_cache = True
@@ -289,9 +276,6 @@ def confirmUser(smscode):
 
 @app.route('/post_payment/', methods=['GET', 'POST'])
 def post_payment_pesapal():
-    #if username not in session:
-    #    return redirect('/')
-
     if 'username' not in request.cookies:
         return redirect('/')
 
@@ -344,9 +328,6 @@ def ipn_notify():
 
 @app.route('/process_payments/', methods=['GET'])
 def process_payment():
-    #if username not in session:
-    #    return redirect('/')
-
     if 'username' not in request.cookies:
         return redirect('/')
 

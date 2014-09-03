@@ -39,15 +39,10 @@ def login_required(f):
 @login_required
 @app.route('/task/createTask/', methods=['POST', 'GET'])
 def tasks():
-
-    #if username not in session:
-    #    return redirect('/')
-
     if 'username' not in request.cookies:
         return redirect('/')
 
     # use redis sessions with ttl
-
     if request.cookies.get('username') == '' or request.cookies.get('username') is None:
         return redirect('/')
 
@@ -67,10 +62,6 @@ def getAdminTasks():
 
         
         # add to sessions then login
-        #if username not in session:
-        #    return redirect('/')
-
-        #print request.cookies
         if 'username' not in request.cookies:
             return redirect('/')
 
@@ -116,11 +107,6 @@ def getAdminTasks():
 @app.route('/task/myTasks/', methods=['POST', 'GET'])
 def getAllTasks():
     # wrong session - keyerror fail
-    #if session[str(username)] is None:
-    #    return redirect('/')
-
-    #if username not in session:
-    #    return redirect('/')
 
     if 'username' not in request.cookies:
         return redirect('/')
@@ -144,8 +130,6 @@ def getTasks():
 
     username = request.json.get('username')
 
-    #if session[username] is None:
-    #    return redirect('/')
     if username not in session:
         return redirect('/')
 
@@ -156,10 +140,8 @@ def getTasks():
             taskData.append(data)
 
     except RqlError:
-        #payload = "LOG_INFO=" + simplejson.dumps({ 'Request':'app.before' })
-        #requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
-
         logging.warning('DB code verify failed on /api/getTasks/')
+        
         resp = make_response(jsonify({"Error": "503 DB error"}), 503)
         resp.headers['Content-Type'] = "application/json"
         resp.cache_control.no_cache = True
@@ -175,12 +157,6 @@ def getTasks():
 
 @app.route('/task/editTask/<task_id>/', methods=['GET'])
 def taskInfo(task_id):
-    #if session[username] is None:
-    #    return redirect('/')
-
-    #if username not in session:
-    #    return redirect('/')
-
     if 'username' not in request.cookies:
         return redirect('/')
 
@@ -202,10 +178,8 @@ def taskInfo(task_id):
 
 
     except RqlError:
-        #payload = "LOG_INFO=" + simplejson.dumps({ '/editTask/<username>/<task_id>/':'DB operation failed on /editTask/<task_id>/' })
-        #requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
-
         logging.warning('DB operation failed on /editTask/<task_id>/')
+
         resp = make_response(jsonify({"Error": "503 DB error"}), 503)
         resp.headers['Content-Type'] = "application/json"
         resp.cache_control.no_cache = True
@@ -225,8 +199,6 @@ def editTask(task_id):
         abort(400)
 
     username = request.json.get('username')
-    #if session[username] is None:
-    #    return redirect('/')
 
     if username not in session:
         return redirect('/')
@@ -286,8 +258,6 @@ def deleteTask():
         abort(400)
 
     username = request.json.get('username')
-    #if session[username] is None:
-    #    return redirect('/')
 
     if username not in session:
         return redirect('/')
@@ -323,8 +293,7 @@ def addTask():
         abort(400)
 
     username = request.json.get('username')
-    #if session[username] is None:
-    #    return redirect('/')
+
     if username not in session:
         return redirect('/')
 
@@ -348,9 +317,6 @@ def addTask():
         r.table('Tasks').insert(taskData).run(g.rdb_conn)
     except RqlError:
         logging.warning('DB code verify failed on /api/addTask/')
-
-        #payload = "LOG_INFO=" + simplejson.dumps({ '/api/addTask/':'DB operation failed on /addTask/' })
-        #requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
 
         resp = make_response(jsonify({"Error": "503 DB error"}), 503)
         resp.headers['Content-Type'] = "application/json"

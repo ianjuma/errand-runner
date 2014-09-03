@@ -30,13 +30,6 @@ def google_index():
 
 @app.route('/profile/', methods=['POST', 'GET'])
 def profile():
-    #if session[username] is None:
-    #    return redirect('/')
-    
-    #if username not in session:
-    #    return redirect('/')
-
-
     if 'username' not in request.cookies:
         return redirect('/')
 
@@ -120,12 +113,6 @@ def profile():
 
 @app.route('/payments/', methods=['POST', 'GET'])
 def payments():
-    #if session[username] is None:
-    #    return redirect('/')
-
-    #if username not in session:
-    #    return redirect('/')
-
     if 'username' not in request.cookies:
         return redirect('/')
 
@@ -133,13 +120,6 @@ def payments():
         return redirect('/')
 
     username = request.cookies.get('username')
-
-    # session is a list object
-    #try:
-    #    username = session['username']
-    #except KeyError:
-    #    return redirect('/')
-
 
     if request.method == 'POST':
 
@@ -207,8 +187,6 @@ def removeUser():
     password = request.json.get('password')
     username = request.json.get('username')
 
-    #if session[username] is None:
-    #    return redirect('/')
     if username not in session:
         return redirect('/')
 
@@ -263,8 +241,6 @@ def addUser():
 
     username = request.json.get('username')
 
-    #if session[username] is None:
-    #    return redirect('/')
     if username not in session:
         return redirect('/')
 
@@ -305,8 +281,6 @@ def addUser():
 # credit API
 @app.route('/api/credit/<username>/', methods=['POST', 'GET'])
 def credit(username):
-    #if session[username] is None:
-    #    return redirect('/')
     if username not in session:
         return redirect('/')
 
