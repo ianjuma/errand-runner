@@ -14,5 +14,5 @@ def backup():
         args = ("-a", "taskwetu_db**//")
         os.execl("/usr/local/bin/rethinkdb-dump", args)
 
-if __name__ == 'main':
+if __name__ == '__main__':
     backup()
