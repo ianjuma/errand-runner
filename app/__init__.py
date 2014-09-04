@@ -21,17 +21,9 @@ import redis
 red = redis.StrictRedis(host='localhost', port=6379, db=0)
 
 logging.basicConfig(filename='TaskWangu.log', level=logging.DEBUG)
-salt = 'd40037e1ff7841838235533d910bbf24'
+salt = settings.salt
 
-
-RDB_HOST = os.environ.get('RDB_HOST') or '127.0.0.1'
-RDB_PORT = os.environ.get('RDB_PORT') or 28015
-LINK_DB = 'LinkUs'
-
-
-ONLINE_LAST_MINUTES = 5
-
-app.config[ONLINE_LAST_MINUTES] = 720
+app.config['ONLINE_LAST_MINUTES'] = settings.ONLINE_LAST_MINUTES
 app.secret_key = settings.SECRET_KEY
 
 from datetime import timedelta
@@ -155,10 +147,10 @@ def send_notification_task(to, taskData):
 
 
 def dbSetup():
-    connection = r.connect(host=RDB_HOST, port=RDB_PORT)
+    connection = r.connect(host=settings.RDB_HOST, port=settings.RDB_PORT, auth_key=settings.rethinkdb_auth)
     try:
-        r.db_create(LINK_DB).run(connection)
-        r.db(LINK_DB).table_create('User').run(connection)
+        r.db_create(settings.LINK_DB).run(connection)
+        r.db(settings.LINK_DB).table_create('User').run(connection)
         logging.info('Database setup completed')
     except RqlRuntimeError:
         logging.info('App database already exists')
@@ -182,16 +174,12 @@ def before_request():
             redirect('/')
 
         logging.info('before_request')
-        g.rdb_conn = r.connect(host=RDB_HOST, port=RDB_PORT, db=LINK_DB)
+        g.rdb_conn = r.connect(host=settings.RDB_HOST, port=settings.RDB_PORT, db=settings.LINK_DB, auth_key=settings.rethinkdb_auth)
     except RqlDriverError:
         """
-        log_data = "LOG_INFO=" + simplejson.dumps(
-        {
-           'Request':'app.before failed database',
-        })
+        log_data = "LOG_INFO=" + simplejson.dumps({ 'Request':'app.before failed database' })
         requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", log_data)
         """
-
         abort(503, "No database connection could be established")
 
 
