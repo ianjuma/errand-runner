@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="/static/ico/favicon/taskwetu_favicon_32.png">
+
+    <title>{% block title %}{% endblock %}</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:300,200,100' rel='stylesheet' type='text/css'>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.main.min.css" rel="stylesheet">
+    <link href="/static/js/fuelux/css/fuelux-responsive.min.css" rel="stylesheet">
+
+    <script type="text/javascript">
+      window.analytics=window.analytics||[],window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(t){if(!document.getElementById("analytics-js")){var a=document.createElement("script");a.type="text/javascript",a.id="analytics-js",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.io/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)}},window.analytics.SNIPPET_VERSION="2.0.9",
+      window.analytics.load("b8ujn9mafc");
+      window.analytics.page();
+    </script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="/static/fonts/font-awesome-4/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/pygments.css">
+    <!-- Custom styles for this template -->
+    <link href="/static/css/style-template.css" rel="stylesheet" />
+
+    <!-- menu -->
+    <script src="/static/js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/menu-all.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/nprogress.css" />
+
+    <script src="/static/js/nprogress.js"></script>
+
+    <style type="text/css">
+
+      .space-lower-div {
+        margin-top: 20px;
+      }
+
+      #cl-wrapper {
+        padding-top: 0px;
+      }
+
+      .menu-holder-custom {
+        padding-top: 0.85em;
+        padding-bottom: 0.85em;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        padding-left: 5.7em;
+      }
+
+      .top-space-reduce {
+        margin-top: 0px;
+      }
+
+      .right-space {
+        margin-right: 4px;
+      }
+
+      .keep-right {
+        margin-left: 32em;
+      }
+
+      .push-right {
+        margin-left: 12em;
+      }
+
+      .space-input-right {
+        margin-left: 10.5em;
+      }
+
+      .left-right-space {
+        margin-right: 25px;
+        margin-left: 40px;
+      }
+
+      .menu-holder-custom {
+        padding-top: 1.85em;
+        padding-bottom: 1.85em;
+      }
+
+    </style>
+    {% endblock %}
+  </head>
+
+<body>
+
+  <div class="page-head menu-holder-custom">
+    <img src="/static/ico/taskwetu_logo.png" alt="TaskWetu Logo">
+    <div class="container">
+      <nav id="bt-menu" class="bt-menu">
+        <a href="#" class="bt-menu-trigger"><span>Menu</span></a>
+        <ul>
+          <li><a href="/task/createTask/">New task</a></li>
+          <li><a href="/task/myTasks/">All Tasks</a></li>
+          <li><a href="/profile/">Profile</a></li>
+          <li><a href="/payments/">Payments</a></li>
+          <li><a href="/logout/">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+</div>
+
+
+{% block js_assets %}
+<script async type="text/javascript" src="/static/js/behaviour/general.js"></script>
+
+<script type="text/javascript">
+
+  var username = "{{username}}";
+  console.log(username);
+
+  analytics.identify('{{ username }}', {
+      name: '{{ username }}',
+      email: '{{ username }}'
+  });
+
+  $(document).ready(function(){
+    //App.init();
+  });
+
+</script>
+
+<script async src="/static/js/borderMenu.js"></script>
+<script async src="/static/js/classie.js"></script>
+{% endblock %}
+</body>
+</html>
