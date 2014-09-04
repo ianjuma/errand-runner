@@ -311,7 +311,7 @@ def addTask():
     taskData = { "username": username, "task_title": task_title, "task_desc": task_desc, "locationData": locationData,
                 "task_category": task_category, "task_urgency": "UNPAID", "due_date": due_date, "contactPersons": contactPersons }
 
-    text_all = "LinkUs new task %s " %(task_title)
+    text_all = "taskwetu new task %s " %(task_title)
 
     try:
         r.table('Tasks').insert(taskData).run(g.rdb_conn)

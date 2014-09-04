@@ -53,7 +53,7 @@ def sendMail(to, mail, username):
         message.set_subject('Taskwetu Sign-Up Confirmation')
         message.set_html("<p>" + to_send + "</p>")
         message.set_text( str(to_send) )
-        message.set_from('LinkUs <taskkwetu@gmail.com>')
+        message.set_from('taskwetu <taskkwetu@gmail.com>')
 
         # status, msg = sg.send(message)
         sg.send(message)
@@ -114,7 +114,7 @@ def sendText(to, code):
     logging.basicConfig(filename='SMS.log', level=logging.DEBUG)
 
     gateway = AfricasTalkingGateway(settings.username, settings.apikey)
-    message = "Welcome to LinkUs, an errand running platform. Your User Code is %s " % (code)
+    message = "Welcome to taskwetu, an errand running platform. Your User Code is %s " % (code)
 
     recipients = gateway.sendMessage(to, message)
 

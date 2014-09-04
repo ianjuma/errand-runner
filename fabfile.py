@@ -5,8 +5,8 @@ env.hosts = ['188.226.195.158']
 
 
 def moveSupervisor():
-    run('mv /tmp/TaskWetu/linkus/supervisord.conf /etc/supervisord.conf')
-    with cd('/tmp/TaskWetu/linkus'):
+    run('mv /tmp/TaskWetu/taskwetu/supervisord.conf /etc/supervisord.conf')
+    with cd('/tmp/TaskWetu/taskwetu'):
         put('supervisord.conf')
 
 
@@ -28,8 +28,8 @@ def setup_server(version):
     run('pty=False')
     run('mkdir /tmp/TaskWetu')
     with cd('/tmp/TaskWetu'):
-        run('git clone https://github.com/nailab/linkus.git')
-        with cd('/tmp/TaskWetu/linkus'):
+        run('git clone https://github.com/nailab/taskwetu.git')
+        with cd('/tmp/TaskWetu/taskwetu'):
             run('git checkout tags/%s' % (version,))
             result = run('pip install -r requirements.txt')
             if result.failed:
@@ -54,7 +54,7 @@ def installDeps():
 
 def mvStatic():
     run('rm -rf /www/data/static')
-    run('mv /tmp/TaskWetu/linkus/app/static /www/data/')
+    run('mv /tmp/TaskWetu/taskwetu/app/static /www/data/')
 
 
 def prepare_deploy():
