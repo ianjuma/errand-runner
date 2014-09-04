@@ -20,6 +20,8 @@ def startCelery():
 
 def supervisor():
     run('kill -9 `pgrep gunicorn`')
+    run('kill -9 `pgrep supervisor`')
+    run('kill -9 `pgrep celery`')
     run('export C_FORCE_ROOT="true"')
     run('supervisord -c /etc/supervisord.conf')
 
