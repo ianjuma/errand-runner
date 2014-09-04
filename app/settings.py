@@ -27,3 +27,6 @@ rethinkdb_auth = "taskwetu_db**//"
 RDB_HOST = os.environ.get('RDB_HOST') or '127.0.0.1'
 RDB_PORT = os.environ.get('RDB_PORT') or 28015
 LINK_DB = 'LinkUs'
+
+# celery
+C_FORCE_ROOT="True"
