@@ -8,7 +8,7 @@
   - name: ensure nginx is at the latest version
     apt: pkg=nginx state=latest
   - name: write the apache config file
-    template: src=/srv/nginx.j2 dest=/etc/nginx.conf
+    template: src=/tmp/TaskWetu/taskwetu/app/conf/nginx.j2 dest=/etc/nginx.conf
     notify:
     - restart nginx
   - name: ensure nginx is running
