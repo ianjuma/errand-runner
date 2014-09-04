@@ -9,7 +9,7 @@
     notify:
     - restart redis
   - name: ensure redis is running
-    service: name=redis state=started
+    service: name=redis state=running
   handlers:
     - name: restart redis
       service: name=redis state=restarted
