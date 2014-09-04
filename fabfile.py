@@ -43,7 +43,7 @@ def clean():
 
 
 def backUp():
-    run('rethinkdb-dump')
+    run('rethinkdb-dump -a taskwetu_db**//')
 
 
 def installDeps():
