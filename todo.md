@@ -34,10 +34,10 @@ task queue backend -> amqp
 
 rabbitmq + backends -> amqp
 
+#### [ metrics ]
 
-
-# stats with redis
-# logins - sinups
-# app features freq
-# times app being used
-# task creation time
+stats with redis
+logins - sinups
+app features freq
+times app being used
+task creation time
