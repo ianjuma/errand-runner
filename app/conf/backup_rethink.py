@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 
 import os
+from subprocess import call
 
 
 def check_dir_exist(os_dir):
@@ -11,8 +12,7 @@ def check_dir_exist(os_dir):
 def backup():
     check_dir_exist('/root/rethink_backup/')
     os.chdir('/root/rethink_backup/')
-    args = ("-a", "taskwetu_db**//")
-    os.execl("/usr/local/bin/rethinkdb-dump", args)
+    call(["rethinkdb-dump", "-a", "taskwetu_db**//"])
 
 if __name__ == '__main__':
     backup()
