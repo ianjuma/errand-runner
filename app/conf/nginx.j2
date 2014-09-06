@@ -1,0 +1,69 @@
+worker_processes  {{ processes }};
+
+user www-data www-data;
+error_log  {{ error_log }};
+pid        {{ pid_log }};
+
+include /opt/nginx/sites-enabled/*;
+worker_rlimit_nofile 8192;
+
+events {
+  worker_connections  4096;
+  use epoll;
+}
+
+http {
+  index    index.html;
+  types_hash_max_size 2048;
+
+  default_type application/octet-stream;
+  include       /etc/nginx/mime.types;
+
+  log_format   main '$remote_addr - $remote_user [$time_local]  $status '
+  '"$request" $body_bytes_sent "$http_referer" '
+  '"$http_user_agent" "$http_x_forwarded_for"';
+  access_log   logs/access.log  main;
+  sendfile     on;
+  tcp_nopush   on;
+  server_names_hash_bucket_size 128;
+
+
+  server {
+    listen       443;
+
+    server_name  www.taskwetu.com;
+    access_log   /var/log/nginx/access.log  main;
+    root         html;
+
+    location / {
+      proxy_pass   http://synod;
+    }
+
+    ssl_certificate {{ ssl_certificate }};
+    ssl_certificate_key {{ ssl_certificate_key }};
+    ssl on;
+
+    location /static/ {
+      expires 3d;
+      root /www/data;
+    }
+
+  }
+
+  server {
+    listen       80;
+    server_name  {{ server_name }};
+    access_log   {{ access_log }}  main;
+
+    rewrite ^/(.*) https://www.taskwetu.com/$1 permanent;
+  }
+
+  # reverse proxy
+  upstream synod {
+    server 127.0.0.1:8000 weight=3;
+    server 127.0.0.1:8004 weight=5 max_fails=3 fail_timeout=120; 	# uwsgi
+    server 127.0.0.1:8001 weight=3 down;
+    server 127.0.0.1:8003 weight=3 backup;
+  }
+
+}
