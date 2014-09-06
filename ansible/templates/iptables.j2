@@ -27,6 +27,10 @@ $IPT -A RH-Firewall-1-INPUT -m state --state NEW, ESTABLISHED -p tcp --dport 22 
 $IPT -A RH-Firewall-1-OUTPUT -m state --state NEW, ESTABLISHED -p tcp --dport 22 -j ACCEPT
 
 
+# add rethink exception
+$IPT -A RH-Firewall-1-INPUT -m state --state NEW, ESTABLISHED -p tcp --dport 28015 -j ACCEPT
+$IPT -A RH-Firewall-1-OUTPUT -m state --state NEW, ESTABLISHED -p tcp --dport 28015 -j ACCEPT
+
 $IPT -A INPUT -p tcp --dport 22 -j ACCEPT
 $IPT -A OUTPUT -p tcp --sport 22 -j ACCEPT
 
@@ -42,10 +46,13 @@ $IPT -A OUTPUT -p icmp --icmp-type echo-reply -j ACCEPT
 $IPT -A INPUT -i lo -j ACCEPT
 $IPT -A OUTPUT -o lo -j ACCEPT
 
+# disable ping - kernel
+sysctl -w net.ipv4.icmp_echo_ignore_all=0
+
 # reduce dDos attacks
 $IPT -A INPUT -p tcp --dport 80 -m limit --limit 25/minute --limit-burst 100 -j ACCEPT
 
 # stupid load balance
-$IPT -A PREROUTING -i eth0 -p tcp --dport 443 -m state --state NEW -m nth--counter 0 --every 3 --packet 0 -j DNAT --to-destination 127.0.0.1:5000
-$IPT -A PREROUTING -i eth0 -p tcp --dport 443 -m state --state NEW -m nth--counter 0 --every 3 --packet 1 -j DNAT --to-destination 127.0.0.1:5001
-$IPT -A PREROUTING -i eth0 -p tcp --dport 443 -m state --state NEW -m nth--counter 0 --every 3 --packet 2 -j DNAT --to-destination 127.0.0.1:5002
+#$IPT -A PREROUTING -i eth0 -p tcp --dport 443 -m state --state NEW -m nth--counter 0 --every 3 --packet 0 -j DNAT --to-destination 127.0.0.1:8000
+#$IPT -A PREROUTING -i eth0 -p tcp --dport 443 -m state --state NEW -m nth--counter 0 --every 3 --packet 1 -j DNAT --to-destination 127.0.0.1:8001
+#$IPT -A PREROUTING -i eth0 -p tcp --dport 443 -m state --state NEW -m nth--counter 0 --every 3 --packet 2 -j DNAT --to-destination 127.0.0.1:8003
