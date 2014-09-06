@@ -3,14 +3,6 @@
 - hosts: droplets
   vars:
     http_port: 80
-    max_clients: 200
-    pid_log: /var/log/nginx/nginx.pid
-    error_log: /var/log/nginx/error.log
-    processes: 5
-    server_name: www.taskwetu.com
-    access_log: /var/log/nginx/access.log
-    ssl_certificate: /etc/nginx/ssl/bundle.cer
-    ssl_certificate_key: /etc/nginx/ssl/myserver.key
 
   remote_user: root
   tasks:
