@@ -1,36 +1,37 @@
-
 ---
 - hosts: droplets
   vars:
-    http_port: 80
+    - http_port: 80
 
   remote_user: root
-  tasks:
-  -name: Add nginx repository
-    apt_repository: repo='ppa:nginx/stable' state=present
-    register: ppastable
 
-  - name: Install Nginx
-    apt: pkg=nginx state=installed update_cache=true
-    when: ppastable|success
-    register: nginxinstalled
-    notify:
+  tasks:
+   - name: Add Nginx repository
+     apt_repository: repo='ppa:nginx/stable' state=present
+     register: ppastable
+
+   - name: Install Nginx
+     apt: pkg=nginx state=installed update_cache=true
+     when: ppastable|success
+     register: nginxinstalled
+     notify:
       - Start Nginx
 
-  - name: Ensure nginx is at the latest version
-    apt: pkg=nginx state=latest update_cache=true
+   - name: Ensure nginx is at the latest version
+     apt: pkg=nginx state=latest update_cache=true
 
-  - name: write the apache config file
-    template: src=/tmp/TaskWetu/taskwetu/app/conf/nginx.j2 dest=/etc/nginx.conf
-    notify:
-    - Restart nginx
+   - name: Write Nginx conf
+     template: src=templates/nginx.j2 dest=/etc/nginx.conf
+     notify:
+      - Restart nginx
 
-  - name: ensure nginx is running
-    service: name=nginx state=started
+   - name: Ensure nginx is running
+     service: name=nginx state=started
+
 
   handlers:
-    - name: Restart nginx
-      service: name=nginx state=restarted
+   - name: Restart nginx
+     service: name=nginx state=restarted
 
-    - name: Start Nginx
-      service: name=nginx state=started
+   - name: Start Nginx
+     service: name=nginx state=started
