@@ -1,0 +1,16 @@
+---
+- hosts: droplets
+
+  remote_user: root
+  tasks:
+  - name: Ensure iptables is latest ver
+    apt: pkg=iptables-persistent state=latest
+
+  - name: Write iptables conf
+    template: src=templates/iptables.j2 dest=/etc/iptables/iptables.rules
+    notify:
+    - Restart iptables
+
+  handlers:
+    - name: Restart iptables
+      service: name=iptables-persistent state=restarted
