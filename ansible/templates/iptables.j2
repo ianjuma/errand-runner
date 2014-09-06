@@ -1,8 +1,4 @@
-#!/bin/bash
-# system IP/set ip address of server
-
-#SERVER_IP="188.226.195.158"
-#IPT="/sbin/iptables"
+*filter
 
 # Flushing all rules
 -F
@@ -22,13 +18,13 @@
 -A INPUT -m tcp -p tcp --dport 443 -j ACCEPT
 -A OUTPUT -m tcp -p tcp --dport 443 -j ACCEPT
 
--A INPUT -m state --state NEW, ESTABLISHED -p tcp --dport 22 -j ACCEPT
--A OUTPUT -m state --state NEW, ESTABLISHED -p tcp --dport 22 -j ACCEPT
+-A INPUT -m state --state NEW,ESTABLISHED -p tcp --dport 22 -j ACCEPT
+-A OUTPUT -m state --state NEW,ESTABLISHED -p tcp --dport 22 -j ACCEPT
 
 
 # add rethink exception
--A INPUT -m state --state NEW, ESTABLISHED -p tcp --dport 28015 -j ACCEPT
--A OUTPUT -m state --state NEW, ESTABLISHED -p tcp --dport 28015 -j ACCEPT
+-A INPUT -m state --state NEW,ESTABLISHED -p tcp --dport 28015 -j ACCEPT
+-A OUTPUT -m state --state NEW,ESTABLISHED -p tcp --dport 28015 -j ACCEPT
 
 -A INPUT -p tcp --dport 22 -j ACCEPT
 -A OUTPUT -p tcp --sport 22 -j ACCEPT
@@ -37,16 +33,16 @@
 -A INPUT -p tcp --dport 80 -i eth0 -m state --state NEW -m recent --set
 -A INPUT -p tcp --dport 80 -i eth0 -m state --state NEW -m recent --update --seconds 60  --hitcount 15 -j DROP
 
-# allow pings
--A INPUT -p icmp --icmp-type echo-request -j ACCEPT
--A OUTPUT -p icmp --icmp-type echo-reply -j ACCEPT
+# drop pings
+-A INPUT -p icmp --icmp-type echo-request -j DROP
+-A OUTPUT -p icmp --icmp-type echo-reply -j DROP
 
 # allow loopback access for reverse proxing
 -A INPUT -i lo -j ACCEPT
 -A OUTPUT -o lo -j ACCEPT
 
 # disable ping - kernel
-sysctl -w net.ipv4.icmp_echo_ignore_all=0
+# sysctl -w net.ipv4.icmp_echo_ignore_all=0
 
 # reduce dDos attacks
 -A INPUT -p tcp --dport 80 -m limit --limit 25/minute --limit-burst 100 -j ACCEPT
@@ -55,3 +51,4 @@ sysctl -w net.ipv4.icmp_echo_ignore_all=0
 # -A PREROUTING -i eth0 -p tcp --dport 443 -m state --state NEW -m nth--counter 0 --every 3 --packet 0 -j DNAT --to-destination 127.0.0.1:8000
 # -A PREROUTING -i eth0 -p tcp --dport 443 -m state --state NEW -m nth--counter 0 --every 3 --packet 1 -j DNAT --to-destination 127.0.0.1:8001
 # -A PREROUTING -i eth0 -p tcp --dport 443 -m state --state NEW -m nth--counter 0 --every 3 --packet 2 -j DNAT --to-destination 127.0.0.1:8003
+COMMIT
