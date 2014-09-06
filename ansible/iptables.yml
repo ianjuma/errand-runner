@@ -9,11 +9,11 @@
   - name: Write iptables conf
     template: src=templates/iptables.j2 dest=/etc/iptables/rules.v4
     notify:
-    - flush iptables
     - restart iptables
+    - start iptables
 
   handlers:
-    - name: flush iptables
-      service: name=iptables-persistent state=flush
     - name: restart iptables
       command: service iptables-persistent flush
+    - name: start iptables
+      command: iptables < /etc/iptables/rules.v4
