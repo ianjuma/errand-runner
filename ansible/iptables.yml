@@ -16,4 +16,4 @@
     - name: restart iptables
       command: service iptables-persistent flush
     - name: start iptables
-      command: iptables < /etc/iptables/rules.v4
+      command: service iptables-persistent start
