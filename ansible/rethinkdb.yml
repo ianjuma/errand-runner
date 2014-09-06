@@ -1,17 +1,22 @@
 ---
 - hosts: droplets
-  vars:
-    io_threads: 60
+
+  vars_files:
+    - vars/main.yml
+
   remote_user: root
   tasks:
   - name: ensure rethinkdb is at the latest version
     apt: pkg=rethinkdb state=latest
+
   - name: write the rethinkdb config file
-    template: src=/tmp/TaskWetu/taskwetu/app/conf/rethinkdb.j2 dest=/etc/rethinkdb/instances.d/default.conf
+    template: src=templates/rethinkdb.j2 dest=/etc/rethinkdb/instances.d/instance1.conf
     notify:
     - restart rethinkdb
+
   - name: ensure rethinkdb is running
     service: name=rethinkdb state=started
+
   handlers:
     - name: restart rethinkdb
       service: name=rethinkdb state=restarted

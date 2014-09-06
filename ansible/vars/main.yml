@@ -10,3 +10,15 @@ ssl_certificate: /etc/nginx/ssl/bundle.cer
 ssl_certificate_key: /etc/nginx/ssl/myserver.key
 
 # redis conf
+
+
+
+# rethinkdb conf
+io_threads: 60
+cores: 2
+port_offset: 0
+http_port: 9292
+driver_port: 28015
+runuser: rethinkdb
+rungroup: rethinkdb
+machine_name: synod
