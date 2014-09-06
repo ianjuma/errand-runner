@@ -1,15 +1,22 @@
 ---
 - hosts: droplets
+
+  vars_files:
+    - vars/main.yml
+
   remote_user: root
   tasks:
-  - name: ensure redis is at the latest version
+  - name: Ensure redis is latest ver
     apt: pkg=redis state=latest
-  - name: write the redis config file
-    template: src=/tmp/TaskWetu/taskwetu/app/conf/redis.j2 dest=/etc/redis/redis.conf
+
+  - name: Write redis conf
+    template: src=templates/redis.j2 dest=/etc/redis/redis.conf
     notify:
-    - restart redis
-  - name: ensure redis is running
+    - Restart redis
+
+  - name: Ensure redis is running
     service: name=redis state=running
+
   handlers:
-    - name: restart redis
+    - name: Restart redis
       service: name=redis state=restarted
