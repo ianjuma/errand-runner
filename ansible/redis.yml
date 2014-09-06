@@ -7,7 +7,7 @@
   remote_user: root
   tasks:
   - name: Ensure redis is latest ver
-    apt: pkg=redis state=latest
+    apt: pkg=redis-server state=latest
 
   - name: Write redis conf
     template: src=templates/redis.j2 dest=/etc/redis/redis.conf
@@ -15,8 +15,8 @@
     - Restart redis
 
   - name: Ensure redis is running
-    service: name=redis state=running
+    service: name=redis-server state=running
 
   handlers:
     - name: Restart redis
-      service: name=redis state=restarted
+      service: name=redis-server state=restarted
