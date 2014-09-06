@@ -7,7 +7,7 @@
     apt: pkg=iptables-persistent state=latest
 
   - name: Write iptables conf
-    template: src=templates/iptables.j2 dest=/etc/iptables/iptables.rules
+    template: src=templates/iptables.j2 dest=/etc/iptables/rules.v4
     notify:
     - Restart iptables
 
