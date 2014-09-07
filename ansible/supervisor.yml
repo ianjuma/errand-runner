@@ -1,0 +1,25 @@
+---
+- hosts: droplets
+
+  vars_files:
+    - vars/main.yml
+
+  remote_user: root
+  tasks:
+  - name: ensure supervisor is at the latest version
+    apt: pkg=supervisor state=latest
+
+  - name: write supervisor conf file
+    template: src=templates/supervisord.j2 dest=/etc/supervisord.conf
+    notify:
+    - restart supervisor
+    - run supervisor
+
+  - name: ensure supervisor is running
+    service: name=supervisor state=started
+
+  handlers:
+    - name: restart supervisor
+      service: name=supervisor state=restarted
+    - name: run supervisor
+      command: supervisord -c /etc/supervisord.conf
