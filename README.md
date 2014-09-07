@@ -28,11 +28,12 @@ https://www.taskwetu.com/
 - [x] pesapal integration
 - [x] fix email API - message(bg tasks)
 - [x] Validation forms
-- [x] URL routes - remove name/RESTfull - /task/addTask|edit|myTasks|profile 
+- [x] URL routes - remove name/RESTfull - /task/addTask|edit|myTasks|profile
 - [ ] sessions with redis
+- [ ] in-app metrics
 
-
-### UI clean
+### Building a better UX
 - [ ] createTask - process
 - [x] fix base template
 - [x] notifications - login/createTask/myTasks/profile/ timer
+- [ ] createTask
