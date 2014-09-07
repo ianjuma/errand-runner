@@ -1,0 +1,22 @@
+---
+- hosts: droplets
+
+  vars_files:
+    - vars/main.yml
+
+  remote_user: root
+  tasks:
+  - name: ensure newrelic is latest
+    apt: pkg=uwsgi state=latest
+
+  - name: write the newrelic config file
+    template: src=templates/newrelic.j2 dest=/etc/newrelic.conf
+    notify:
+    - restart newrelic
+
+  - name: ensure newrelic is running
+    service: name=newrelic-sys-mond state=started
+
+  handlers:
+    - name: restart newrelic
+      service: name=newrelic-sys-mond state=restarted

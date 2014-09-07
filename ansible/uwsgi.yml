@@ -1,0 +1,22 @@
+---
+- hosts: droplets
+
+  vars_files:
+    - vars/main.yml
+
+  remote_user: root
+  tasks:
+  - name: ensure uwsgi is at the latest version
+    apt: pkg=uwsgi state=latest
+
+  - name: write the uwsgi config file
+    template: src=templates/uwsgi-ini-config.j2 dest=/etc/uwsgi-ini-config.conf
+    notify:
+    - restart uwsgi
+
+  - name: ensure uwsgi is running
+    service: name=uwsgi state=started
+
+  handlers:
+    - name: restart uwsgi
+      service: name=uwsgi state=restarted
