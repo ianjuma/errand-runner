@@ -4,6 +4,7 @@ Taskwetu
 [![BuildStatus](https://travis-ci.org/ianjuma/recognise.png)](https://travis-ci.org/ianjuma/recognise)
 
 http://taskwetu.herokuapp.com/
+https://www.taskwetu.com/
 
 
 ### Project
