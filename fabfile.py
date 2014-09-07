@@ -6,8 +6,6 @@ env.hosts = ['188.226.195.158']
 
 def moveSupervisor():
     run('mv /tmp/TaskWetu/taskwetu/supervisord.conf /etc/supervisord.conf')
-    #with cd('/tmp/TaskWetu/taskwetu'):
-    #    put('supervisord.conf')
 
 
 def setSupervisordLog():
