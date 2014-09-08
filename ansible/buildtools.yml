@@ -8,6 +8,8 @@
   tasks:
   - name: Install build-essential
     apt: pkg=build-essential state=latest
+    register: buildessential_installed
 
   - name: Install pip
     apt: pkg=python-pip state=latest
+    when: buildessential_installed|success
