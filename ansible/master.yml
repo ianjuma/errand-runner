@@ -1,0 +1,15 @@
+---
+- hosts: all
+  roles:
+    - buildtools
+    - nginx
+    - redis
+    - rethinkdb
+    - supervisor
+    - uwsgi
+    - iptables
+    - celery
+
+- hosts: db
+  roles:
+    - rethinkdb
