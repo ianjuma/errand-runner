@@ -126,8 +126,6 @@ def getRandID():
         abort(400)
 
     # use the mobile number as the id number its a unique entity
-    # it works :D
-    # use mobile number as username upon login -> send text with code
     username = request.json.get('username')
     email = request.json.get('email')
     # then update userInfo
@@ -164,6 +162,8 @@ def getRandID():
 
     SMScode = randint(10000, 99999)
 
+    # verify user send email with code
+    # sendText(mobileNo, SMScode)
     # @task sendMail
     try:
         sendMail(email, SMScode, username)
@@ -174,8 +174,6 @@ def getRandID():
         logging.warning('SendMail error on /api/signUp/ %s' %(e) )
 
 
-    # verify user send email with code
-    # sendText(mobileNo, SMScode)
     hashed_password = hashlib.sha512(password + salt).hexdigest()
 
     try:
@@ -257,6 +255,8 @@ def confirmUser(smscode):
     try:
         user = r.table(
             'UsersInfo').get(username).pluck('smscode').run(g.rdb_conn)
+        r.table('UsersInfo').get(username).update({"userVerified": "yes"})
+
     except RqlError:
         logging.warning('DB op failed on /confirmUser/')
 
