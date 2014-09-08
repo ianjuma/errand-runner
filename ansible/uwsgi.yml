@@ -7,7 +7,7 @@
   remote_user: root
   tasks:
   - name: ensure uwsgi is at the latest version
-    apt: pkg=uwsgi state=latest
+    pip: name=uWSGI version=2.0.7
 
   - name: write the uwsgi config file
     template: src=templates/uwsgi-ini-config.j2 dest=/etc/uwsgi-ini-config.conf
