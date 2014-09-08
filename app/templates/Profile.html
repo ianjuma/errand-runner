@@ -110,11 +110,13 @@
       <div class="col-sm-8">
         <div class="tab-container">
           <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#home">Profile</a></li>
-            <li><a data-toggle="tab" href="#settings">Contact Info</a></li>
+            <li class="active"><a data-toggle="tab" href="#profile">Profile</a></li>
           </ul>
           <div class="tab-content">
-            <div id="home" class="tab-pane active cont">
+            
+            <div id="profile" class="tab-pane active">
+
+              <!-- 
               <table class="no-border no-strip information">
                 <tbody class="no-border-x no-border-y">
                   <tr>
@@ -132,9 +134,8 @@
 
                 </tbody>
               </table>
-            </div>
-            
-            <div id="settings" class="tab-pane">
+              -->
+
               <form role="form" class="form-horizontal">
                   <div class="form-group">
                     <label class="col-sm-3 control-label" for="nick">Profile Picture</label>
@@ -280,6 +281,17 @@
   var username = "{{username}}";
   console.log(username);
   getTaskData();
+
+  var verified = "{{ verified }}";
+
+  if (verified != "yes") {
+    $('#verify-user').append(
+      '<div class="alert alert-success alert-dismissible" role="alert">' +
+      '<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">'+ 'Close</span></button>' +
+       '<strong>Account not verified!</strong> Please verify your account, check your email!' +
+      '</div>'
+    );
+  }
 
   var email = "{{email}}";
   var state = "{{state}}";

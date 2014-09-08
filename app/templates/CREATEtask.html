@@ -127,6 +127,8 @@
 
 <div class="cl-mcont">
   <div class="row cat-holder">
+    
+    <div id="verify-user"></div>
 
     <div id="tasksDescription">
     <div id="categoryTasks">
@@ -399,6 +401,17 @@
 
   var username = "{{username}}";
   console.log(username);
+
+  var verified = "{{ verified }}";
+
+  if (verified != "yes") {
+    $('#verify-user').append(
+      '<div class="alert alert-success alert-dismissible" role="alert">' +
+      '<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">'+ 'Close</span></button>' +
+       '<strong>Account not verified!</strong> Please verify your account, check your email!' +
+      '</div>'
+    );
+  }
 
   analytics.identify('{{ username }}', {
       name: '{{ username }}',

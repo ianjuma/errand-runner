@@ -108,6 +108,8 @@
     <div class="row">
       <div class="col-md-12">
 
+        <div id="verify-user"></div>
+
           <div class="block-flat">
             <div class="header">
               <h3 class="header1">Credits</h3>
@@ -205,6 +207,17 @@
   var username = "{{username}}";
   console.log(username);
   getTaskData();
+
+  var verified = "{{ verified }}";
+
+  if (verified != "yes") {
+    $('#verify-user').append(
+      '<div class="alert alert-success alert-dismissible" role="alert">' +
+      '<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">'+ 'Close</span></button>' +
+       '<strong>Account not verified!</strong> Please verify your account, check your email!' +
+      '</div>'
+    );
+  }
 
   var email = "{{email}}";
   var state = "{{state}}";
