@@ -354,6 +354,8 @@ def forgotPassword():
 
         email = request.json.get('email')
 
+        # check password match
+
         try:
             user = r.table('UsersInfo').filter(
                 {"email": email}).limit(1).pluck('username').run(g.rdb_conn)
