@@ -10,6 +10,7 @@ from app import logging
 from app import salt
 from app import red
 from app import RqlError
+import urllib2
 
 from flask import (render_template)
 from flask import redirect, make_response
@@ -167,7 +168,7 @@ def getRandID():
     # @task sendMail
     try:
         sendMail(email, SMScode, username)
-    except URLError:
+    except urllib2.URLError:
         logging.warning('sendMail verify failed on /api/signUp/')
         abort(500)
     except Exception, e:
