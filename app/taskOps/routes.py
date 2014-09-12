@@ -142,6 +142,7 @@ def getRandID():
             resp.cache_control.no_cache = True
             return resp
 
+        """
         user = r.table('UsersInfo').filter({"email": email}).limit(1).run(g.rdb_conn)
         userData =[]
 
@@ -153,6 +154,7 @@ def getRandID():
             resp.headers['Content-Type'] = "application/json"
             resp.cache_control.no_cache = True
             return resp
+        """
 
     except RqlError:
         logging.warning('DB code verify failed on /api/signUp/')
