@@ -3,6 +3,10 @@ function validateEmail(email) {
     return re.test(email);
 }
 
+function checkUserName(username) {
+  return username.indexOf(' ') >= 0;
+}
+
 $('#loginData').click( function(evnt) {
         evnt.preventDefault();
 
@@ -11,6 +15,10 @@ $('#loginData').click( function(evnt) {
 
         email = $('#email').val();
         username = $('#getmobileNo').val(); // verification
+
+        if (checkUserName(username)) {
+          alert('You username must be one word');
+        };
 
         if (!validateEmail(email)) {
           alert('Please enter a valid email');
