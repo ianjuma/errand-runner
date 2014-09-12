@@ -5,26 +5,37 @@
 -X
 
 # Setting default filter policy
--P INPUT DROP
--P OUTPUT DROP
--P FORWARD DROP
+#-P INPUT DROP
+#-P OUTPUT DROP
+#-P FORWARD DROP
+
+#drop null packets
+-A INPUT -p tcp --tcp-flags ALL NONE -j DROP
+
+# drop SYN flood
+-A INPUT -p tcp ! --syn -m state --state NEW -j DROP
+
+# drop XMAS packets
+-A INPUT -p tcp --tcp-flags ALL ALL -j DROP
+
+# allow lo
+-A INPUT -i lo -j ACCEPT
 
 # by default drop and input and output except
 # 80, 443 and 22
-# exceptions
--A INPUT -m state --state NEW,ESTABLISHED -p tcp --dport 80 -j ACCEPT
--A OUTPUT -m state --state NEW,ESTABLISHED -p tcp --dport 80 -j ACCEPT
+-A INPUT -m tcp -p tcp --dport 80 -j ACCEPT
+-A OUTPUT -m tcp -p tcp --dport 80 -j ACCEPT
 
--A INPUT -m state --state NEW,ESTABLISHED -p tcp --dport 443 -j ACCEPT
--A OUTPUT -m state --state NEW,ESTABLISHED -p tcp --dport 443 -j ACCEPT
+-A INPUT -m tcp -p tcp --dport 443 -j ACCEPT
+-A OUTPUT -m tcp -p tcp --dport 443 -j ACCEPT
 
--A INPUT -m state --state NEW,ESTABLISHED -p tcp --dport 22 -j ACCEPT
--A OUTPUT -m state --state ESTABLISHED -p tcp --dport 22 -j ACCEPT
+-A INPUT -m tcp -p tcp --dport 22 -j ACCEPT
+-A OUTPUT -m tcp -p tcp --dport 22 -j ACCEPT
 
 
 # add rethink exception
--A INPUT -m state --state NEW,ESTABLISHED -p tcp --dport 28015 -j ACCEPT
--A OUTPUT -m state --state ESTABLISHED -p tcp --dport 28015 -j ACCEPT
+-A INPUT -m tcp -p tcp --dport 28015 -j ACCEPT
+-A OUTPUT -m tcp -p tcp --dport 28015 -j ACCEPT
 
 
 # set limits for 100 connecions per IP
