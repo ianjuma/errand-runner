@@ -346,7 +346,7 @@ def addTask():
     merchant_ref = "Ta" + str(randint(10000, 99999)) + "W"
     #merchant_ref = '12erwe'
     # amount ?
-    task_price = 2000
+    task_price = 500
     request_data = {
         'Amount': str(task_price),
         'Description': str(task_title),
