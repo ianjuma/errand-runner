@@ -2,14 +2,17 @@
 - hosts: all
   roles:
     - buildtools
-    - nginx
     - redis
-    - rethinkdb
     - supervisor
-    - uwsgi
     - iptables
-    - celery
+    - newrelic
 
-- hosts: db
+- hosts: dbserver
   roles:
     - rethinkdb
+
+- hosts: webserver
+  roles:
+    - nginx
+    - celery
+    - uwsgi
