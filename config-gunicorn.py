@@ -2,6 +2,7 @@
 
 import os
 
+
 def numCPUs():
     if not hasattr(os, 'sysconf'):
         raise RuntimeError('No sysconf detected.')
