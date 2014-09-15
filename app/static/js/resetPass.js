@@ -17,6 +17,13 @@ $('#submit-email').click( function sendData () {
 
       success: function(result) {
         console.log(result);
+
+        $.gritter.add({
+          title: 'Password Reset',
+          text: 'New Password has been sent to your email',
+          class_name: 'success'
+        });
+
         window.location.href = "/";
       },
       fail: function(result) {
