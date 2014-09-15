@@ -3,8 +3,13 @@
 
   remote_user: root
   tasks:
+  - name: Install iptables
+    apt: pkg=iptables-persistent state=installed update_cache=true
+    register: iptables_installed
+
   - name: Ensure iptables is latest ver
     apt: pkg=iptables-persistent state=latest
+    when: iptables_installed
 
   - name: Write iptables conf
     template: src=templates/iptables.j2 dest=/etc/iptables/rules.v4
