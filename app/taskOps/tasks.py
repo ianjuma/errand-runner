@@ -187,8 +187,9 @@ def taskInfo(task_id):
         return resp
 
     return render_template(
-        'EditTask.html', task_category=task_category, task_urgency=task_urgency, locationData=location, contactPersons=contactPersons,
-        task_desc=task_desc, task_title=task_title, due_date=due_date, username=username, task_id=task_id)
+        'EditTask.html', task_category=task_category, task_urgency=task_urgency, 
+        locationData=location, contactPersons=contactPersons, task_desc=task_desc, 
+        task_title=task_title, due_date=due_date, username=username, task_id=task_id)
 
 
 @app.route('/api/editTask/<task_id>/', methods=['PUT', 'POST'])
