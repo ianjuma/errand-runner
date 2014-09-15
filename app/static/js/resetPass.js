@@ -9,9 +9,12 @@ $('#submit-email').click( function sendData () {
     console.log(userData);
 
     $.ajax({
-      type: 'POST',
+      type: "POST",
       url: '/reset/',
-      contentType: 'application/json',
+      data: jsonData,
+      contentType: "application/json; charset=UTF-8",
+      dataType: "json",
+
       success: function(result) {
         console.log(result);
         window.location.href = "/";
