@@ -269,10 +269,8 @@ def confirmUser(smscode):
         return resp
 
     if str(user) is not str(smscode):
-        return
-        """
-        EMAIL VERFICATION FAILED
-        """
+        # return "EMAIL VERFICATION FAILED"
+        abort(404)
 
     return redirect("/task/createTask/", code=302)
 
