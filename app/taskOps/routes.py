@@ -180,7 +180,6 @@ def getRandID():
     hashed_password = hashlib.sha512(password + salt).hexdigest()
 
     try:
-        # r.table('UsersInfo').get(mobileNo).update({"smscode": SMScode}).run(g.rdb_conn)
         r.table(
             'UsersInfo').insert({"state": "", "fname": "", "lname": "" ,"username": username, "dob": "",
             "email": email, "password": hashed_password, "smscode": SMScode, "mobileNo": ""}).run(g.rdb_conn)
@@ -258,7 +257,12 @@ def confirmUser(smscode):
     try:
         user = r.table(
             'UsersInfo').get(username).pluck('smscode').run(g.rdb_conn)
-        r.table('UsersInfo').get(username).update({"userVerified": "yes"})
+
+        if user:
+            r.table('UsersInfo').get(username).update({"userVerified": "yes"})
+        else:
+            return "VERFICATION FAILED"
+            #abort(404)
 
     except RqlError:
         logging.warning('DB op failed on /confirmUser/')
