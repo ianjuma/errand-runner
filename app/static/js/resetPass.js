@@ -1,6 +1,5 @@
 "use strict";
 
-
 $('#submit-email').click( function sendData () {
 
     var email = $('#emailData').val();
@@ -11,7 +10,6 @@ $('#submit-email').click( function sendData () {
     $.ajax({
       type: "POST",
       url: '/reset/',
-      data: jsonData,
       contentType: "application/json; charset=UTF-8",
       dataType: "json",
 
