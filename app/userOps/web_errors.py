@@ -8,12 +8,14 @@ from flask import (render_template, request, redirect)
 from flask import make_response
 from flask import jsonify
 
+
 @app.route('/')
 def index():
     if 'username' in request.cookies:
-      return redirect('/task/myTasks/')
+        return redirect('/task/myTasks/')
 
     return render_template('index.html')
+
 
 @app.route('/robots.txt')
 def robots():
