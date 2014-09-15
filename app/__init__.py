@@ -22,7 +22,7 @@ from rethinkdb import *
 import redis
 red = redis.StrictRedis(host='localhost', port=6379, db=0)
 
-logging.basicConfig(filename='TaskWangu.log', level=logging.DEBUG)
+logging.basicConfig(filename='TaskWetu.log', level=logging.DEBUG)
 salt = settings.salt
 
 app.config['ONLINE_LAST_MINUTES'] = settings.ONLINE_LAST_MINUTES
