@@ -10,6 +10,9 @@ ONLINE_LAST_MINUTES = 720
 
 salt = 'd40037e1ff7841838235533d910bbf24'
 
+
+contact_number = "+254719784245"
+
 # sms API key
 username = "IanJuma"
 apikey = "840a1b44b95cb68ab856cab41237700266dc22e5a795e341c067a02cbc3cb937"

@@ -21,6 +21,7 @@ from json import dumps
 
 from app import new_task_message
 from app import send_notification_task
+from app import contact_number
 
 
 from payments import process_payments
@@ -326,7 +327,7 @@ def addTask():
     # send email and SMS notification
     # rabbitMQ tasks
     try:
-        send_notification_task("+254710650613", str(text_all))
+        send_notification_task(str(contact_number), str(text_all))
         new_task_message("khalifleila@gmail.com", str(taskData), username)
     except Exception:
         logging.warning('Send SMS failed on /api/addTask/ notification failed')

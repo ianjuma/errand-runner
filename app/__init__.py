@@ -11,6 +11,8 @@ import os
 import logging
 import settings
 
+contact_number = settings.contact_number
+
 app = Flask('app')
 app.config.from_pyfile('settings.py', silent=True)
 
