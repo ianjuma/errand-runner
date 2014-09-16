@@ -178,7 +178,7 @@ def getRandID():
 
     try:
         r.table(
-            'UsersInfo').insert({"state": "", "fname": "", "lname": "", "username": username, "dob": "",
+            'UsersInfo').insert({ "userVerified": "no" ,"state": "", "fname": "", "lname": "", "username": username, "dob": "",
                                  "email": email, "password": hashed_password, "smscode": SMScode, "mobileNo": ""}).run(g.rdb_conn)
     except RqlError:
         logging.warning('DB code verify failed on /api/signUp/')
