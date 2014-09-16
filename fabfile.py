@@ -68,7 +68,7 @@ def restartNginx():
 
 def deploy(version):
     setup_server(version)
-    moveSupervisor()
+    #moveSupervisor()
     mvStatic()
     supervisor()
     restartNginx()
