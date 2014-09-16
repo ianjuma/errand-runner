@@ -26,7 +26,7 @@ logging.basicConfig(filename='TaskWetu.log', level=logging.DEBUG)
 salt = settings.salt
 
 app.config['ONLINE_LAST_MINUTES'] = settings.ONLINE_LAST_MINUTES
-app.secret_key = settings.SECRET_KEY
+#app.secret_key = settings.SECRET_KEY
 
 from datetime import timedelta
 app.permanent_session_lifetime = timedelta(minutes=5760)
