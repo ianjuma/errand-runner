@@ -99,9 +99,9 @@ def profile():
         return resp
 
     # profile url fix - only on signUp
-    default_url = "http://www.gravatar.com/avatar"
+    default_url = "https://www.gravatar.com/avatar"
     size = 80
-    profile_url = "http://www.gravatar.com/avatar/" + hashlib.md5(
+    profile_url = "https://www.gravatar.com/avatar/" + hashlib.md5(
         email.lower()).hexdigest() + "?"
     profile_url += urllib.urlencode({'d': default_url, 's': str(size)})
 
