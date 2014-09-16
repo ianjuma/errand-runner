@@ -31,7 +31,7 @@ function renderInfo() {
 }
 
 function  getTaskData() {
-  
+
   data = { "username": username };
 
   taskData = JSON.stringify(data);
