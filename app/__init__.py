@@ -20,7 +20,7 @@ from rethinkdb import *
 import redis
 red = redis.StrictRedis(host='localhost', port=6379, db=0)
 
-logging.basicConfig(filename='TaskWangu.log', level=logging.DEBUG)
+logging.basicConfig(filename='Taskwetu.log', level=logging.DEBUG)
 salt = settings.salt
 
 app.config['ONLINE_LAST_MINUTES'] = settings.ONLINE_LAST_MINUTES
@@ -46,14 +46,14 @@ sg = sendgrid.SendGridClient(settings.sg_user, settings.sg_key, raise_errors=Tru
 def sendMail(to, mail, username):
     logging.basicConfig(filename='SendMail.log', level=logging.DEBUG)
     try:
-        to_send = "http://taskwetu.heroku.com/confirm/" + str(username) + "/" + str(mail) + "/"
+        to_send = "https://taskwetu.com/confirm/" + str(username) + "/" + str(mail) + "/"
 
         message = sendgrid.Mail()
         message.add_to(to)
         message.set_subject('Taskwetu Sign-Up Confirmation')
         message.set_html("<p>" + to_send + "</p>")
         message.set_text( str(to_send) )
-        message.set_from('taskwetu <taskkwetu@gmail.com>')
+        message.set_from('taskwetu <noreply@taskwetu.com>')
 
         # status, msg = sg.send(message)
         sg.send(message)
@@ -69,7 +69,7 @@ def new_task_message(to, mail, username):
     logging.basicConfig(filename='SendMail.log', level=logging.DEBUG)
     try:
         to_send = "New Task has been created by user %s" %(username)
-        logo = '<img src="http://188.226.195.158/static/ico/taskwetu_logo.png"/>'
+        logo = '<img src="https://taskwetu.com/static/ico/taskwetu_logo.png"/>'
 
         html = "<h3> %s </h3><br><p> %s </p>" %(logo, to_send)
 
@@ -78,7 +78,7 @@ def new_task_message(to, mail, username):
         message.set_subject('New Task Created')
         message.set_html(html)
         message.set_text( str(to_send) )
-        message.set_from('TaskWetu <taskkwetu@gmail.com>')
+        message.set_from('TaskWetu <noreply@taskwetu.com>')
 
         # status, msg = sg.send(message)
         sg.send(message)
@@ -99,7 +99,7 @@ def passwordReset(to, newpassword):
         message.set_subject('Taskwetu Password Reset')
         message.set_html("<p>" + to_send + "</p>" +  "<p>" + newpassword + "</p>")
         message.set_text( str(to_send) )
-        message.set_from('taskwetu <taskkwetu@gmail.com>')
+        message.set_from('taskwetu <noreply@taskwetu.com>')
 
         sg.send(message)
 
