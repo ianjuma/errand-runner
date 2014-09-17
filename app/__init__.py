@@ -92,7 +92,7 @@ def new_task_message(to, mail, username):
 @celery.task(ignore_result=True)
 def passwordReset(to, newpassword):
     try:
-        to_send = "http://taskwetu.heroku.com/"
+        to_send = "https://taskwetu.com/"
 
         message = sendgrid.Mail()
         message.add_to(to)
