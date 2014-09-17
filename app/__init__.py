@@ -97,7 +97,7 @@ def passwordReset(to, newpassword):
         message = sendgrid.Mail()
         message.add_to(to)
         message.set_subject('Taskwetu Password Reset')
-        message.set_html("<p>" + to_send + "</p>" +  "<p>" + newpassword + "</p>")
+        message.set_html("<p> Your new password is " + to_send + "</p>" +  "<p>" + newpassword + "</p>")
         message.set_text( str(to_send) )
         message.set_from('taskwetu <noreply@taskwetu.com>')
 
