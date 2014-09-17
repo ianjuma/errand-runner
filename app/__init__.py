@@ -11,8 +11,6 @@ import os
 import logging
 import settings
 
-contact_number = settings.contact_number
-
 app = Flask('app')
 app.config.from_pyfile('settings.py', silent=True)
 
@@ -22,11 +20,11 @@ from rethinkdb import *
 import redis
 red = redis.StrictRedis(host='localhost', port=6379, db=0)
 
-logging.basicConfig(filename='TaskWetu.log', level=logging.DEBUG)
+logging.basicConfig(filename='TaskWangu.log', level=logging.DEBUG)
 salt = settings.salt
 
 app.config['ONLINE_LAST_MINUTES'] = settings.ONLINE_LAST_MINUTES
-#app.secret_key = settings.SECRET_KEY
+app.secret_key = settings.SECRET_KEY
 
 from datetime import timedelta
 app.permanent_session_lifetime = timedelta(minutes=5760)
@@ -42,23 +40,20 @@ from sendgrid import SendGridError, SendGridClientError, SendGridServerError
 celery = Celery('tasks', broker=settings.redis_broker)
 
 # sendgrid client
-sg = sendgrid.SendGridClient(
-    settings.sg_user, settings.sg_key, raise_errors=True)
-
+sg = sendgrid.SendGridClient(settings.sg_user, settings.sg_key, raise_errors=True)
 
 @celery.task(ignore_result=True)
 def sendMail(to, mail, username):
     logging.basicConfig(filename='SendMail.log', level=logging.DEBUG)
     try:
-        to_send = "https://taskwetu.com/confirm/" + str(username) + \
-            "/" + str(mail) + "/"
+        to_send = "http://taskwetu.heroku.com/confirm/" + str(username) + "/" + str(mail) + "/"
 
         message = sendgrid.Mail()
         message.add_to(to)
         message.set_subject('Taskwetu Sign-Up Confirmation')
         message.set_html("<p>" + to_send + "</p>")
-        message.set_text(str(to_send))
-        message.set_from('taskwetu <noreply@taskwetu.com>')
+        message.set_text( str(to_send) )
+        message.set_from('taskwetu <taskkwetu@gmail.com>')
 
         # status, msg = sg.send(message)
         sg.send(message)
@@ -73,17 +68,17 @@ def sendMail(to, mail, username):
 def new_task_message(to, mail, username):
     logging.basicConfig(filename='SendMail.log', level=logging.DEBUG)
     try:
-        to_send = "New Task has been created by user %s" % (username)
+        to_send = "New Task has been created by user %s" %(username)
         logo = '<img src="http://188.226.195.158/static/ico/taskwetu_logo.png"/>'
 
-        html = "<h3> %s </h3><br><p> %s </p>" % (logo, to_send)
+        html = "<h3> %s </h3><br><p> %s </p>" %(logo, to_send)
 
         message = sendgrid.Mail()
         message.add_to(to)
         message.set_subject('New Task Created')
         message.set_html(html)
-        message.set_text(str(to_send))
-        message.set_from('TaskWetu <noreply@taskwetu.com>')
+        message.set_text( str(to_send) )
+        message.set_from('TaskWetu <taskkwetu@gmail.com>')
 
         # status, msg = sg.send(message)
         sg.send(message)
@@ -97,15 +92,14 @@ def new_task_message(to, mail, username):
 @celery.task(ignore_result=True)
 def passwordReset(to, newpassword):
     try:
-        to_send = "https://taskwetu.com/"
+        to_send = "http://taskwetu.heroku.com/"
 
         message = sendgrid.Mail()
         message.add_to(to)
         message.set_subject('Taskwetu Password Reset')
-        message.set_html(
-            "<p>" + to_send + "</p>" + "<p>" + newpassword + "</p>")
-        message.set_text(str(to_send))
-        message.set_from('taskwetu <noreply@taskwetu.com>')
+        message.set_html("<p>" + to_send + "</p>" +  "<p>" + newpassword + "</p>")
+        message.set_text( str(to_send) )
+        message.set_from('taskwetu <taskkwetu@gmail.com>')
 
         sg.send(message)
 
@@ -153,8 +147,7 @@ def send_notification_task(to, taskData):
 
 
 def dbSetup():
-    connection = r.connect(host=settings.RDB_HOST, port=settings.RDB_PORT,
-                           auth_key=settings.rethinkdb_auth)
+    connection = r.connect(host=settings.RDB_HOST, port=settings.RDB_PORT, auth_key=settings.rethinkdb_auth)
     try:
         r.db_create(settings.LINK_DB).run(connection)
         r.db(settings.LINK_DB).table_create('User').run(connection)
@@ -184,8 +177,7 @@ def before_request():
         g.rdb_conn = r.connect(host=settings.RDB_HOST, port=settings.RDB_PORT, db=settings.LINK_DB, auth_key=settings.rethinkdb_auth)
     except RqlDriverError:
         """
-        log_data = "LOG_INFO=" + simplejson.dumps(
-            { 'Request':'app.before failed database' })
+        log_data = "LOG_INFO=" + simplejson.dumps({ 'Request':'app.before failed database' })
         requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", log_data)
         """
         abort(503, "No database connection could be established")
