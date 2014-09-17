@@ -21,15 +21,12 @@ from json import dumps
 
 from app import new_task_message
 from app import send_notification_task
-from app import contact_number
 
 
 from payments import process_payments
 
 
 from functools import wraps
-
-
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -63,6 +60,7 @@ def getAdminTasks():
         if request.headers['Content-Type'] != 'application/json; charset=UTF-8':
             abort(400)
 
+        
         # add to sessions then login
         if 'username' not in request.cookies:
             return redirect('/')
@@ -70,6 +68,7 @@ def getAdminTasks():
         username = request.cookies.get('username')
         if request.cookies.get('username') == '' or request.cookies.get('username') is None:
             return redirect('/')
+
 
         taskData = []
         try:
@@ -142,7 +141,7 @@ def getTasks():
 
     except RqlError:
         logging.warning('DB code verify failed on /api/getTasks/')
-
+        
         resp = make_response(jsonify({"Error": "503 DB error"}), 503)
         resp.headers['Content-Type'] = "application/json"
         resp.cache_control.no_cache = True
@@ -177,6 +176,7 @@ def taskInfo(task_id):
         contactPersons = str(user['contactPersons'])
         location = str(user['locationData'])
 
+
     except RqlError:
         logging.warning('DB operation failed on /editTask/<task_id>/')
 
@@ -186,9 +186,8 @@ def taskInfo(task_id):
         return resp
 
     return render_template(
-        'EditTask.html', task_category=task_category, task_urgency=task_urgency,
-        locationData=location, contactPersons=contactPersons, task_desc=task_desc,
-        task_title=task_title, due_date=due_date, username=username, task_id=task_id)
+        'EditTask.html', task_category=task_category, task_urgency=task_urgency, locationData=location, contactPersons=contactPersons,
+        task_desc=task_desc, task_title=task_title, due_date=due_date, username=username, task_id=task_id)
 
 
 @app.route('/api/editTask/<task_id>/', methods=['PUT', 'POST'])
@@ -234,8 +233,8 @@ def editTask(task_id):
         r.table(
             'Tasks').get(task_id).update({'task_desc': task_desc, 'task_title': task_title,
                                           'task_urgency': task_urgency,
-                                          'due_date': due_date, "locationData": locationData,
-                                          'contactPersons': contactPersons}).run(g.rdb_conn)
+                                          'due_date': due_date, "locationData": locationData, 
+                                          'contactPersons': contactPersons }).run(g.rdb_conn)
 
     except RqlError:
         logging.warning('DB code verify failed on /api/editTask/')
@@ -265,6 +264,7 @@ def deleteTask():
 
     task_id = request.json.get('task_id')
 
+
     try:
         r.table('Tasks').get(task_id).delete().run(g.rdb_conn)
     except RqlError:
@@ -272,7 +272,7 @@ def deleteTask():
 
         #payload = "LOG_INFO=" + simplejson.dumps({ '/editTask/<username>/<task_id>/':'DB operation failed on /editTask/<task_id>/' })
         #requests.post("https://logs-01.loggly.com/inputs/e15fde1a-fd3e-4076-a3cf-68bd9c30baf3/tag/python/", payload)
-
+        
         resp = make_response(jsonify({"Error": "503 DB error"}), 503)
         resp.headers['Content-Type'] = "application/json"
         resp.cache_control.no_cache = True
@@ -301,17 +301,17 @@ def addTask():
     task_title = request.json.get('title')
     # then update userInfo
     task_category = request.json.get('category')
-    task_urgency = request.json.get('urgency')  # checkbox
+    task_urgency = request.json.get('urgency') # checkbox
     due_date = request.json.get('due_date')
     locationData = request.json.get('locationData')
     contactPersons = request.json.get('contactPersons')
     task_price = request.json.get('taskPrice')
 
     # unpaid status - pending - started - finished
-    taskData = {"username": username, "task_title": task_title, "task_desc": task_desc, "locationData": locationData,
-                "task_category": task_category, "task_urgency": "UNPAID", "due_date": due_date, "contactPersons": contactPersons}
+    taskData = { "username": username, "task_title": task_title, "task_desc": task_desc, "locationData": locationData,
+                "task_category": task_category, "task_urgency": "UNPAID", "due_date": due_date, "contactPersons": contactPersons }
 
-    text_all = "taskwetu new task %s " % (task_title)
+    text_all = "taskwetu new task %s " %(task_title)
 
     try:
         r.table('Tasks').insert(taskData).run(g.rdb_conn)
@@ -326,16 +326,14 @@ def addTask():
     # send email and SMS notification
     # rabbitMQ tasks
     try:
-        send_notification_task(str(contact_number), str(text_all))
+        send_notification_task("+254710650613", str(text_all))
         new_task_message("khalifleila@gmail.com", str(taskData), username)
     except Exception:
         logging.warning('Send SMS failed on /api/addTask/ notification failed')
 
     try:
-        user_info = r.table(
-            'UsersInfo').get(username).pluck('email').run(g.rdb_conn)
-        usermobileNo = r.table(
-            'UsersInfo').get(username).pluck('mobileNo').run(g.rdb_conn)
+        user_info = r.table('UsersInfo').get(username).pluck('email').run(g.rdb_conn)
+        usermobileNo = r.table('UsersInfo').get(username).pluck('mobileNo').run(g.rdb_conn)
         email = user_info['email']
         mobileNo = ""
         if usermobileNo is not None:

@@ -40,6 +40,7 @@ def adminSign():
         username = request.json.get('username')
         password = request.json.get('password')
 
+
         try:
             user = r.table('Admin').get(username).run(g.rdb_conn)
         except Exception, e:
@@ -108,9 +109,10 @@ def signIn():
     # redis k/v store | dict
     session[username] = username
 
+
     resp = make_response(jsonify({"OK": "Signed In"}), 200)
     resp.headers['Content-Type'] = "application/json"
-    resp.set_cookie('username', value=username)
+    resp.set_cookie('username',value=username)
 
     resp.cache_control.no_cache = True
     return resp
@@ -172,14 +174,16 @@ def getRandID():
         logging.warning('sendMail verify failed on /api/signUp/')
         abort(500)
     except Exception, e:
-        logging.warning('SendMail error on /api/signUp/ %s' % (e))
+        logging.warning('SendMail error on /api/signUp/ %s' %(e) )
+
 
     hashed_password = hashlib.sha512(password + salt).hexdigest()
 
     try:
+        # r.table('UsersInfo').get(mobileNo).update({"smscode": SMScode}).run(g.rdb_conn)
         r.table(
-            'UsersInfo').insert({ "userVerified": "no" ,"state": "", "fname": "", "lname": "", "username": username, "dob": "",
-                                 "email": email, "password": hashed_password, "smscode": SMScode, "mobileNo": ""}).run(g.rdb_conn)
+            'UsersInfo').insert({"state": "", "fname": "", "lname": "" ,"username": username, "dob": "",
+            "email": email, "password": hashed_password, "smscode": SMScode, "mobileNo": ""}).run(g.rdb_conn)
     except RqlError:
         logging.warning('DB code verify failed on /api/signUp/')
         resp = make_response(jsonify({"Error": "503 DB error"}), 503)
@@ -192,7 +196,7 @@ def getRandID():
     # return redirect()
 
     resp = make_response(jsonify({"OK": "Signed Up"}), 202)
-    resp.set_cookie('username', value=username)
+    resp.set_cookie('username',value=username)
     resp.headers['Content-Type'] = "application/json"
     resp.cache_control.no_cache = True
     return resp
@@ -238,7 +242,7 @@ def logout():
     username = request.cookies.get('username')
     session.pop(username, None)
 
-    resp = make_response(redirect('/'))
+    resp = make_response( redirect('/') )
     resp.set_cookie('username', '', expires=0)
     return resp
 
@@ -254,12 +258,7 @@ def confirmUser(smscode):
     try:
         user = r.table(
             'UsersInfo').get(username).pluck('smscode').run(g.rdb_conn)
-
-        if user:
-            r.table('UsersInfo').get(username).update({"userVerified": "yes"})
-        else:
-            return "VERFICATION FAILED"
-            #abort(404)
+        r.table('UsersInfo').get(username).update({"userVerified": "yes"})
 
     except RqlError:
         logging.warning('DB op failed on /confirmUser/')
@@ -270,8 +269,10 @@ def confirmUser(smscode):
         return resp
 
     if str(user) is not str(smscode):
-        # return "EMAIL VERFICATION FAILED"
-        abort(404)
+        return
+        """
+        EMAIL VERFICATION FAILED
+        """
 
     return redirect("/task/createTask/", code=302)
 
@@ -284,12 +285,12 @@ def post_payment_pesapal():
     username = request.cookies.get('username')
     # with ref set in rand generator
     pesapal_merchant_ref = request.args.get('pesapal_merchant_reference')
-    pesapal_merchant_id = request.args.get('pesapal_transaction_tracking_id')
+    pesapal_merchant_id  = request.args.get('pesapal_transaction_tracking_id')
 
     # store merchant info in db
     # basic post_payment page TO LOAD
-    pesapal_data = {"pesapal_transaction_tracking_id": pesapal_merchant_id,
-                    "pesapal_merchant_reference": pesapal_merchant_ref, "username": username}
+    pesapal_data = { "pesapal_transaction_tracking_id": pesapal_merchant_id,
+        "pesapal_merchant_reference": pesapal_merchant_ref, "username": username }
 
     try:
         r.table('Payments').insert(pesapal_data).run(g.rdb_conn)
@@ -319,7 +320,7 @@ def ipn_notify():
     #url = request.get.args('url')
     # compare with merchant ref
     pesapal_merchant_ref = request.args.get('pesapal_merchant_reference')
-    pesapal_merchant_id = request.args.get('pesapal_transaction_tracking_id')
+    pesapal_merchant_id  = request.args.get('pesapal_transaction_tracking_id')
 
     # store in db per user info in payments
 

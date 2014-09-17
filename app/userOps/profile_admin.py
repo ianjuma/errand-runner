@@ -38,6 +38,7 @@ def profile():
 
     username = request.cookies.get('username')
 
+
     if request.method == 'POST':
 
         if not request.json:
@@ -98,12 +99,12 @@ def profile():
         resp.cache_control.no_cache = True
         return resp
 
+
     # profile url fix - only on signUp
-    default_url = "https://www.gravatar.com/avatar"
+    default_url = "http://www.gravatar.com/avatar"
     size = 80
-    profile_url = "https://www.gravatar.com/avatar/" + hashlib.md5(
-        email.lower()).hexdigest() + "?"
-    profile_url += urllib.urlencode({'d': default_url, 's': str(size)})
+    profile_url = "http://www.gravatar.com/avatar/" + hashlib.md5(email.lower()).hexdigest() + "?"
+    profile_url += urllib.urlencode({'d':default_url, 's':str(size)})
 
     return render_template(
         'Profile.html', name=name, lastname=lastname, firstname=firstname, email=email, smscode=smscode,
@@ -142,7 +143,7 @@ def payments():
         try:
             user = r.table(
                 'UsersInfo').get(str(username)).update({"email": email, "state": state,
-                                                        "dob": dob, "mobileNo": mobileNo}).run(g.rdb_conn)
+                                "dob": dob, "mobileNo": mobileNo}).run(g.rdb_conn)
 
             resp = make_response(jsonify({"OK": "User Updated"}), 202)
             resp.headers['Content-Type'] = "application/json"
@@ -216,6 +217,7 @@ def removeUser():
     except RqlError:
         logging.warning('Wrong password user failed on /api/signIn/')
 
+
     session.pop(username, None)
 
     try:
@@ -249,6 +251,7 @@ def addUser():
     state = request.json.get('state')
     location = request.json.get('location')
     email = request.json.get('email')
+
 
     if mobileNo.startswith('0'):
         mobileNo = mobileNo[1:]
