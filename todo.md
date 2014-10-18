@@ -6,7 +6,6 @@ tune linux vm
 tune iptables, ufw
 dDos - firewall
 dropping packets intelligently - iptables
-nginx tuning + load balancing
 apparmor, selinux
 rkhunter tuning + rootkits
 
@@ -17,7 +16,6 @@ iframe - pesapal
 transaction history
 gevent + uwsgi - load balance
 nginx - serve 400, 500 + static
-new relic
 log watching + control - logrotate
 celery - logging
 elastic search + mongoDB river
