@@ -24,7 +24,7 @@ def supervisor():
     run('supervisord -c /etc/supervisord.conf')
 
 
-def setup_server(version):
+def setup_server():
     run('pty=False')
     with cd('/tmp/TaskWetu'):
         # run('git clone https://github.com/nailab/taskwetu.git')
@@ -61,7 +61,7 @@ def restartNginx():
     run('service nginx restart')
 
 
-def deploy(version="0.6.0"):
+def deploy(version="1.0.0"):
     setup_server(version)
     mvStatic()
     supervisor()
