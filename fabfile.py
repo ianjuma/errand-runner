@@ -26,11 +26,10 @@ def supervisor():
 
 def setup_server(version):
     run('pty=False')
-    run('mkdir /tmp/TaskWetu')
     with cd('/tmp/TaskWetu'):
-        run('git clone https://github.com/nailab/taskwetu.git')
+        # run('git clone https://github.com/nailab/taskwetu.git')
         with cd('/tmp/TaskWetu/taskwetu'):
-            run('git checkout tags/%s' % (version,))
+            # run('git checkout tags/%s' % (version,))
             result = run('pip install -r requirements.txt')
             if result.failed:
                 local('GUNICORN failed')
@@ -62,7 +61,7 @@ def restartNginx():
     run('service nginx restart')
 
 
-def deploy(version):
+def deploy(version="0.6.0"):
     setup_server(version)
     mvStatic()
     supervisor()
