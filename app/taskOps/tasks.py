@@ -16,6 +16,7 @@ from flask import make_response
 from flask import jsonify
 from random import randint
 from flask import abort, request
+from datetime import datetime
 
 from json import dumps
 
@@ -306,10 +307,12 @@ def addTask():
     locationData = request.json.get('locationData')
     contactPersons = request.json.get('contactPersons')
     task_price = request.json.get('taskPrice')
+    task_creation_date = str(datetime.now())
 
     # unpaid status - pending - started - finished
-    taskData = { "username": username, "task_title": task_title, "task_desc": task_desc, "locationData": locationData,
-                "task_category": task_category, "task_urgency": "UNPAID", "due_date": due_date, "contactPersons": contactPersons }
+    taskData = { "username": username, "task_title": task_title, 
+    "task_desc": task_desc, "locationData": locationData, "task_category": task_category, 
+    "task_urgency": "UNPAID", "due_date": due_date, "contactPersons": contactPersons, 'task_creation_date': task_creation_date }
 
     text_all = "taskwetu new task %s " %(task_title)
 
