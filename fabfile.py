@@ -38,10 +38,6 @@ def setup_server(version):
             #prepare_deploy()
 
 
-def clean():
-    run('rm -r /tmp/TaskWetu')
-
-
 def backUp():
     run('rethinkdb-dump -a taskwetu_db**//')
 
@@ -68,7 +64,6 @@ def restartNginx():
 
 def deploy(version):
     setup_server(version)
-    #moveSupervisor()
     mvStatic()
     supervisor()
     restartNginx()
