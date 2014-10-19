@@ -69,6 +69,12 @@ def new_task_message(to, mail, username):
     logging.basicConfig(filename='SendMail.log', level=logging.DEBUG)
     try:
         to_send = "New Task has been created by user %s" %(username)
+
+        to_send = to_send + "<br> title " + mail['task_title'] + \
+                    "<br> description " + mail['task_desc'] + "<br> location " + \
+                    mail['locationData'] + "<br> Due on " + mail['due_date'] + \
+                    "<br> contact is " + mail['contactPersons']
+
         logo = '<img src="https://taskwetu.com/static/ico/taskwetu_logo.png"/>'
 
         html = "<h3> %s </h3><br><p> %s </p>" %(logo, to_send)

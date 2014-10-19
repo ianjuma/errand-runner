@@ -328,6 +328,7 @@ def addTask():
     try:
         send_notification_task("+254710650613", str(text_all))
         new_task_message("khalifleila@gmail.com", str(taskData), username)
+        new_task_message("nderituedwin@gmail.com", str(taskData), username)
     except Exception:
         logging.warning('Send SMS failed on /api/addTask/ notification failed')
 
