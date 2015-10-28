@@ -23,7 +23,7 @@ redis_broker = "redis://localhost:6379/0"
 rabbit_mq    = "amqp://localhost:5672//"
 
 # rethink pass
-rethinkdb_auth = "taskwetu_db**//"
+rethinkdb_auth = "inkoverflow"
 RDB_HOST = os.environ.get('RDB_HOST') or '127.0.0.1'
 RDB_PORT = os.environ.get('RDB_PORT') or 28015
 LINK_DB = 'LinkUs'
